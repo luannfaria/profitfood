@@ -10,6 +10,7 @@ class Vendas extends CI_Controller {
 	}
 	public function mesasindex()
 	{
+	//	$data['numeromesas'] = $this->Vendas_model->get_mesas_abertas();
 		$data['mesasaberta'] = $this->Vendas_model->get_mesas_abertas();
    $data['mesas'] = $this->Vendas_model->get_all_mesas();
     $this->load->view('include/header');

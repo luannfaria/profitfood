@@ -265,29 +265,31 @@ location.reload();
 
   });
 
-    $("#produto").autocomplete({
 
-        source: "<?php echo base_url(); ?>produto/autoCompleteProduto",
+});
 
-        minLength: 2,
+$("#produto").autocomplete({
 
-        select: function(event, ui) {
+    source: "<?php echo base_url(); ?>produto/autoCompleteProduto",
 
+    minLength: 2,
 
-
-            $("#idproduto").val(ui.item.id);
-
-            $("#venda").val(ui.item.venda);
-              $("#nomeproduto").val(ui.item.nomeproduto);
+    select: function(event, ui) {
 
 
 
+        $("#idproduto").val(ui.item.id);
+
+        $("#venda").val(ui.item.venda);
+          $("#nomeproduto").val(ui.item.nomeproduto);
 
 
 
 
-        }
 
-    });
+
+
+    }
+
 });
     </script>

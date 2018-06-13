@@ -26,16 +26,25 @@
                                   </header>
 
                               <div class="panel-body">
+                                <div class="row">
+                                <div class="col-md-12" style="background:#57889c;">
                                 <?php      foreach ($mesasaberta as $ma) {
     ?>
-<div class="col-lg-3">
-    <a href="<?php echo site_url('vendas/editamesa/'.$ma['id']); ?>" id="botaomesas"class="btn btn-primary btn-lg btn-block">MESA <?php echo $ma['numeromesa']; ?></a>
+ <div class="col-md-3">
+   <a href="<?php echo site_url('vendas/editamesa/'.$ma['id']); ?>">
+   <div class="info-box blue-bg">
+    <div class="col-md-6 col-md-6 col-sm-12 col-xs-12">
 
+   <div class="title"></div>
+       <div class="mesas">MESA <?php echo $ma['numeromesa']; ?></div>
 
+     </div>
+   </div></a>
 </div>
                                       <?php
 } ?>
-
+</div>
+</div>
 </div>
 </section>
 </div>
@@ -51,17 +60,20 @@
                         <h4 class="modal-title">Abrir mesa</h4>
                       </div>
                       <div class="modal-body">
-<div class="container">
-  <div class="col-lg-12">
 
-                  <?php      foreach ($mesas as $m) {
+     <div class="row">
+<?php foreach ($mesas as $m) { ?>
+<?php $numer= $m['numeromesas']; ?>
+
+ <?php }?>
+                  <?php   $me=1;   for($i=1;$i<=$numer;$i++) {
         ?>
 
                           <div class="col-lg-4">
   <form id="formServicos" action="<?php echo base_url() ?>vendas/abrirmesa" method="post">
 
-    <input type="hidden" name="numeromesa" value="<?php echo $m['id']?>" name="numermomesa"/>
-                          <input type="submit" id="botaomesas" class="btn btn-success btn-lg btn-block" name="servico" value="MESA <?php echo $m['id']?>" />
+    <input type="hidden" name="numeromesa" value="<?php echo $me;?>" name="numermomesa"/>
+                          <input type="submit" id="botaomesas" class="btn btn-success btn-lg btn-block" style="margin:5px;"name="servico" value="MESA <?php echo $me;?>" />
 
 
 
@@ -71,7 +83,7 @@
 
 
 
-                    <?php
+                    <?php $me++;
     }
 
                         ?>
@@ -80,7 +92,7 @@
 
 </div>
                     </div>
-                    </div>
+
                   </div>
                 </div>
 

@@ -23,7 +23,7 @@ use Mike42\Escpos\PrintConnectors\CupsPrintConnector;
 
 
 try {
-  $connector = new NetworkPrintConnector("192.168.0.150", 9100);
+  $connector = new CupsPrintConnector("PDF");
 
 
       /* Print a "Hello world" receipt" */
@@ -98,7 +98,8 @@ $printer -> feed(2);
         $imprimir = $CI->Vendas_model->getitensimprimir($id);
         $pedido = $CI->Vendas_model->getpedidoimprimir($id);
 
-
+         $CI->load->model('Configuracoes_model');
+            $ipimpressora = $CI->Configuracoes_model->getimprede();
 
       // $membres = $CI->unite_model->email_membre_model();
 //load->model('Vendas_model');
@@ -106,7 +107,7 @@ $printer -> feed(2);
 
 
    try {
-       $connector = new NetworkPrintConnector("192.168.0.150", 9100);
+          $connector = new CupsPrintConnector("PDF");
 
 
            /* Print a "Hello world" receipt" */
@@ -190,7 +191,7 @@ $imprimiritens=NULL;
  }
 function printitem($imprimir,$mesa){
   try {
-      $connector = new NetworkPrintConnector("192.168.0.150", 9100);
+    $connector = new CupsPrintConnector("PDF");
 
 
           /* Print a "Hello world" receipt" */

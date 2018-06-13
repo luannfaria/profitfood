@@ -4,11 +4,14 @@
 
         <!-- bootstrap theme -->
 
+  <link href="<?php echo base_url()?>assest/css/jquery-ui.css" rel="stylesheet">
+<link href="<?php echo base_url()?>assest/css/jquery-ui.theme.css" rel="stylesheet">
+        <div id="product" class="col-sm-12">
+
+                    <section class="panel">
 
 
 
-
-                    <div id="product"class="panel panel-default">
 
              <header class="panel-heading">
                Pedidos - Mesas
@@ -16,7 +19,8 @@
              <div class="panel-header">
 
 
-  <div class="col-md-12">
+  <div class="col-sm-12">
+    <div class="col-sm-4">
   <?php      foreach ($pedido as $pe) {
     ?>
 <h2><strong>MESA
@@ -32,7 +36,46 @@
 <h4><strong>Data: </strong><?php echo $pe->data; ?></h4>
 <h4><strong>Hora: </strong><?php echo $pe->hora; ?></h4>
 </div>
-<br>
+<div class="col-sm-6">
+  <div class="row">
+  <form action="" method="post" id="form_prepare">
+<div class="col-md-8">
+                              <div class="form-group">
+                                <label for="idservico" class="control-label"><i class="fa fa-spinner"> </i> Produtos</label>
+
+                                <input type="text" class="form-control input-lg m-bot15 required" name="produto" id="produto" placeholder="Digite o nome do produto" required/>
+
+                                <input type="hidden" name="idproduto" id="idproduto" value=""/>
+
+<input type="hidden" name="idpedido" id="idpedido" value="<?php echo $num;?>" />
+<input type="hidden" name="numeromesa" id="numeromesa" value="<?php echo $mesa;?>" />
+
+<?php date_default_timezone_set('America/Sao_Paulo'); ?>
+<input type="hidden" name="hora" id="hora" value="<?php echo date('H:i') ;?>" />
+                                <input type="hidden" name="nomeproduto" id="nomeproduto" />
+                                <input type="hidden" name="venda" id="venda" />
+
+                              </div>
+                            </div>
+
+
+
+                            <div class="col-md-2">
+                                                            <div class="form-group">
+                                                              <label for="quantidade" class="control-label"><i class="fa fa-spinner"> </i> Qtdd</label>
+                                                          <input type="text" class="form-control input-lg m-bot15 required" onkeyup="somenteNumeros(this);" name="quantidade" id="quantidade" required/>
+</div>
+</div>
+
+<div class="col-md-2">
+
+<label for="">&nbsp</label>
+
+<input type="submit" class="btn btn-success btn-lg" name="ok" value="INSERIR" />  </form>
+</div>
+</div>
+</div>
+
 
 
 <?php
@@ -40,46 +83,16 @@
 </div>
 <div  class="panel-body">
 
-      <form action="" method="post" id="form_prepare">
-  <div class="col-md-5">
-                                  <div class="form-group">
-                        						<label for="idservico" class="control-label"><i class="fa fa-spinner"> </i> Produtos</label>
 
-                                    <input type="text" class="form-control required" name="produto" id="produto" placeholder="Digite o nome do serviço" onfocus="this.value=''" required/>
-
-                                    <input type="hidden" name="idproduto" id="idproduto" value=""/>
-
-<input type="hidden" name="idpedido" id="idpedido" value="<?php echo $num;?>" />
-<input type="hidden" name="numeromesa" id="numeromesa" value="<?php echo $mesa;?>" />
-
-<?php date_default_timezone_set('America/Sao_Paulo'); ?>
-<input type="hidden" name="hora" id="hora" value="<?php echo date('H:i') ;?>" />
-                                    <input type="hidden" name="nomeproduto" id="nomeproduto" />
-                                    <input type="hidden" name="venda" id="venda" />
-
-                        					</div>
-                                </div>
-
-
-
-                                <div class="col-md-1">
-                                                                <div class="form-group">
-                                                      						<label for="quantidade" class="control-label"><i class="fa fa-spinner"> </i> Qtdd</label>
-                                                              <input type="text" class="form-control required" name="quantidade" id="quantidade" required/>
 </div>
 </div>
 
-  <div class="col-md-2">
-    <br>
-    <label for="">&nbsp</label>
 
-    <input type="submit" class="btn btn-success" name="ok" value="INSERIR" />  </form>
+          <div class="table-overflow">
 
-</div>
-<br/>
 
-  <table id="item" class="table table-striped table-bordered table-hover" >
-            <thead>
+  <table id="item" class="table table-striped table-advance table-hover" >
+            <thead class="tabela">
 
 
               <tr>
@@ -93,7 +106,7 @@
               <th>AÇÕES</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody id="tabela">
 
               <div id="itenstable">
   <?php foreach ($itenspedido as $i) {
@@ -214,86 +227,65 @@
 
 
           </table>
-</div>
 
-<div class="row">
-<div class="col-lg-12">
-  <table class="table table-striped table-bordered table-hover" >
-            <thead>
+      </div>
+      <div class="row">
+<div class="col-md-6" style="background:#57889c;height:135px;">
+  <a id="botaovenda" href="<?php echo site_url('vendas/imprimiconta/'.$pe->id); ?>" style="position:right;" class="btn btn-primary col-md-4 btn-lg"><i class="fa fa-print"></i> CONTA</a>
 
+  <form action="<?php echo base_url();?>vendas/itemmesa" method="post" id="form_insert">
 
-              <tr>
-                <td colspan="2"></td>
-                <td class="col-xs-2"style="text-align: center"><font size="5"><strong>TAXA SERVIÇO</FONT></strong></td>
-                <td class="col-xs-2"style="text-align: center"><font size="5"><strong>TOTAL ITENS</FONT></strong></td>
-                <td class="col-xs-3"style="text-align: center"><font size="5"><strong>TOTAL MESA</FONT></strong></td>
+        <fieldset style="display: none;"></fieldset>
 
-              </tr>
-            </thead>
-<tbody>
-  <tr>
-    <td colspan="2"></td>
-    <?php $taxa = ($subtotal*10)/100;
-      $total = $taxa+$subtotal;
-    ?>
-    <td style="text-align: center"><font size="5"><strong>R$ <?php echo number_format($taxa,2,',','.')?></font></strong></td>
-    <td style="text-align: center"><font size="5"><strong>R$ <?php echo number_format($subtotal,2,',','.')?></font></strong></td>
-    <td style="text-align: center"><font size="5"><strong>R$ <?php echo number_format($total,2,',','.')?></font></strong></td>
-  </tr>
-</body>
-
-          </table>
-
-</div>
-
-</div>
+        <input id="botaovenda" type="submit" style="position:right;" class="btn btn-default col-md-4 btn-lg"  name="cadastrar" value="CONFIRMAR ITENS" />
 
 
-<div  class="panel-footer">
-<div class="row">
-
-<div class="col-lg-12">
-
-
-<div class="col-lg-8">
-<a id="botaovenda" href="<?php echo site_url('vendas/excluirpedido/'.$pe->id); ?>" data-confirm="Tem certeza que deseja excluir essa mesa?" style="position:left;" class="btn btn-danger col-md-2 btn-lg"><i class="fa fa-times-circle"></i> EXCLUIR</a>
-<a id="botaovenda" data-toggle="modal" data-target="#modal-lg" style="position:center;" class="btn btn-success col-md-2 btn-lg"><i class="fa fa-money"></i>RECEBER</a>
+      </form>
+  <a id="botaovenda" href="<?php echo site_url('vendas/excluirpedido/'.$pe->id); ?>" data-confirm="Tem certeza que deseja excluir essa mesa?" style="position:left;" class="btn btn-danger col-md-4 btn-lg"><i class="fa fa-times-circle"></i> EXCLUIR</a>
+  <a id="botaovenda" data-toggle="modal" data-target="#modal-lg" style="position:center;" class="btn btn-success col-md-4 btn-lg"><i class="fa fa-money"></i>RECEBER</a>
 
 
-    <a id="botaovenda" href="<?php echo site_url('vendas/imprimiconta/'.$pe->id); ?>" style="position:right;" class="btn btn-primary col-md-2 btn-lg"><i class="fa fa-print"></i> CONTA</a>
 
 
-    <form action="<?php echo base_url();?>vendas/itemmesa" method="post" id="form_insert">
-
-          <fieldset style="display: none;"></fieldset>
-
-          <input id="botaovenda" type="submit" style="position:right;" class="btn btn-default btn-lg-12 btn-lg"  name="cadastrar" value="IMPRIMIR ITENS" />
 
 
-        </form>
+
+
+
 
 
 </div>
 
-<div class="col-lg-3 col-md-3 col-sm-1 col-xs-1">
-           <div class="info-box">
+<div class="col-md-6" style="background:#57889c;">
 
-             <div class="count">6.674</div>
-             <div class="title">Download</div>
+  <div class="col-lg-4 col-md-4 col-sm-10 col-xs-10">
+   <div class="info-box blue-bg">
+ <div class="title">Subtotal</div>
+     <div class="count">R$<?php echo number_format($subtotal,2,',','.')?></div>
+<?php $taxa = ($subtotal*10)/100; $total=$subtotal+$taxa; ?>
+   </div>
+      </div>
+      <div class="col-lg-4 col-md-4 col-sm-10 col-xs-10">
+       <div class="info-box blue-bg">
+     <div class="title">Taxa</div>
+         <div class="count">R$<?php echo number_format($taxa,2,',','.')?></div>
+
+       </div>
+          </div>
+          <div class="col-lg-4 col-md-4 col-sm-10 col-xs-10">
+           <div class="info-box blue-bg">
+         <div class="title">Total</div>
+             <div class="count">R$<?php echo number_format($total,2,',','.')?></div>
+
            </div>
-           <!--/.info-box-->
-         </div>
-
-</div>
+              </div>
 
 
 
 </div>
 
 
-
-
-
+         <!--/.info-box-->
 
 
 
@@ -307,6 +299,29 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</section>
 
 </div>
 
@@ -319,39 +334,99 @@
                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                          <h4 class="modal-title">Modal Tittle</h4>
                        </div>
-                       <div class="modal-body">
+                       <div class="modal-body" style="height:410px">
+<form action="" method="post" id="form_recebimento">
+                         <div class="row" style="height:300px;">
+         <div style="margin-top:12px" class="col-lg-12">
+<div class="col-lg-3">
 
-                         <div class="row">
-         <div style="margin-top:30px" class="col-lg-8">
+  <div class="radio-toolbar">
+<input type="radio" id="radio1" name="radios" value="DINHEIRO">
+<label for="radio1">DINHEIRO</label>
 
-           <p>
-    <input type="radio" id="test1" name="radio-group" checked>
-    <label for="test1">DINHEIRO</label>
-  </p>
-  <p>
-    <input type="radio" id="test2" name="radio-group">
-    <label for="test2">CARTÃO DE CREDITO</label>
-  </p>
-  <p>
-    <input type="radio" id="test3" name="radio-group">
-    <label for="test3">CARTÃO DE DEBITO</label>
-  </p>
+<input type="radio" id="radio2" name="radios" value="DEBITO">
+<label for="radio2">DEBIDO</label>
+
+<input type="radio" id="radio3" name="radios" value="CREDITO">
+<label for="radio3">CREDITO</label>
+</div>
 
 </div>
+<div class="col-lg-2">
+
+    <label for="quantidade" class="control-label"><i class="fa fa-spinner"> </i> VALOR</label>
+<input type="text" class="form-control input-lg m-bot15 required" name="valorpagamento" id="valorpagamento" required/>
+
+
+
+</div>
+
+<div class="col-lg-3">
+  <br>
+  <input type="submit" class="btn btn-success btn-lg m-bot15" name="ok" value="RECEBER" />
+</div>
+</form>
 <div class="col-lg-4">
-      <h3><strong>TOTAL <?php echo number_format($total,2,',','.')?></strong></h3>
+  <table id="pgto" class="table table-striped table-bordered">
+        <tbody>
+          <tr>
+
+            <td>Valor</td>
+            <td>PGTO</td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+   </div>
+
 
 </div>
-</div>
-<div class="row">
-  <div class="col-lg-12">
-  </div>
+
+
+<div class="col-md-12" style="background:#57889c;margin-top:1px;">
+
+  <div class="col-lg-3 col-md-3 col-sm-10 col-xs-10">
+   <div class="info-box blue-bg">
+ <div class="title">Subtotal</div>
+     <div class="count">R$<?php echo number_format($subtotal,2,',','.')?></div>
+<?php $taxa = ($subtotal*10)/100; $total=$subtotal+$taxa; ?>
+   </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-10 col-xs-10">
+       <div class="info-box blue-bg">
+     <div class="title">Taxa</div>
+         <div class="count">R$<?php echo number_format($taxa,2,',','.')?></div>
+
+       </div>
+          </div>
+          <div class="col-lg-3 col-md-3 col-sm-10 col-xs-10">
+           <div class="info-box blue-bg">
+         <div class="title">Total</div>
+             <div class="count">R$<?php echo number_format($total,2,',','.')?></div>
+
+           </div>
+              </div>
+              <div class="col-lg-3 col-md-3 col-sm-10 col-xs-10">
+               <div class="info-box blue-bg">
+             <div class="title">Valor recebido</div>
+                 <div class="count">R$<?php echo number_format($total,2,',','.')?></div>
+
+               </div>
+                  </div>
+
+
+
 </div>
 
-                       </div>
+
+                     </div>
                        <div class="modal-footer">
-                         <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
-                         <button class="btn btn-success" type="button">Save changes</button>
+
+                         <form action="<?php echo base_url()?>vendas/pagamento" method="post" id="form_recebimento">
+
+                               <fieldset style="display: none;"></fieldset>
+                           <input id="botaovenda" type="submit"  class="btn btn-success col-md-4"  name="cadastrar" value="CONFIRMAR RECEBIMENTO" />
+</form>
                        </div>
                      </div>
                    </div>
@@ -363,17 +438,27 @@
 
                 <script src="<?php echo base_url()?>assest/js/jquery.js"></script>
                 <script src="<?php echo base_url()?>assest/js/jquery-ui-1.10.4.min.js"></script>
-
+<script src="<?php echo base_url()?>assest/js/maskmoney.js"></script>
               <script src="<?php echo base_url()?>assest/js/bootstrap.js"></script>
                 <script src="<?php echo base_url()?>assest/js/validate.js"></script>
 
 
 
 
+<script>
 
+function somenteNumeros (num) {
+		var er = /[^0-9.]/;
+		er.lastIndex = 0;
+		var campo = num;
+		if (er.test(campo.value)) {
+		campo.value = "";
+		}
+	}
+</script>
 
                 <script>
-
+$('#valorpagamento').maskMoney();
 
                 $('#form_prepare').submit(function(){
 
@@ -423,7 +508,8 @@
                 $('#form_insert').find('fieldset').append( hiddens );
 
 
-
+$('#form_prepare').trigger("reset");
+$('#produto').focus();
                 return false;
                 });
 
@@ -462,7 +548,44 @@
 
 
 
+              $('#form_recebimento').submit(function(){
 
+
+
+
+
+                var $this = $( this );
+  var formapagamento = $this.find("input[name='radios']").val();
+
+                var valorpagamento = $this.find("input[name='valorpagamento']").val();
+
+
+
+
+
+              //  var nomeproduto = $('#precovenda').val();
+                var tr = '<tr>'+
+                  '<td><strong>R$'+valorpagamento+',00</strong></td>'+
+                  '<td><strong>'+formapagamento+'</strong></td>'
+
+
+
+
+
+
+                  '</tr>'
+                $('#pgto').find('tbody').append( tr );
+
+                var hiddens =  '<input type="hidden" name="nomeproduto[]" value="'+nomeproduto+'" />'+
+                '<input type="hidden" name="quantidade[]" value="'+qtdd+'" />'+
+                  '<input type="hidden" name="hora[]" value="'+hora+'" />'+
+
+                  '<input type="hidden" name="idproduto[]" value="'+idproduto+'" />';
+
+                $('#form_pagar').find('fieldset').append( hiddens );
+
+              return false;
+              });
 
 
 

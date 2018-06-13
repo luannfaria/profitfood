@@ -61,7 +61,7 @@
                            <div class="modal-content">
                              <div class="modal-header">
                                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                               <h4 class="modal-title">Editar Produto</h4>
+                               <h4 class="modal-title">A</h4>
                              </div>
                              <div class="modal-body">
 <?php echo form_open('produto/edit/'.$p['id']); ?>
@@ -251,21 +251,22 @@ $Comment = getPrinterProperty("Comment"); ?>
 
 
 
+
+
 </div>
 </div>
 <br>
 <div class="row">
 
 <div class="form-group">
-  <div class="col-md-1">
-    <input type="checkbox" name="vendermeio" value="<?php echo $this->input->post('vendermeio'); ?>" class="form-control" id="vendermeio" />
+  <label for="unidade" class="col-md-2 control-label">Unidade</label>
+  <div class="col-md-4">
+    <select name="unidade" class="form-control">
+      <option value="">Selecione</option>
+      <option value="UN">UN</option>
+      <option value="KG">KG</option>
+    </select>
   </div>
-
-  <label for="vendermeio" class="col-md-5 control-label">Permitir venda fracionada?</label>
-     <label for="porc_meio" class="col-md-3 control-label">% cobrança fração</label>
-     <div class="col-md-3">
-       <input type="text" name="porc_meio" value="" class="form-control" id="porc_meio" />
-     </div>
 
 </div>
 </div>
@@ -278,28 +279,28 @@ $Comment = getPrinterProperty("Comment"); ?>
                    </div>
                  </div>
                </div>
+               <script src="<?php echo base_url()?>assest/js/jquery.js"></script>
+               <script src="<?php echo base_url()?>assest/js/jquery-ui-1.10.4.min.js"></script>
+               <script src="<?php echo base_url()?>assest/js/jquery-1.8.3.min.js"></script>
+
+
+               <script src="<?php echo base_url()?>assest/js/validate.js"></script>
+
+
+                 <script src="<?php echo base_url()?>assest/js/maskmoney.js"></script>
+
+                 <script>
+
+              
+                 $('#venda').maskMoney();
+                 $('#custo').maskMoney();
+                 $('#venda1').maskMoney();
+                 $('#custo1').maskMoney();
+
+                 </script>
 
 
 
 
 </section>
 </section>
-
-<script src="<?php echo base_url()?>assest/js/jquery.js"></script>
-<script src="<?php echo base_url()?>assest/js/jquery-ui-1.10.4.min.js"></script>
-<script src="<?php echo base_url()?>assest/js/jquery-1.8.3.min.js"></script>
-<script type="text/javascript" src="<?php echo base_url()?>assest/js/jquery-ui-1.9.2.custom.min.js"></script>
-
-<script src="<?php echo base_url()?>assest/js/validate.js"></script>
-
-
-  <script src="<?php echo base_url()?>assest/js/maskmoney.js"></script>
-
-  <script type="text/javascript">
-
-  $('#venda').maskMoney();
-  $('#custo').maskMoney();
-  $('#venda1').maskMoney();
-  $('#custo1').maskMoney();
-
-  </script>

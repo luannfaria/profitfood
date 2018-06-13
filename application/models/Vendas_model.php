@@ -12,8 +12,10 @@ class Vendas_Model extends CI_Model
     }
 public function get_all_mesas(){
 
-  $this->db->order_by('id', 'asc');
-  return $this->db->get('numeromesas')->result_array();
+  $sql = "select * from empresa";
+  $query = $this->db->query($sql);
+  $array = $query->result_array();
+  return $array;
 }
 
 public function atualizaitem($id,$qtdd){
