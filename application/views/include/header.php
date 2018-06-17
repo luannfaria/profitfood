@@ -90,7 +90,7 @@
                       </a>
             <ul class="sub">
               <li><a class="" href="<?php echo base_url();?>vendas/mesasindex">MESAS</a></li>
-              <li><a class="" href="#">BALCÃO</a></li>
+              <li><a class="" href="<?php echo base_url();?>mobile">MOBILE</a></li>
               <li><a class="" href="#">DELIVERY</a></li>
             </ul>
           </li>
@@ -102,7 +102,9 @@
                       </a>
             <ul class="sub">
               <li><a class="" href="<?php echo base_url();?>produto">PRODUTOS</a></li>
+              <li><a class="" href="<?php echo base_url();?>pizza">PIZZAS</a></li>
               <li><a class="" href="<?php echo base_url();?>categoria">CATEGORIAS</a></li>
+                <li><a class="" href="#">ADICIONAIS</a></li>
 
             </ul>
           </li>
@@ -117,7 +119,7 @@
             <ul class="sub">
               <li><a class="" href="#">Contas a pagar</a></li>
               <li><a class="" href="#">Contas a receber</a></li>
-              <li><a class="" href="#">Caixa</a></li>
+              <li><a class="" href="<?php echo base_url();?>fluxo/fluxo">Caixa</a></li>
             </ul>
           </li>
 
@@ -129,7 +131,7 @@
                       </a>
             <ul class="sub">
               <li><a class="" href="<?php echo base_url();?>configuracoes">Configurações</a></li>
-              <li><a class="" href="<?php echo base_url();?>vendas/sale"><span>Login Page</span></a></li>
+              <li><a class="" href="<?php echo base_url();?>usuario"><span>Usuarios</span></a></li>
               <li><a class="" href="#"><span>Contact Page</span></a></li>
               <li><a class="" href="#">Blank Page</a></li>
               <li><a class="" href="#">404 Error</a></li>

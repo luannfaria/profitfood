@@ -96,6 +96,11 @@ redirect('vendas/mesasindex');
 
 	public function editamesa($id){
 
+
+		$username = $this->session->userdata('login');
+		$data['login']=$username;
+		$data['empresa']= $this->Vendas_model->get_all_mesas();
+
 		$data['pedido'] = $this->Vendas_model->getpedido($id);
 		$data['itenspedido'] = $this->Vendas_model->getitenspedido($id);
 
@@ -109,6 +114,9 @@ redirect('vendas/mesasindex');
 
   public function abrirmesa(){
 	//	$id = $mesa;
+
+
+
 date_default_timezone_set('America/Sao_Paulo');
 $data = date('d/m/Y');
 $hora = date('H:i');
@@ -126,6 +134,8 @@ $status= "2";
 
 		$this->$data['pedido'] = $this->Vendas_model->getpedido($pedido);
  $this->load->model('Produto_model');
+ $username = $this->session->userdata('login');
+	$this->$data['login']=$username;
 //$data['mesas'] = $this->Vendas_model->get_all_mesas();
 $this->$data['produtos'] = $this->Produto_model->get_all_produto();
   $this->load->view('include/header');
@@ -163,7 +173,8 @@ for($i=0;$i<$count;$i++){
 					'nome_produto' =>$this->input->post('nomeproduto')[$i],
 					'valorproduto'=> $this->input->post('venda')[$i],
 					'produto_id'=> $this->input->post('idproduto')[$i],
-					'qtdd' => $this->input->post('quantidade')[$i],
+					'qtdd' => $this->input->post('qtdd')[$i],
+					'garcom'=>$this->input->post('garcom')[$i],
 					'idpedido'=>$this->input->post('idpedido')[$i],
 					'hora'=>$this->input->post('hora')[$i]
 
@@ -185,12 +196,13 @@ for($i=0;$i<$count;$i++){
 }
 
 
-	echo json_encode(array('result'=> true));
+
+				redirect('vendas/mesasindex');
 
 
-	$this->load->helper('print');
+	//$this->load->helper('print');
 
-	printitem($imprimir,$mesa);
+	//printitem($imprimir,$mesa);
 
 	}
 

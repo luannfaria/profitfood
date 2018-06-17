@@ -44,8 +44,8 @@
 		<td><?php echo $p['categoria_id']; ?></td>
 		<td><?php echo $p['status']; ?></td>
 		<td><?php echo $p['nomeproduto']; ?></td>
-		<td><?php echo $p['custo']; ?></td>
-		<td><?php echo $p['venda']; ?></td>
+		<td>R$ <?php echo number_format($p['custo'],2,',','.')  ?></td>
+		<td>R$ <?php echo number_format($p['venda'],2,',','.') ?></td>
 		<td><?php echo $p['impressora']; ?></td>
 		<td><?php echo $p['vendermeio']; ?></td>
 		<td><?php echo $p['porc_meio']; ?></td>
@@ -109,7 +109,7 @@
 
              <label for="venda" class="col-md-1 control-label">Venda</label>
              <div class="col-md-2">
-               <input type="text" name="venda" value="<?php echo $p['venda']; ?>" onfocus="this.value=''"; class="form-control required" id="venda" required/>
+               <input type="text" name="venda" value="<?php echo number_format($subtotal,2,',','.'); ?>" onfocus="this.value=''"; class="form-control required" id="venda" required/>
                  <input type="hidden" value="1" id="status" name="status"/>
              </div>
 
@@ -291,7 +291,7 @@ $Comment = getPrinterProperty("Comment"); ?>
 
                  <script>
 
-              
+
                  $('#venda').maskMoney();
                  $('#custo').maskMoney();
                  $('#venda1').maskMoney();

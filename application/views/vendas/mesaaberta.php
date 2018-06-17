@@ -82,7 +82,7 @@
 <input type="hidden" name="numeromesa" id="numeromesa" value="<?php echo $mesa;?>" />
 <?php date_default_timezone_set('America/Sao_Paulo'); ?>
 <input type="hidden" name="hora" id="hora" value="<?php echo date('H:i') ;?>" />
-
+    <input type="hidden" name="garcom" id="garcom" value="<?php echo $login ?>"/>
                                     <input type="hidden" name="nomeproduto" id="nomeproduto" />
                                     <input type="hidden" name="venda" id="venda" />
 
@@ -182,7 +182,7 @@
 
 
     <script>
-    $( function() {
+
 
     $('#form_prepare').submit(function(){
 
@@ -195,6 +195,7 @@
        var idpedido = $this.find("input[name='idpedido']").val();
      var nomeproduto = $this.find("input[name='nomeproduto']").val();
      var hora = $this.find("input[name='hora']").val();
+     var garcom = $this.find("input[name='garcom']").val();
       var venda = $this.find("input[name='venda']").val();
       var idproduto = $this.find("input[name='idproduto']").val();
       var qtdd = $this.find("input[name='quantidade']").val();
@@ -202,7 +203,7 @@
       var subtotal = venda*qtdd;
 //  var nomeproduto = $('#precovenda').val();
       var tr = '<tr>'+
-        '<td></td>'+
+        '<td>'+garcom+'</td>'+
         '<td>'+hora+'</td>'+
         '<td>'+nomeproduto+'</td>'+
         '<td>R$ '+venda+',00</td>'+
@@ -219,6 +220,7 @@
     var hiddens =  '<input type="hidden" name="nomeproduto[]" value="'+nomeproduto+'" />'+
     '<input type="hidden" name="qtdd[]" value="'+qtdd+'" />'+
     '<input type="hidden" name="hora[]" value="'+hora+'" />'+
+    '<input type="hidden" name="garcom[]" value="'+garcom+'" />'+
       '<input type="hidden" name="idpedido[]" value="'+idpedido+'" />'+
       '<input type="hidden" name="venda[]" value="'+venda+'" />'+
       '<input type="hidden" name="numeromesa[]" value="'+numeromesa+'" />'+
@@ -266,7 +268,7 @@ location.reload();
   });
 
 
-});
+
 
 $("#produto").autocomplete({
 

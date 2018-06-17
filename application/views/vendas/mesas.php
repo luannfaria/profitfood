@@ -36,7 +36,7 @@
     <div class="col-md-6 col-md-6 col-sm-12 col-xs-12">
 
    <div class="title"></div>
-       <div class="mesas">MESA <?php echo $ma['numeromesa']; ?></div>
+       <div class="mesas"><i class="fa fa-cutlery"> </i>MESA <?php echo $ma['numeromesa']; ?></div>
 
      </div>
    </div></a>

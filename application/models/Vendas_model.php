@@ -10,6 +10,8 @@ class Vendas_Model extends CI_Model
     {
         parent::__construct();
     }
+
+  
 public function get_all_mesas(){
 
   $sql = "select * from empresa";

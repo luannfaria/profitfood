@@ -47,6 +47,9 @@
                  <li class="">
                    <a data-toggle="tab" href="#garcons">Garçons</a>
                  </li>
+                 <li class="">
+                   <a data-toggle="tab" href="#usuarios">Usuarios</a>
+                 </li>
 
                </ul>
              </header>
@@ -139,7 +142,7 @@
   <div class="col-md-1">
     <label for="taxaservico" class="control-label"><span class="text-danger">*</span>% serviço</label>
     <div class="form-group">
-      <input type="number" name="taxaservico" value="<?php echo $empresa['taxaservico']; ?>" class="form-control"  id="taxaservico" />
+      <input type="number" name="taxaservico" value="<?php echo $empresa['taxaservico'];?>" class="form-control"  id="taxaservico" />
       <span class="text-danger"><?php echo form_error('taxaservico');?></span>
     </div>
   </div>
@@ -158,7 +161,7 @@
     <br>
     <label for="">&nbsp</label>
 
-    <input type="submit" class="btn btn-success" name="ok" value="INSERIR" />
+    <input type="submit" class="btn btn-success" name="ok" value="ALTERAR" />
 
 </div>
 
@@ -284,7 +287,24 @@
                  </div>
                </div>
                  <div id="garcons" class="tab-pane">Garçons</div>
+                 <div id="usuarios" class="tab-pane">
+                   <div class="row">
+                  <div class="col-lg-12">
+                  <!--notification start-->
+                  <section class="panel">
+                  <div class="panel-header">
+                  </div>
+                  <div class="panel-body">
 
+                  <div class="row">
+
+
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
                </div>
              </div>
            </section>

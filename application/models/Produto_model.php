@@ -23,7 +23,7 @@ class Produto_model extends CI_Model
      		$query = $this->db->get('produto');
      		if($query->num_rows() > 0){
      				foreach ($query->result_array() as $row){
-     						$row_set[] = array('label'=>$row['nomeproduto'].' | Preço: R$ '.$row['venda'],'id'=>$row['id'],'nomeproduto'=>$row['nomeproduto'],'venda'=>$row['venda']);
+     						$row_set[] = array('label'=>$row['nomeproduto'].' | Preço: R$ '.$row['venda'].',00','id'=>$row['id'],'nomeproduto'=>$row['nomeproduto'],'venda'=>$row['venda']);
      				}
      				echo json_encode($row_set);
      		}
@@ -53,6 +53,15 @@ class Produto_model extends CI_Model
 
 
     }
+
+    public function getprodutoscategorias($idcat){
+      $sql = "select * from produto where categoria_id='$idcat'";
+      $query = $this->db->query($sql);
+      $array = $query->result_array();
+      return $array;
+
+
+  }
 
     /*
      * function to add new produto

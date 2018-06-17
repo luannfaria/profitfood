@@ -1,4 +1,4 @@
-<section id="main-content">
+  <section id="main-content">
       <section class="wrapper">
 
 
@@ -19,7 +19,7 @@
              <div class="panel-header">
 
 
-  <div class="col-sm-12">
+  <div id="cabecalho" class="col-sm-12">
     <div class="col-sm-4">
   <?php      foreach ($pedido as $pe) {
     ?>
@@ -54,6 +54,7 @@
 <input type="hidden" name="hora" id="hora" value="<?php echo date('H:i') ;?>" />
                                 <input type="hidden" name="nomeproduto" id="nomeproduto" />
                                 <input type="hidden" name="venda" id="venda" />
+                                <input type="hidden" name="garcom" id="garcom" value="<?php echo $login ?>"/>
 
                               </div>
                             </div>
@@ -81,17 +82,18 @@
 <?php
 }?>
 </div>
-<div  class="panel-body">
+
+</div>
+<div id="botoes" style="width:20%;">
+
 
 
 </div>
-</div>
+
+         <div style="width:100%;" id="tabela"class="table-overflow">
 
 
-          <div class="table-overflow">
-
-
-  <table id="item" class="table table-striped table-advance table-hover" >
+  <table id="item"   class="table table-striped table-advance table-hover" >
             <thead class="tabela">
 
 
@@ -120,7 +122,7 @@
 
 
 
-<td></td>
+<td><strong><?php echo $i['garcom']; ?></strong></td>
 <td><strong><?php echo $i['hora']; ?></strong></td>
 <td><strong><?php echo $i['nome_produto']; ?></strong></td>
 <td><strong>R$ <?php echo $i['valorproduto']; ?>,00</strong></td>
@@ -196,7 +198,7 @@
                   <div class="col-md-2">
 
 
-                <input type="submit" class="btn btn-success" name="ok" value="ALTERAR" />
+                <input type="submit" class="btn btn-success  btn-lg btn-block" name="ok" value="ALTERAR" />
 
 </div>
               </form>
@@ -206,12 +208,11 @@
                                         <div class="modal-footer">
 
 
-                                        </div>
-
 
                                     </div>
                                   </div>
                                 </div>
+                              </div>
 </td>
   </tr>
 
@@ -229,8 +230,9 @@
           </table>
 
       </div>
-      <div class="row">
-<div class="col-md-6" style="background:#57889c;height:135px;">
+
+      <div id="footervenda" style="width:100%;" class="col-md-12">
+<div class="col-md-6" style="background:#57889c;">
   <a id="botaovenda" href="<?php echo site_url('vendas/imprimiconta/'.$pe->id); ?>" style="position:right;" class="btn btn-primary col-md-4 btn-lg"><i class="fa fa-print"></i> CONTA</a>
 
   <form action="<?php echo base_url();?>vendas/itemmesa" method="post" id="form_insert">
@@ -242,7 +244,7 @@
 
       </form>
   <a id="botaovenda" href="<?php echo site_url('vendas/excluirpedido/'.$pe->id); ?>" data-confirm="Tem certeza que deseja excluir essa mesa?" style="position:left;" class="btn btn-danger col-md-4 btn-lg"><i class="fa fa-times-circle"></i> EXCLUIR</a>
-  <a id="botaovenda" data-toggle="modal" data-target="#modal-lg" style="position:center;" class="btn btn-success col-md-4 btn-lg"><i class="fa fa-money"></i>RECEBER</a>
+  <a id="botaovenda" data-toggle="modal" data-target=".bs-example-modal-lg" style="position:center;" class="btn btn-success col-md-4 btn-lg"><i class="fa fa-money"></i>RECEBER</a>
 
 
 
@@ -261,8 +263,10 @@
   <div class="col-lg-4 col-md-4 col-sm-10 col-xs-10">
    <div class="info-box blue-bg">
  <div class="title">Subtotal</div>
-     <div class="count">R$<?php echo number_format($subtotal,2,',','.')?></div>
-<?php $taxa = ($subtotal*10)/100; $total=$subtotal+$taxa; ?>
+     <div class="count">R$ <?php echo number_format($subtotal,2,',','.')?></div>
+<?php foreach($empresa as $e){
+ $taxaservico = $e['taxaservico'];}
+ $taxa = ($subtotal*$taxaservico)/100; $total=$subtotal+$taxa; ?>
    </div>
       </div>
       <div class="col-lg-4 col-md-4 col-sm-10 col-xs-10">
@@ -291,39 +295,108 @@
 
 </div>
 
+    </div>
+
+
+    <div id="rec"class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-body">
+            <div class="container">
+<h2>This is a simple template that allows you to drop the sidebar to the bottom and center it.</h2>
+<div class="row">
+
+  <div id="component0" class="col-md-8 col-sm-8 col-xs-11">
+    Search Area:
+
+    <div class="row">
+      <div class="col-md-6 col-xs-6 col-sm-6">
+        <img src="" class="img-responsive">
+      </div>
+      <div class="col-md-12 col-xs-12 col-sm-6">
+        Text
+      </div>
+      <div style="text-align:center;" class="col-md-6 col-xs-6 col-sm-6">
+        button
+      </div>
+    </div>
+  </div>
+  <div id="component1" class="col-md-3 col-sm-3 col-xs-3">
+    Component 1
+    <div class="row">
+      <div class="col-md-12 col-xs-12 col-sm-6">
+        <img src="" class="img-responsive">
+      </div>
+      <div class="col-md-12 col-xs-12 col-sm-6">
+        Text
+      </div>
+      <div style="text-align:center;" class="col-md-12 col-xs-12 col-sm-12">
+        button
+      </div>
+    </div>
+  </div>
+  <div id="component2" style="text-align:center;" class="col-md-3 col-sm-3 col-xs-3">
+<div class="radio-toolbar">
+    <div class="row">
+
+      <div class="col-md-12 col-xs-6 col-sm-12">
+
+      <input type="radio" id="radio1" name="radios" value="DINHEIRO">
+      <label for="radio1"><i class="fa fa-money"></i>DINHEIRO</label>
+    </div>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-</section>
 
 </div>
+
+
+
+    <div class="row">
+
+      <div class="col-md-12 col-xs-6 col-sm-12">
+
+      <input type="radio" id="radio2" name="radios" value="CREDITO">
+      <label for="radio2"><i class="fa fa-money"></i>CREDITO</label>
+    </div>
+
+
+
+
+
+
+    </div>
+
+  </div>
+</div>
+
+</div>
+</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 <div class="modal fade" id="modal-lg" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -332,51 +405,38 @@
                      <div class="modal-content">
                        <div class="modal-header">
                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                         <h4 class="modal-title">Modal Tittle</h4>
+                         <h4 class="modal-title">RECEBIMENTO</h4>
                        </div>
                        <div class="modal-body" style="height:410px">
 <form action="" method="post" id="form_recebimento">
                          <div class="row" style="height:300px;">
          <div style="margin-top:12px" class="col-lg-12">
-<div class="col-lg-3">
+<div class="col-lg-12">
 
   <div class="radio-toolbar">
 <input type="radio" id="radio1" name="radios" value="DINHEIRO">
-<label for="radio1">DINHEIRO</label>
+<label for="radio1"><i class="fa fa-money"></i>DINHEIRO</label>
 
 <input type="radio" id="radio2" name="radios" value="DEBITO">
-<label for="radio2">DEBIDO</label>
+<label for="radio2"><i class="fa fa-credit-card"></i> DEBITO</label>
 
 <input type="radio" id="radio3" name="radios" value="CREDITO">
-<label for="radio3">CREDITO</label>
+<label for="radio3"><i class="fa fa-credit-card"></i>CREDITO</label>
 </div>
+
 
 </div>
 <div class="col-lg-2">
 
-    <label for="quantidade" class="control-label"><i class="fa fa-spinner"> </i> VALOR</label>
-<input type="text" class="form-control input-lg m-bot15 required" name="valorpagamento" id="valorpagamento" required/>
+  <label for="quantidade" class="control-label"><i class="fa fa-spinner"> </i> VALOR</label>
+  <input type="text" class="form-control input-lg required" name="valorpagamento" id="valorpagamento" required/>
 
-
-
-</div>
-
-<div class="col-lg-3">
-  <br>
-  <input type="submit" class="btn btn-success btn-lg m-bot15" name="ok" value="RECEBER" />
-</div>
+<input type="submit" class="btn btn-success btn-lg" name="ok" value="RECEBER" />
 </form>
-<div class="col-lg-4">
-  <table id="pgto" class="table table-striped table-bordered">
-        <tbody>
-          <tr>
 
-            <td>Valor</td>
-            <td>PGTO</td>
-          </tr>
-        </tbody>
-      </table>
 </div>
+
+
    </div>
 
 
@@ -403,13 +463,14 @@
            <div class="info-box blue-bg">
          <div class="title">Total</div>
              <div class="count">R$<?php echo number_format($total,2,',','.')?></div>
-
+             <input type="hidden" name="idpedido" id="idpedido" value="<?php echo $num;?>" />
+             <input type="hidden" name="numeromesa" id="numeromesa" value="<?php echo $mesa;?>" />
            </div>
               </div>
               <div class="col-lg-3 col-md-3 col-sm-10 col-xs-10">
                <div class="info-box blue-bg">
              <div class="title">Valor recebido</div>
-                 <div class="count">R$<?php echo number_format($total,2,',','.')?></div>
+                 <div id="valorpago"class="count"></div>
 
                </div>
                   </div>
@@ -434,7 +495,9 @@
 
 
 
+               </section>
 
+               </div>
 
                 <script src="<?php echo base_url()?>assest/js/jquery.js"></script>
                 <script src="<?php echo base_url()?>assest/js/jquery-ui-1.10.4.min.js"></script>
@@ -447,6 +510,8 @@
 
 <script>
 
+$('#valorpagamento').maskMoney();
+
 function somenteNumeros (num) {
 		var er = /[^0-9.]/;
 		er.lastIndex = 0;
@@ -458,7 +523,7 @@ function somenteNumeros (num) {
 </script>
 
                 <script>
-$('#valorpagamento').maskMoney();
+
 
                 $('#form_prepare').submit(function(){
 
@@ -473,6 +538,7 @@ $('#valorpagamento').maskMoney();
                   var hora = $this.find("input[name='hora']").val();
                   var venda = $this.find("input[name='venda']").val();
                   var idproduto = $this.find("input[name='idproduto']").val();
+                    var garcom = $this.find("input[name='garcom']").val();
                   var qtdd = $this.find("input[name='quantidade']").val();
                   var numeromesa = $this.find("input[name='numeromesa']").val();
                   var subtotal = venda*qtdd;
@@ -482,7 +548,7 @@ $('#valorpagamento').maskMoney();
 
                 //  var nomeproduto = $('#precovenda').val();
                   var tr = '<tr>'+
-                    '<td></td>'+
+                    '<td>'+garcom+'</td>'+
                     '<td><strong>'+hora+'</strong></td>'+
                     '<td><strong>'+nomeproduto+'</strong></td>'+
                     '<td><strong>R$ '+venda+',00</strong></td>'+
@@ -499,6 +565,7 @@ $('#valorpagamento').maskMoney();
                 var hiddens =  '<input type="hidden" name="nomeproduto[]" value="'+nomeproduto+'" />'+
                 '<input type="hidden" name="quantidade[]" value="'+qtdd+'" />'+
                   '<input type="hidden" name="hora[]" value="'+hora+'" />'+
+                  '<input type="hidden" name="garcom[]" value="'+garcom+'" />'+
                   '<input type="hidden" name="idpedido[]" value="'+idpedido+'" />'+
                   '<input type="hidden" name="venda[]" value="'+venda+'" />'+
                   '<input type="hidden" name="numeromesa[]" value="'+numeromesa+'" />'+
@@ -558,29 +625,18 @@ $('#produto').focus();
   var formapagamento = $this.find("input[name='radios']").val();
 
                 var valorpagamento = $this.find("input[name='valorpagamento']").val();
-
-
+    var idpedido = $this.find("input[name='idpedido']").val();
+var numeromesa = $this.find("input[name='numeromesa']").val();
 
 
 
               //  var nomeproduto = $('#precovenda').val();
-                var tr = '<tr>'+
-                  '<td><strong>R$'+valorpagamento+',00</strong></td>'+
-                  '<td><strong>'+formapagamento+'</strong></td>'
 
+                var hiddens =  '<input type="hidden" name="valorpagamento[]" value="'+valorpagamento+'" />'+
+                '<input type="hidden" name="idpedido[]" value="'+idpedido+'" />'+
+                '<input type="hidden" name="numeromesa[]" value="'+numeromesa+'" />'+
+                '<input type="hidden" name="formapagamento[]" value="'+formapagamento+'" />';
 
-
-
-
-
-                  '</tr>'
-                $('#pgto').find('tbody').append( tr );
-
-                var hiddens =  '<input type="hidden" name="nomeproduto[]" value="'+nomeproduto+'" />'+
-                '<input type="hidden" name="quantidade[]" value="'+qtdd+'" />'+
-                  '<input type="hidden" name="hora[]" value="'+hora+'" />'+
-
-                  '<input type="hidden" name="idproduto[]" value="'+idproduto+'" />';
 
                 $('#form_pagar').find('fieldset').append( hiddens );
 
@@ -668,7 +724,7 @@ $('#produto').focus();
 
 
 
-<script>
+<script type="text/javascript">
 
 $("#formUpdateItem").validate({
 
