@@ -49,23 +49,23 @@
 
 
   <div class="col-md-12">
-  <?php      foreach ($pedido as $pe) {
-    ?>
+
 <h2><strong>MESA
-        <?php echo $pe->numeromesa; ?>
+        <?php echo $mesa; ?>
 
-        <?php $num = $pe->id;
-    $mesa = $pe->numeromesa; ?>
+
 </h2></strong>
-
-<h4><strong>Data: </strong><?php echo $pe->data; ?></h4>
-<h4><strong>Hora: </strong><?php echo $pe->hora; ?></h4>
+<?php date_default_timezone_set('America/Sao_Paulo');
+$data = date('d/m/Y');
+$hora = date('H:i');
+$status= "2"; ?>
+<h4><strong>Data: </strong><?php echo $data; ?></h4>
+<h4><strong>Hora: </strong><?php echo $hora; ?></h4>
 </div>
 <br>
 
 
-<?php
-}?>
+
 </div>
 <div class="panel-body">
 
@@ -78,8 +78,8 @@
 
                                     <input type="hidden" name="idproduto" id="idproduto" value=""/>
 
-<input type="hidden" name="idpedido" id="idpedido" value="<?php echo $num;?>" />
-<input type="hidden" name="numeromesa" id="numeromesa" value="<?php echo $mesa;?>" />
+<input type="hidden" name="idpedido" id="idpedido" value="<?php //echo $num;?>" />
+<input type="hidden" name="numeromesa" id="numeromesa" value="" />
 <?php date_default_timezone_set('America/Sao_Paulo'); ?>
 <input type="hidden" name="hora" id="hora" value="<?php echo date('H:i') ;?>" />
     <input type="hidden" name="garcom" id="garcom" value="<?php echo $login ?>"/>
@@ -252,13 +252,7 @@ return false;
     dataType:'json',
     success:function(data)
     {
-    if(data.result == true){
 
-location.reload();
-    }
-    else{
-     $('#falseservice').trigger('click');
-    }
     }
 
     });

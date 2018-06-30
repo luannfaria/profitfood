@@ -89,9 +89,12 @@
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
             <ul class="sub">
+              <li><a class="" href="#">BALCÃO</a></li>
+              <li><a class="" href="#">DELIVERY</a></li>
               <li><a class="" href="<?php echo base_url();?>vendas/mesasindex">MESAS</a></li>
               <li><a class="" href="<?php echo base_url();?>mobile">MOBILE</a></li>
-              <li><a class="" href="#">DELIVERY</a></li>
+              <li><a class="" href="#">PDV</a></li>
+
             </ul>
           </li>
           <li class="sub-menu">

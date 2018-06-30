@@ -66,7 +66,7 @@ echo printteste();
   function edit($id)
   {
       // check if the categoriaproduto exists before trying to edit it
-      $data['categoriaproduto'] = $this->Categoriaproduto_model->get_categoriaproduto($id);
+      $data['categoriaproduto'] = $this->Categoria_model->get_categoriaproduto($id);
 
       if(isset($data['categoriaproduto']['id']))
       {
@@ -78,13 +78,13 @@ echo printteste();
         'status' => $this->input->post('status'),
               );
 
-              $this->Categoriaproduto_model->update_categoriaproduto($id,$params);
-              redirect('categoriaproduto/index');
+              $this->Categoria_model->update_categoriaproduto($id,$params);
+              redirect('categoria/index');
           }
           else
           {
-              $data['_view'] = 'categoriaproduto/edit';
-              $this->load->view('layouts/main',$data);
+            //  $data['_view'] = 'categoria/edit';
+          //    $this->load->view('layouts/main',$data);
           }
       }
       else

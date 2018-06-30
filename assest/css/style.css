@@ -30,7 +30,7 @@ body {
 
 h1,h2,h3,h4,h5{
 
-    font-weight: 300;
+    font-weight: 500;
 
 }
 
@@ -119,6 +119,7 @@ table tr th { color: #688a7e;}
     padding-top: 10px;
 
 }
+
 
 .lite{
 
@@ -1869,13 +1870,15 @@ text-align: center;
 
 }
 #cabecalho{
+
+
   width: 100%;
   height: 30%;
 
 }
 #tabela{
 
-width: 100%;
+width: 80%;
   height: 400px;
 
 
@@ -2321,7 +2324,87 @@ width: 100%;
   margin: 10px;
 
 }
+.painelvenda .cabecalhopedido{
+  border-width: 1px 1px 1px;
 
+  border-style: solid;
+
+  border-color:#000;
+width: 100%;
+height: 15%;
+background-color: #ccc;
+color: #000;
+font-weight: bold;
+}
+
+.painelvenda .esquerda{
+  float: left;
+  width: 20%;
+  height: 75%;
+  background-color: #BBB;
+  border-width: 1px 1px 1px;
+
+  border-style: solid;
+
+  border-color:#000;
+
+}
+.painelvenda .esquerda .botoespedido{
+
+  width: 100%;
+  height: 70%;
+  background-color: #424242;
+
+}
+.esquerda .totaispedido{
+
+  width: 100%;
+  height: 30%;
+  background-color: #424242;
+  color: white;
+  font-weight: bold;
+
+
+}
+.painelvenda .direita{
+  float: right;
+  width: 80%;
+  height: 75%;
+  background-color: #ccc;
+  border-width: 1px 1px 1px;
+
+  border-style: solid;
+
+  border-color:#000;
+
+}
+.direita .tabelaitens{
+  width: 100%;
+  height: 80%;
+  background-color: white;
+  border-width: 0px 0px 1px;
+
+  border-style: solid;
+
+  border-color:#000;
+}
+.direita .tabelaitens .tabela{
+  height: 100%;
+  overflow-y: scroll;
+
+}
+.direita .botoespagamento{
+  width: 100%;
+  height: 20%;
+  background-color: #ccc;
+
+}
+
+ .painelvenda{
+  height:700px;
+  width: 100%;
+
+}
 .panel .panel-body {
 
   border-width: 1px 1px 2px;
@@ -2330,6 +2413,7 @@ width: 100%;
 
   border-top: none;
   height:100%;
+  width: 100%;
   border-right-color: #ccc!important;
 
   border-bottom-color: #ccc!important;
@@ -3926,6 +4010,7 @@ width: 100%;
 .personal-task.table-hover > tbody > tr:hover > td,
 
 .table-hover > tbody > tr:hover > th {
+
 
     background-color: #f7f8fc;
 overflow-y: scroll;
@@ -6497,7 +6582,13 @@ ul.inbox-pagination li {
 
 }
 
-
+#btnreceber{
+  margin-top:1.5em;
+  color: #FFF;
+  font-size: 20px;
+  font-weight: bold;
+  background: #00A8B3;
+}
 
 .btn-send:hover {
 
@@ -9058,6 +9149,8 @@ td{
 
   width:15px;
   height: 10px;
+  font-size: 16px;
+  text-transform: uppercase;
 }
 
 .daterangepicker td.active, .daterangepicker td.active:hover, .datepicker td.active, .datepicker td.active:hover, .datepicker td span.active {

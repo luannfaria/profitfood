@@ -19,7 +19,7 @@ class Produto extends CI_Controller {
 		//$config['total_rows'] = $this->Produto_model->get_all_produto_count();
 	//	$this->pagination->initialize($config);
 	$this->load->model('Categoria_model');
-  $data['produto'] = $this->Produto_model->get_all_produto();
+  $data['produto'] = $this->Produto_model->getprodutosimples();
   $data['categoriaprodutos'] = $this->Categoria_model->get_all_categoriaprodutos();
 		$this->load->view('include/header');
 		 $this->load->view('produto/index',$data);

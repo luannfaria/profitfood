@@ -35,11 +35,73 @@ class Vendas extends CI_Controller {
 	public function sale(){
 		$this->load->view('vendas/exemplosale');
 	}
+public function novamesa(){
 
+$data['mesa'] =$this->input->post('numeromesa');
+	//$this->$data['pedido'] = $this->Vendas_model->getpedido($pedido);
+$this->load->model('Produto_model');
+$username = $this->session->userdata('login');
+$data['login']=$username;
+//$data['mesas'] = $this->Vendas_model->get_all_mesas();
+$data['produtos'] = $this->Produto_model->get_all_produto();
+$this->load->view('include/header');
+ $this->load->view('vendas/vendas',$data);
+$this->load->view('include/footer');
+
+}
+
+public function abremesa(){
+
+
+	date_default_timezone_set('America/Sao_Paulo');
+	$data = date('d/m/Y');
+	$hora = date('H:i');
+	$status= "2";
+			$params = array(
+					'numeromesa' =>$this->input->post('numeromesa'),
+					'data'=> $data,
+					'hora'=>$hora,
+					'status'=>$status
+
+			);
+
+			$pedido = $this->Vendas_model->novamesa($params);
+
+				$status = array(
+						'numeromesa'=>$this->input->post('numeromesa'),
+						'idpedido'=>$pedido,
+						'tempo'=>$hora
+				);
+			$null = $this->Vendas_model->statusmesa($status);
+
+
+
+			$count = count($this->input->post('venda'));
+
+			for($i=0;$i<$count;$i++){
+							$params = array(
+								'nome_produto' =>$this->input->post('nomeproduto')[$i],
+								'valorproduto'=> $this->input->post('venda')[$i],
+								'produto_id'=> $this->input->post('idproduto')[$i],
+								'qtdd' => $this->input->post('quantidade')[$i],
+								'garcom'=>$this->input->post('garcom')[$i],
+								'mesa'=>$this->input->post('numeromesa'),
+								'pedido_id'=>$pedido,
+								'hora'=>$this->input->post('hora')[$i]
+
+
+
+							);
+
+							$null=$this->Vendas_model->itensmesa($params);
+}
+						redirect('vendas/mesasindex');
+
+}
 public function atualizaitem(){
 
-			$id = $this->input->post('id');
-			$qtdd = $this->input->post('quantidade');
+			$id = $this->input->post('iditem');
+			$qtdd = $this->input->post('qtdd');
 
 			if($this->Vendas_model->atualizaitem($id,$qtdd)== true){
 
@@ -105,7 +167,7 @@ redirect('vendas/mesasindex');
 		$data['itenspedido'] = $this->Vendas_model->getitenspedido($id);
 
 		$this->load->view('include/header');
-		 $this->load->view('vendas/pedidomesa',$data);
+		 $this->load->view('vendas/pedidoaberto',$data);
 		$this->load->view('include/footer');
 
 
@@ -173,8 +235,9 @@ for($i=0;$i<$count;$i++){
 					'nome_produto' =>$this->input->post('nomeproduto')[$i],
 					'valorproduto'=> $this->input->post('venda')[$i],
 					'produto_id'=> $this->input->post('idproduto')[$i],
-					'qtdd' => $this->input->post('qtdd')[$i],
+					'qtdd' => $this->input->post('quantidade')[$i],
 					'garcom'=>$this->input->post('garcom')[$i],
+					'mesa'=>$this->input->post('numeromesa')[$i],
 					'idpedido'=>$this->input->post('idpedido')[$i],
 					'hora'=>$this->input->post('hora')[$i]
 

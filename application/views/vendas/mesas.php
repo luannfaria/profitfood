@@ -24,14 +24,22 @@
                               <header class="panel-heading">
                                   Mesas abertas
                                   </header>
+                                  <?php
+                                  if(!$mesasaberta){?>
+                                    <div class="panel-body">
+                                      <div class="row">
+                                        <h2> Nenhuma mesa aberta </h2>
+                                      </div>
+                                    </div>
 
+                                  <?php }else{ ?>
                               <div class="panel-body">
                                 <div class="row">
                                 <div class="col-md-12" style="background:#57889c;">
                                 <?php      foreach ($mesasaberta as $ma) {
     ?>
  <div class="col-md-3">
-   <a href="<?php echo site_url('vendas/editamesa/'.$ma['id']); ?>">
+   <a href="<?php echo site_url('vendas/editamesa/'.$ma['idpedido']); ?>">
    <div class="info-box blue-bg">
     <div class="col-md-6 col-md-6 col-sm-12 col-xs-12">
 
@@ -46,6 +54,8 @@
 </div>
 </div>
 </div>
+
+<?php }?>
 </section>
 </div>
 </div>
@@ -70,7 +80,7 @@
         ?>
 
                           <div class="col-lg-4">
-  <form id="formServicos" action="<?php echo base_url() ?>vendas/abrirmesa" method="post">
+  <form id="formServicos" action="<?php echo base_url() ?>vendas/novamesa" method="post">
 
     <input type="hidden" name="numeromesa" value="<?php echo $me;?>" name="numermomesa"/>
                           <input type="submit" id="botaomesas" class="btn btn-success btn-lg btn-block" style="margin:5px;"name="servico" value="MESA <?php echo $me;?>" />

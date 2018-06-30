@@ -54,6 +54,21 @@ class Produto_model extends CI_Model
 
     }
 
+    public function getprodutosimples(){
+      $sql = "select * from produto where tipoproduto='1'";
+      $query = $this->db->query($sql);
+      $array = $query->result_array();
+      return $array;
+
+    }
+    public function getpizza(){
+      $sql = "select * from produto where tipoproduto='2'";
+      $query = $this->db->query($sql);
+      $array = $query->result_array();
+      return $array;
+
+    }
+
     public function getprodutoscategorias($idcat){
       $sql = "select * from produto where categoria_id='$idcat'";
       $query = $this->db->query($sql);

@@ -36,7 +36,44 @@
         <tr>
     		<td><?php echo $c['nomedescricao']; ?></td>
     		<td><?php echo $c['status']; ?></td>
-        <td>  <a href="#" class="btn btn-info btn-xs">Editar</a> </td>
+        <td>     <a href="#editarcategoria<?php echo $c['id']?>" data-toggle="modal" class="btn btn-success">EDITAR</a>
+
+          <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="editarcategoria<?php echo $c['id']?>" class="modal fade">
+                           <div class="modal-dialog">
+                             <div class="modal-content">
+                               <div class="modal-header">
+                                 <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                 <h4 class="modal-title">EDITAR CATEGORIA</h4>
+                               </div>
+                               <div class="modal-body">
+
+                              <?php echo form_open('categoria/edit/'.$c['id']); ?>
+
+                                   <div class="row">
+
+                                   <div class="form-group">
+                                     <label for="nomedescricao" class="col-md-1 control-label">Nome</label>
+                                     <div class="col-md-6">
+                                       <input type="text" name="nomedescricao" value="<?php echo $c['nomedescricao']; ?>" class="form-control" id="nomedescricao" required/>
+                                        <input type="hidden" value="1" name="status" id="status"/>
+                                     </div>
+
+                                     <div class="col-md-4">
+                                  			<button type="submit" class="btn btn-success">EDITAR</button>
+                                          </div>
+                                   </div>
+
+
+
+
+                                 </div>
+                      <?php echo form_close(); ?>
+                               </div>
+                             </div>
+                           </div>
+                         </div>
+          </section>
+         </td>
       </tr>
       <?php } ?>
 </table>

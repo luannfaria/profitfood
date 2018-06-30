@@ -30,7 +30,7 @@
 		<th>ID</th>
 		<th>Categoria Id</th>
 		<th>Status</th>
-		<th>Nomeproduto</th>
+		<th>Nome produto</th>
 		<th>Custo</th>
 		<th>Venda</th>
 		<th>Impressora</th>
@@ -61,7 +61,7 @@
                            <div class="modal-content">
                              <div class="modal-header">
                                <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                               <h4 class="modal-title">A</h4>
+                               <h4 class="modal-title">EDITAR PRODUTO</h4>
                              </div>
                              <div class="modal-body">
 <?php echo form_open('produto/edit/'.$p['id']); ?>
@@ -104,12 +104,12 @@
 
             <label for="custo" class="col-md-1 control-label">Custo</label>
              <div class="col-md-2">
-               <input type="text" name="custo" value="<?php echo $p['custo']; ?>" onfocus="this.value=''"; class="form-control" id="custo" />
+               <input type="text" name="custo" value="<?php echo number_format($p['custo'],2,',','.'); ?>" onfocus="this.value=''"; class="form-control" id="custo" />
              </div>
 
              <label for="venda" class="col-md-1 control-label">Venda</label>
              <div class="col-md-2">
-               <input type="text" name="venda" value="<?php echo number_format($subtotal,2,',','.'); ?>" onfocus="this.value=''"; class="form-control required" id="venda" required/>
+               <input type="text" name="venda" value="<?php echo number_format($p['venda'],2,',','.'); ?>" onfocus="this.value=''"; class="form-control required" id="venda" required/>
                  <input type="hidden" value="1" id="status" name="status"/>
              </div>
 

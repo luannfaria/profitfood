@@ -14,6 +14,12 @@
 
 }
 
+#venda{
+  color:#000;
+  width: 100%;
+  height: 100%;
+
+}
 #component0 {
   background-color: #100;
   height: 400px;
@@ -24,7 +30,7 @@
 }
 
 #component2 {
-  background-color: #1fc401;
+
 }
 
 .col-md-3,

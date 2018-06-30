@@ -11,13 +11,19 @@ class Vendas_Model extends CI_Model
         parent::__construct();
     }
 
-  
+
 public function get_all_mesas(){
 
   $sql = "select * from empresa";
   $query = $this->db->query($sql);
   $array = $query->result_array();
   return $array;
+}
+
+public function statusmesa($status){
+
+      $this->db->insert('mesasabertas',$status);
+
 }
 
 public function atualizaitem($id,$qtdd){
@@ -54,9 +60,9 @@ public function imprimiproduto($id){
 }
 public function get_mesas_abertas(){
   $this->db->select('*');
- $this->db->from('pedidos');
- $this->db->where('status','2');
-$this->db->order_by('numeromesa', 'asc');
+ $this->db->from('mesasabertas');
+ $this->db->order_by('numeromesa', 'ASC');
+
   return $this->db->get()->result_array();
 }
 public function getpedidoimprimir($id){
@@ -87,7 +93,7 @@ public function getitenspedido($id){
 
   $this->db->select('*');
  $this->db->from('itenspedido');
- $this->db->where('idpedido', $id);
+ $this->db->where('pedido_id', $id);
 
   return $this->db->get()->result_array();
 
