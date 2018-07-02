@@ -13,6 +13,9 @@
                           <a href="#abrirmesa" data-toggle="modal" class="btn btn-success btn-lg">ABRIR MESA</a>
 
                         </div>
+                        <?php if($custom_error == true){ ?>
+                        <div class="span12 alert alert-danger" id="divInfo" style="padding: 1%;">Dados incompletos, verifique os campos com asterisco ou se selecionou corretamente cliente e responsável.</div>
+                        <?php } ?>
                   </div>
 
                 </div>
@@ -35,13 +38,13 @@
                                   <?php }else{ ?>
                               <div class="panel-body">
                                 <div class="row">
-                                <div class="col-md-12" style="background:#57889c;">
+                                <div class="col-lg-12" style="background:#57889c;">
                                 <?php      foreach ($mesasaberta as $ma) {
     ?>
- <div class="col-md-3">
+ <div class="col-lg-2">
    <a href="<?php echo site_url('vendas/editamesa/'.$ma['idpedido']); ?>">
    <div class="info-box blue-bg">
-    <div class="col-md-6 col-md-6 col-sm-12 col-xs-12">
+    <div class="col-md-12 col-md-12 col-sm-12 col-xs-12">
 
    <div class="title"></div>
        <div class="mesas"><i class="fa fa-cutlery"> </i>MESA <?php echo $ma['numeromesa']; ?></div>

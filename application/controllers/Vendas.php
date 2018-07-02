@@ -10,7 +10,9 @@ class Vendas extends CI_Controller {
 	}
 	public function mesasindex()
 	{
+		$data['custom_error'] = '';
 	//	$data['numeromesas'] = $this->Vendas_model->get_mesas_abertas();
+
 		$data['mesasaberta'] = $this->Vendas_model->get_mesas_abertas();
    $data['mesas'] = $this->Vendas_model->get_all_mesas();
     $this->load->view('include/header');
@@ -18,6 +20,23 @@ class Vendas extends CI_Controller {
     $this->load->view('include/footer');
 
   }
+
+	public function pagamento(){
+
+	$count = count($this->input->post('vlrpgto'));
+
+	for($i=0;$i<$count;$i++){
+		$params = array(
+				'pedido_id' =>$this->input->post('pedido')[$i],
+				'formarec_nome'=> $this->input->post('tiporecebimento')[$i],
+				'valortotal'=>$this->input->post('vlrpgto')[$i]
+
+
+		);
+							$null=$this->Vendas_model->pagamento($params);
+}
+		echo json_encode(array('result'=> true));
+	}
 
 	public function excluiritem(){
 
@@ -36,7 +55,16 @@ class Vendas extends CI_Controller {
 		$this->load->view('vendas/exemplosale');
 	}
 public function novamesa(){
+	    $data['custom_error'] = '';
 
+	$verificamesa = $this->input->post('numeromesa');
+	if($this->Vendas_model->verificamesa($verificamesa)==TRUE){
+				  $data['custom_error'] = '<div class="form_error"><p>An Error Occured.</p></div>';
+					redirect('vendas/mesasindex');
+
+
+	}
+else{
 $data['mesa'] =$this->input->post('numeromesa');
 	//$this->$data['pedido'] = $this->Vendas_model->getpedido($pedido);
 $this->load->model('Produto_model');
@@ -47,10 +75,14 @@ $data['produtos'] = $this->Produto_model->get_all_produto();
 $this->load->view('include/header');
  $this->load->view('vendas/vendas',$data);
 $this->load->view('include/footer');
+}
+
 
 }
 
 public function abremesa(){
+
+
 
 
 	date_default_timezone_set('America/Sao_Paulo');
@@ -162,7 +194,8 @@ redirect('vendas/mesasindex');
 		$username = $this->session->userdata('login');
 		$data['login']=$username;
 		$data['empresa']= $this->Vendas_model->get_all_mesas();
-
+		$data['mesa'] = $this->Vendas_model->getmesa($id);
+		$data['horamesa']= $this->Vendas_model->gethora($id);
 		$data['pedido'] = $this->Vendas_model->getpedido($id);
 		$data['itenspedido'] = $this->Vendas_model->getitenspedido($id);
 
@@ -238,7 +271,7 @@ for($i=0;$i<$count;$i++){
 					'qtdd' => $this->input->post('quantidade')[$i],
 					'garcom'=>$this->input->post('garcom')[$i],
 					'mesa'=>$this->input->post('numeromesa')[$i],
-					'idpedido'=>$this->input->post('idpedido')[$i],
+					'pedido_id'=>$this->input->post('idpedido')[$i],
 					'hora'=>$this->input->post('hora')[$i]
 
 
@@ -246,6 +279,7 @@ for($i=0;$i<$count;$i++){
 				);
 
 				$null=$this->Vendas_model->itensmesa($params);
+
 
 				$produto = $this->input->post('nomeproduto')[$i];
 				$qtdd = $this->input->post('quantidade')[$i];
@@ -260,13 +294,13 @@ for($i=0;$i<$count;$i++){
 
 
 
-				redirect('vendas/mesasindex');
+
 
 
 	//$this->load->helper('print');
 
 	//printitem($imprimir,$mesa);
-
+echo json_encode(array('result'=> true));
 	}
 
 

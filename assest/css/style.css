@@ -2405,6 +2405,101 @@ font-weight: bold;
   width: 100%;
 
 }
+.painelrec{
+  height:500px;
+  width: 100%;
+
+}
+
+.payment-methods {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.payment-methods:after {
+  content: "";
+  clear: both;
+}
+
+.payment-method {
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+  float: left;
+  height: 80px;
+  position: relative;
+  width: 110px;
+}
+
+.payment-method label {
+  background: #97d3c5 no-repeat center center;
+  bottom: 1px;
+  cursor: pointer;
+  display: block;
+  font-size: 10;
+  left: 1px;
+  position: absolute;
+  right: 1px;
+  text-indent: 20%;
+  top: 3px;
+  white-space: nowrap;
+  color:white;
+}
+
+.payment-method{
+  margin-top: 20px;
+  margin-left: 10px;
+}
+
+
+
+.payment-methods input:focus + label {
+  outline: 2px dotted #21b4d0;
+}
+
+.payment-methods input:checked + label {
+  outline: 4px solid #21b4d0;
+}
+
+
+.painelrec .direitarecebimento{
+
+  float: right;
+  width: 60%;
+  height: 80%;
+  background-color: #ccc;
+  border-width: 1px 1px 1px;
+
+  border-style: solid;
+
+  border-color:#000;
+
+}
+.painelrec .esquerdarecebimento{
+
+
+  float: left;
+  width: 40%;
+  height: 80%;
+  background-color: #BBB;
+  border-width: 1px 1px 1px;
+
+  border-style: solid;
+
+  border-color:#000;
+}
+
+
+.esquerdarecebimento .tabelamodalrec{
+
+  height: 65%;
+  overflow-y: scroll;
+
+}
+.esquerdarecebimento .totalmodal{
+  height:35%;
+  background: white;
+}
 .panel .panel-body {
 
   border-width: 1px 1px 2px;

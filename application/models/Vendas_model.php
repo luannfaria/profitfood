@@ -20,6 +20,20 @@ public function get_all_mesas(){
   return $array;
 }
 
+public function verificamesa($verificamesa){
+  $this->db->select('*');
+ $this->db->from('mesasabertas');
+ $this->db->where('numeromesa', $verificamesa);
+
+   if($this->db->get()->result_array()!=null){
+     return TRUE;
+   }
+   else{
+     return FALSE;
+   }
+
+}
+
 public function statusmesa($status){
 
       $this->db->insert('mesasabertas',$status);
@@ -38,6 +52,10 @@ public function atualizaitem($id,$qtdd){
 
 return FALSE;
 
+}
+
+public function pagamento($params){
+  return    $this->db->insert('pagamentopedido',$params);
 }
 public function excluiritem($id){
 
@@ -136,26 +154,62 @@ public function itensmesa($params){
 
   $this->db->insert('itenspedido',$params);
 
-  if ($this->db->affected_rows() == '1')
-  {
-    return TRUE;
-  }
-else{
-  return FALSE;
-
-}
 
 
 }
 
+public function getmesa($id){
+  $this->db->select('numeromesa');
+ $this->db->from('pedidos');
+ $this->db->where('id', $id);
+  $query = $this->db->get();
+  $row = $query->row();
 
+  //$row will now have if you printed the contents:
+  //print_r( $row );
+  //stdClass Object ( [email] => example@gmail.com )
+
+  //Pass $query->email directly to reset_password
+
+  return $row->numeromesa;
+}
+
+public function gethora($id){
+  $this->db->select('*');
+ $this->db->from('pedidos');
+ $this->db->where('id', $id);
+  $query = $this->db->get();
+  $row = $query->row();
+
+  //$row will now have if you printed the contents:
+  //print_r( $row );
+  //stdClass Object ( [email] => example@gmail.com )
+
+  //Pass $query->email directly to reset_password
+
+  return $row->aberturapedido;
+}
 public function getpedido($pedido){
 
   $this->db->select('*');
  $this->db->from('pedidos');
  $this->db->where('id', $pedido);
 
-  return $this->db->get()->result();
+ $query = $this->db->get();
+
+ if ($query->num_rows() == 1){
+
+
+$row = $query->row();
+
+
+return $row->id;
+ //Use row() to get a single result
+
+
+
+
+}
 
 }
 

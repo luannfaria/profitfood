@@ -98,8 +98,8 @@ $status= "2"; ?>
   <div class="col-md-2">
     <br>
     <label for="">&nbsp</label>
-
-    <input type="submit" class="btn btn-success" name="ok" value="INSERIR" />  </form>
+<br/>
+    <input type="submit" class="btn btn-success btn-lg btn-block" name="ok" value="INSERIR" />  </form>
 
 </div>
 <br/>
