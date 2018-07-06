@@ -8,6 +8,17 @@ class Vendas extends CI_Controller {
 			parent::__construct();
 			$this->load->model('Vendas_model');
 	}
+	public function index(){
+		$data['custom_error'] = '';
+	//	$data['numeromesas'] = $this->Vendas_model->get_mesas_abertas();
+
+		$data['mesasaberta'] = $this->Vendas_model->get_mesas_abertas();
+	 $data['mesas'] = $this->Vendas_model->get_all_mesas();
+		$this->load->view('include/header');
+		 $this->load->view('vendas/mesas',$data);
+		$this->load->view('include/footer');
+
+	}
 	public function mesasindex()
 	{
 		$data['custom_error'] = '';
@@ -24,6 +35,8 @@ class Vendas extends CI_Controller {
 	public function pagamento(){
 
 	$count = count($this->input->post('vlrpgto'));
+$totalpago = 0;
+ $totalrec = str_replace("," , "." ,$this->input->post('vlrpago')[0]);
 
 	for($i=0;$i<$count;$i++){
 		$params = array(
@@ -33,9 +46,24 @@ class Vendas extends CI_Controller {
 
 
 		);
+			$totalpago+= $this->input->post('vlrpgto')[$i];
 							$null=$this->Vendas_model->pagamento($params);
 }
-		echo json_encode(array('result'=> true));
+$idpedido = $this->input->post('pedido')[0];
+$totalvenda = $this->input->post('totalvenda')[0];
+$valor = str_replace("," , "." , $totalvenda );
+
+$totalpago+=$totalrec;
+
+$total = str_replace("," , "." , $totalpago );
+
+if($total>=$valor){
+		$nem=	$this->Vendas_model->deletemesaaberta($idpedido);
+				echo json_encode(array('result'=> true));
+}
+else{
+				echo json_encode(array('result'=> false));
+}
 	}
 
 	public function excluiritem(){
@@ -127,6 +155,7 @@ public function abremesa(){
 
 							$null=$this->Vendas_model->itensmesa($params);
 }
+
 						redirect('vendas/mesasindex');
 
 }
@@ -198,6 +227,8 @@ redirect('vendas/mesasindex');
 		$data['horamesa']= $this->Vendas_model->gethora($id);
 		$data['pedido'] = $this->Vendas_model->getpedido($id);
 		$data['itenspedido'] = $this->Vendas_model->getitenspedido($id);
+			$data['totalitens'] = $this->Vendas_model->totalpedido($id);
+			$data['pagamento'] = $this->Vendas_model->valorpago($id);
 
 		$this->load->view('include/header');
 		 $this->load->view('vendas/pedidoaberto',$data);
@@ -240,30 +271,28 @@ $this->$data['produtos'] = $this->Produto_model->get_all_produto();
 
 public function additem(){
 
+
 	$params = array(
 		'nome_produto' =>$this->input->post('nomeproduto'),
 		'valorproduto'=> $this->input->post('venda'),
 		'produto_id'=> $this->input->post('idproduto'),
-		'qtdd' => $this->input->post('qtdd'),
-		'idpedido'=>$this->input->post('idpedido'),
+		'qtdd' => $this->input->post('quantidade'),
+		'pedido_id'=>$this->input->post('idpedido'),
+		'mesa'=>$this->input->post('numeromesa'),
+		'garcom'=>$this->input->post('garcom'),
 		'hora'=>$this->input->post('hora')
 	);
+	$this->Vendas_model->itensmesa($params);
 
-		if($this->Vendas_model->itensmesa($params)==true){
 
-			echo json_encode(array('result'=> true));
-
-		}
-		else{
-					echo json_encode(array('result'=> false));
-			}
+				echo json_encode(array('result'=> true));
 
 }
 	public function itemmesa(){
 
-$count = count($this->input->post('venda'));
+//$count = count($this->input->post('nomeproduto'));
 
-for($i=0;$i<$count;$i++){
+//for($i=0;$i<$count;$i++){
 				$params = array(
 					'nome_produto' =>$this->input->post('nomeproduto')[$i],
 					'valorproduto'=> $this->input->post('venda')[$i],
@@ -290,7 +319,7 @@ for($i=0;$i<$count;$i++){
 
 
 
-}
+
 
 
 

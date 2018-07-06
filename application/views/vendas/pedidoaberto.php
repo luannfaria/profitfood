@@ -44,6 +44,8 @@
                                                       <input type="hidden" name="idpedido" id="idpedido" value="<?php echo $pedido?>" />
                                                       <input type="hidden" name="garcom" id="garcom" value="<?php echo $login ?>"/>
 
+                                                          <input type="hidden" name="numeromesa" id="numeromesa" value="<?php echo $mesa ?>"/>
+
                                                   </div>
 
 
@@ -75,6 +77,8 @@
                   <div class="totaispedido">
                     <div class="col-lg-12">
                       <div class="col-lg-6">
+                <?php        if(!$pagamento){?>
+
                         <h3>Subtotal </h3>
 
                         <?php  $total=0;
@@ -98,6 +102,38 @@
                         <h4>R$<?php echo number_format($taxa,2,',','.')?></h4>
                         <h3>R$<?php echo number_format($total,2,',','.')?></h3>
                       </div>
+                    <?php }else{
+                      $vlrpago=0;
+foreach($pagamento as $pg){
+  $vlrpago += $pg['valortotal'];
+}
+                      ?>
+                      <h4>PAGO</h4>
+                      <h3>Subtotal </h3>
+
+                      <?php  $total=0;
+                      $subtotal=0;
+                      foreach ($itenspedido as $i) {
+
+
+
+
+                                $totalitem= $i['valorproduto']*$i['qtdd'];
+                                $subtotal += $totalitem; }?>
+                      <?php foreach($empresa as $e){
+                       $taxaservico = $e['taxaservico'];}
+                       $taxa = ($subtotal*$taxaservico)/100; $total=$subtotal+$taxa; ?>
+                      <h4>Serviço</h4>
+
+                      <h3>Total </h3>
+                    </div>
+                    <div class="col-lg-6">
+                      <h4>R$<?php echo number_format($vlrpago,2,',','.')?></h4>
+                      <h3>R$<?php echo number_format($subtotal,2,',','.')?></h3>
+                      <h4>R$<?php echo number_format($taxa,2,',','.')?></h4>
+                      <h3>R$<?php echo number_format($total,2,',','.')?></h3>
+                    </div>
+                <?php    }?>
                     </div>
                   </div>
                 </div>
@@ -139,7 +175,7 @@
                     <td><strong><?php echo $i['garcom']; ?></strong></td>
                     <td><strong><?php echo $i['hora']; ?></strong></td>
                     <td><strong><?php echo $i['nome_produto']; ?></strong></td>
-                    <td><strong>R$ <?php echo $i['valorproduto']; ?>,00</strong></td>
+                    <td><strong>R$ <?php  echo number_format($i['valorproduto'],2,',','.');?></strong></td>
                     <td><strong><?php echo $i['qtdd']; ?></strong></td>
                     <td><strong>R$ <?php echo $i['valorproduto']*$i['qtdd']; ?>,00</strong></td>
                     <td><span idAcao="<?php echo $i['id'] ;?>" title="Excluir" class="btn btn-danger"><i class="icon-remove icon-white">EXCLUIR</i></span>
@@ -217,30 +253,43 @@ $total += $subtotal;
 </tr>
 </thead>
 <tbody>
+
+
 </tbody>
 </table>
 </div>
+
+<?php
+$totalvenda = 0;
+$vlrserv=  ($totalitens*$taxaservico)/100;
+$totalvenda = $vlrserv+$totalitens;
+ ?>
 <div class="totalmodal">
+<?php if(!$pagamento){?>
+  <h3>Total pedido <strong>R$<?php echo number_format($totalvenda,2,',','.')?></strong></h3>
+<?php }else{?>
+  <h3>Pago <strong>R$ <?php echo $vlrpago?></strong></h3>
 
-  <form action="<?php echo base_url();?>vendas/pagamento" method="post" id="form_confirmarec">
-
-        <fieldset style="display: none;"></fieldset>
-
-        <input id="btnreceber" type="submit" style="position:right;" class="btn btn-success col-lg-12 btn-lg"  name="cadastrar" value="CONFIRMAR PAGAMENTO" />
+  <h3>Total pedido <strong>R$<?php echo number_format($totalvenda,2,',','.')?></strong></h3>
+<h3> Restante <strong> R$ <?php echo number_format($totalvenda-$vlrpago,2,',','.')?> </strong></h3>
+<?php }?>
 
 
-      </form>
 </div>
          </div>
 
+
          <div class="direitarecebimento">
+
+<form action="" method="post" id="form_tablepgto">
+
+
            <div class="col-lg-12">
-  <form action="" method="post" id="form_tablepgto">
- <div class="col-lg-12">
-    <div class="form-group">
+
+
            <ul class="payment-methods">
   <li class="payment-method">
-    <input name="payment_methods" type="radio" value="dinheiro"id="dinheiro">
+    <input name="payment_methods" type="radio" value="dinheiro" id="dinheiro">
     <label for="dinheiro">DINHEIRO</label>
   </li>
 
@@ -263,24 +312,54 @@ $total += $subtotal;
     <label for="fiado">FIADO</label>
   </li>
 </ul>
-</div>
 
-</div>
+<input type="hidden" name="pedido" id="pedido" value="<?php echo $pedido?>"/>
 
-<div class="col-lg-6">
-<div class="form-group">
-  <input type="hidden" name="pedido" id="pedido" value="<?php echo $pedido ?>"
-  <label for="valorpgto" class="control-label"> VALOR</label>
 
-  <input type="text" class="form-control input-lg" name="vlrpgto" id="vlrpgto"/>
-</div>
+    <input type="hidden" name="numeromesa" id="numeromesa" value="<?php echo $mesa?>"/>
+
+<input type="hidden" name="totalvenda" value="<?php echo number_format($totalvenda,2,',','.')?>"/>
+<label for="valorpgto" class="control-label"> VALOR</label>
+<?php if(!$pagamento){?>
+<input type="hidden" name="vlrpago" value=""/>
+<?php }else{?>
+  <input type="hidden" name="vlrpago" value="<?php echo number_format($vlrpago,2,',','.')?>"/>
+<?php }?>
+<input type="text" class="form-control input-lg" name="vlrpgto" id="vlrpgto"/>
+
 </div>
 </form>
 
 
-       </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+         <div class="totais">
+
+           <form action="" method="post" id="form_confirmarec">
+
+                 <fieldset style="display: none;"></fieldset>
+
+                 <input  type="submit" style="position:right;" class="btn btn-success col-lg-12 btn-lg"  name="cadastrar" value="CONFIRMAR PAGAMENTO" />
+
+
+               </form>
+        <h3>
+
+
+        </h3>
+</div>
          </div>
-         </div>
+
          </div>
        </div>
      </div>
@@ -318,6 +397,8 @@ $('#form_tablepgto').keypress(function(e){
    var radio = $this.find("input[type='radio']:checked").val();
     var vlrpgto = $this.find("input[name='vlrpgto']").val();
 var pedido = $this.find("input[name='pedido']").val();
+var vlrpago = $this.find("input[name='vlrpago']").val();
+var totalvenda = $this.find("input[name='totalvenda']").val();
 
 
     var tr = '<tr>'+
@@ -335,6 +416,8 @@ var pedido = $this.find("input[name='pedido']").val();
 
     var hiddens =  '<input type="hidden" name="tiporecebimento[]" value="'+radio+'" />'+
     '<input type="hidden" name="pedido[]" value="'+pedido+'" />'+
+    '<input type="hidden" name="totalvenda[]" value="'+totalvenda+'" />'+
+      '<input type="hidden" name="vlrpago[]" value="'+vlrpago+'" />'+
     '<input type="hidden" name="vlrpgto[]" value="'+vlrpgto+'" />';
 
 
@@ -351,6 +434,8 @@ var pedido = $this.find("input[name='pedido']").val();
 
 $('#form_confirmarec').submit(function(){
 
+  
+
   var dados = $( '#form_confirmarec' ).serialize();
   $.ajax({
   type: "POST",
@@ -360,15 +445,17 @@ $('#form_confirmarec').submit(function(){
   success:function(data)
   {
 
-    if(data.result == true){
-      location.reload();
+if(data.result == true){
 
 
 
-    }
-    else{
-        alert('Ocorreu um erro ao tentar adicionar serviço.');
-    }
+
+  window.location.href="<?php echo base_url();?>vendas/mesasindex";
+}
+
+else{
+    location.reload();
+}
 
   }
 
@@ -415,23 +502,23 @@ $('#form_prepare').submit(function(){
     '</tr>'
   $('#item').find('tbody').append( tr );
 
-var hiddens =  '<input type="hidden" name="nomeproduto[]" value="'+nomeproduto+'" />'+
-'<input type="hidden" name="quantidade[]" value="'+qtdd+'" />'+
-  '<input type="hidden" name="hora[]" value="'+hora+'" />'+
-  '<input type="hidden" name="garcom[]" value="'+garcom+'" />'+
+var hiddens =  '<input type="hidden" name="nomeproduto" value="'+nomeproduto+'" />'+
+'<input type="hidden" name="quantidade" value="'+qtdd+'" />'+
+  '<input type="hidden" name="hora" value="'+hora+'" />'+
+  '<input type="hidden" name="garcom" value="'+garcom+'" />'+
   '<input type="hidden" name="numeromesa" value="'+numeromesa+'" />'+
-  '<input type="hidden" name="venda[]" value="'+venda+'" />'+
-'<input type="hidden" name="idpedido[]" value="'+idpedido+'" />'+
-  '<input type="hidden" name="subtotal[]" value="'+subtotal+'" />'+
-  '<input type="hidden" name="idproduto[]" value="'+idproduto+'" />';
+  '<input type="hidden" name="venda" value="'+venda+'" />'+
+'<input type="hidden" name="idpedido" value="'+idpedido+'" />'+
+  '<input type="hidden" name="subtotal" value="'+subtotal+'" />'+
+  '<input type="hidden" name="idproduto" value="'+idproduto+'" />';
 
 $('#form_insert').find('fieldset').append( hiddens );
 
 
-var dados = $( '#form_insert' ).serialize();
+var dados = $(hiddens).serialize();
 $.ajax({
 type: "POST",
-url:"<?php echo base_url();?>vendas/itemmesa",
+url:"<?php echo base_url();?>vendas/additem",
 data:dados,
 dataType:'json',
 success:function(data)

@@ -54,6 +54,24 @@ return FALSE;
 
 }
 
+public function valorpago($id){
+
+  $this->db->select('*');
+ $this->db->from('pagamentopedido');
+ $this->db->where('pedido_id', $id);
+
+  return $this->db->get()->result_array();
+
+
+}
+public function totalpedido($id){
+
+  $sql = "SELECT sum(valorproduto*qtdd) as total from itenspedido where pedido_id='$id'";
+  $query = $this->db->query($sql);
+  $result = $query->row_array();
+
+  return $result['total'];
+}
 public function pagamento($params){
   return    $this->db->insert('pagamentopedido',$params);
 }
@@ -134,7 +152,10 @@ return TRUE;
 return FALSE;
 
 }
+public function deletemesaaberta($id){
+  return  $this->db->delete('mesasabertas',array('idpedido'=>$id));
 
+}
 public function deletepedido($id){
 
 
