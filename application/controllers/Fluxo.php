@@ -9,10 +9,12 @@ class Fluxo extends CI_Controller{
     {
         parent::__construct();
 
-      
+
 
         $this->load->model('Fluxo_model');
     }
+
+
 
     function fluxo(){
 
@@ -67,6 +69,11 @@ class Fluxo extends CI_Controller{
       $this->load->view('include/footer');
     }
 
+
+function entradapgtopedido(){
+
+  
+}
     function buscafluxo(){
 
       $this->load->library('table');

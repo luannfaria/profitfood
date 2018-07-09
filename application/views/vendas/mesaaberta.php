@@ -1,5 +1,5 @@
 <section id="main-content">
-      <section class="wrapper">
+      <section class="viewpedido">
         <script src="<?php echo base_url();?>assest/js/jquery.js"></script>
         <script src="<?php echo base_url();?>assest/js/jquery-ui-1.10.4.min.js"></script>
         <script src="<?php echo base_url();?>assest/js/jquery-1.8.3.min.js"></script>

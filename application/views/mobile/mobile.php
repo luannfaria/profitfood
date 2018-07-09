@@ -95,57 +95,38 @@
 
         <div id="mesas" class="row">
           <div class="col-lg-12">
-            <?php foreach ($mesas as $m) { ?>
-            <?php $numer= $m['numeromesas']; ?>
+            <div class="row">
+       <?php foreach ($mesas as $m) { ?>
+       <?php $numer= $m['numeromesas']; ?>
 
-             <?php }?>
-                              <?php   $me=1;   for($i=1;$i<=$numer;$i++) {
-                    ?>
-            <div class="col-xs-4">
+        <?php }?>
+                         <?php   $me=1;   for($i=1;$i<=$numer;$i++) {
+               ?>
 
+                                 <div class="col-lg-4">
+         <form id="formServicos" action="<?php echo base_url() ?>mobile/mesas" method="post">
 
-
-
-
-                    <input type="hidden" name="numeromesa" value="<?php echo $me;?>" name="numermomesa"/>
-                                          <input type="submit" onclick="hide('mesas')" class="btn btn-success btn-lg btn-block" style="margin:5px;"name="servico" value="MESA <?php echo $me;?>" />
-
+           <input type="hidden" name="numeromesa" value="<?php echo $me;?>" name="numermomesa"/>
+                                 <input type="submit" id="botaomesas" class="btn btn-success btn-lg btn-block" style="margin:5px;"name="servico" value="MESA <?php echo $me;?>" />
 
 
 
+                                   </form>
+       </div>
 
-            </div>
-            <?php $me++;
-}
 
-                ?>
+
+
+                           <?php $me++;
+           }
+
+                               ?>
+                               <br>
+                               </div>
           </div>
         </div>
-<div id="categorias" style="display:none">
-
-    <div class="col-lg-12">
-        <?php foreach ($categorias as $cate) { ?>
-
-      <div class="col-xs-4">
-
-<span idAcao="<?php echo $cate['id'];?>" class="btn btn-success btn-lg btn-block" style="margin:5px;"><?php echo $cate['nomedescricao']?></span>
 
 
-      </div>
-
-    <?php } ?>
-    </div>
-</div>
-
-<div id="produtos">
-
-    <div id="result" class="col-lg-12">
-
-      </div>
-
-
-
-</div>
 
 <!-- javascripts -->
 <script src="<?php echo base_url();?>assest/js/jquery.js"></script>

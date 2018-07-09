@@ -30,18 +30,24 @@ class Produto extends CI_Controller {
 
 	function add()
 	{
+
+		$custo = str_replace("," , "." ,$this->input->post('custo'));
+		$venda = str_replace("," , "." ,$this->input->post('venda'));
 		$params = array(
 'categoria_id' => $this->input->post('categoria_id'),
 'status' => $this->input->post('status'),
 'nomeproduto' => $this->input->post('nomeproduto'),
-'custo' => $this->input->post('custo'),
-'venda' => $this->input->post('venda'),
+'custo' => $custo,
+'venda' => $venda,
 'impressora' => $this->input->post('impressora'),
-'vendermeio' => $this->input->post('vendermeio'),
+'codbarra' => $this->input->post('codbarra'),
 'porc_meio' => $this->input->post('porc_meio'),
+'tipoproduto' => $this->input->post('tipoproduto')
 		);
 
 		$produto_id = $this->Produto_model->add_produto($params);
+
+redirect('produto/index');
 	}
 
 	function edit($id)
@@ -56,7 +62,7 @@ class Produto extends CI_Controller {
 			'custo' => $this->input->post('custo'),
 			'venda' => $this->input->post('venda'),
 			'impressora' => $this->input->post('impressora'),
-			'vendermeio' => $this->input->post('vendermeio'),
+			'codbarra' => $this->input->post('codbarra'),
 			'porc_meio' => $this->input->post('porc_meio'),
 						);
 

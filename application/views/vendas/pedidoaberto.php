@@ -2,10 +2,11 @@
 
 
 <section id="main-content">
-  <section class="wrapper">
+  <section class="viewpedido">
 
-         <div class="col-lg-12">
-           <h4>.</h4></div>
+
+
+
 
            <section class="panel">
 
@@ -17,16 +18,24 @@
   <link href="<?php echo base_url()?>assest/css/jquery-ui.css" rel="stylesheet">
   <link href="<?php echo base_url()?>assest/css/jquery-ui.theme.css" rel="stylesheet">
                 <div class="cabecalhopedido">
-                    <div class="col-lg-3">
+                  <div class="col-lg-12">
+                    <div class="col-lg-4">
 
 
-
-                        <h2>MESA <?php echo $mesa;?></h2>
-                          <h4> Pedido Nº <?php echo $pedido;?></h4>
+                        <div class="col-lg-6">
+                        <h2>MESA <?php echo $mesa;?> </h2>
+                        <?php if($pedido->nomecliente!=null){?>
+                          <h4> Cliente: <?php echo $pedido->nomecliente;?></h4>
+                       <?php }?>
+                        </div>
+                        <div class="col-lg-5">
+                            <h4> Pedido Nº <?php echo $pedido->id;?></h4>
+                        </div>
                     </div>
                     <div class="col-lg-8">
+
                       <form action="" method="post" id="form_prepare">
-<div class="col-md-6">
+  <div class="col-lg-6">
                                                   <div class="form-group">
                                                     <label for="idservico" class="control-label"><i class="fa fa-spinner"> </i> Produtos</label>
 
@@ -41,7 +50,7 @@
 
                                                     <input type="hidden" name="nomeproduto" id="nomeproduto" />
                                                     <input type="hidden" name="venda" id="venda" />
-                                                      <input type="hidden" name="idpedido" id="idpedido" value="<?php echo $pedido?>" />
+                                                      <input type="hidden" name="idpedido" id="idpedido" value="<?php echo $pedido->id?>" />
                                                       <input type="hidden" name="garcom" id="garcom" value="<?php echo $login ?>"/>
 
                                                           <input type="hidden" name="numeromesa" id="numeromesa" value="<?php echo $mesa ?>"/>
@@ -58,22 +67,58 @@
                     </div>
                     </div>
 
-                    <div class="col-md-2">
+                    <div class="col-lg-2">
 
                     <label for="">&nbsp</label>
 <br/>
-                    <input type="submit" class="btn btn-success btn-lg btn-block" name="ok" value="INSERIR" />
+                    <input type="submit" class="btn btn-success btn-lg col-lg-12" name="ok" value="INSERIR" />
                     </div>
 
 </form>
+</div>
 </div>
                 </div>
                 <div  class="esquerda">
 
 
                 <div class="botoespedido">
+                  <div class="clientes">
+<form  action="" id="inserecliente" method="post">
 
+<div class="col-lg-12">
+  <div class="form-group">
+
+                    <label for="cliente" class="control-label"><span class="text-danger">*</span><i class="fa fa-user"> </i> Cliente</label>
+
+
+                    <input type="text" class="form-control required" name="cliente" id="cliente" placeholder="Digite o nome do cliente"  onfocus="this.value=''" required/>
+
+                    <input type="hidden" class="form-control" name="id" id="id" />
+                    <input type="hidden" class="form-control" name="nome" id="nome" />
+                        <input type="hidden" name="idpedido" id="idpedido" value="<?php echo $pedido->id?>" />
+
+
+
+
+
+
+
+
+  <input type="submit" class="btn btn-success col-lg-4" name="add" value="ADD" />
+
+</div>
+</div>
+</form>
+<h4></h4>
+</div>
                   </div>
+                        <div class="excluir">
+
+
+
+
+                        </div>
+
                   <div class="totaispedido">
                     <div class="col-lg-12">
                       <div class="col-lg-6">
@@ -153,7 +198,8 @@ foreach($pagamento as $pg){
                     <th class="col-md-1">Vlr UN</th>
                     <th class="col-md-1">Qtdd</th>
                     <th class="col-md-1">Total</th>
-                    <th class="col-md-1">Ações</th>
+                    <th class="col-md-1"></th>
+                    <th class="col-md-1"></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -181,6 +227,34 @@ foreach($pagamento as $pg){
                     <td><span idAcao="<?php echo $i['id'] ;?>" title="Excluir" class="btn btn-danger"><i class="icon-remove icon-white">EXCLUIR</i></span>
 
                     </td>
+                    <td><a data-toggle="modal" data-target="#modal<?php echo $i['id']?>" class="btn btn-success" >EDITAR</a></td>
+
+                    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="modal<?php echo $i['id']?>" class="modal fade">
+                                     <div class="modal-dialog">
+                                       <div class="modal-content">
+                                         <div class="modal-header">
+                                           <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                                           <h4 class="modal-title">EDITAR ITEM PEDIDO - MESA <?php echo $mesa ?></h4>
+                                         </div>
+                                         <div class="modal-body">
+                                           <div class="row">
+                                             <div class="col-lg-12">
+
+                                               <form id="updateitem" method="post">
+
+                                                 <div class="col-lg-2">
+                                                    <input type="text" name="nome_produto" class="form-control" value="<?php echo $i['nome_produto']?>" disabled>
+                                                 </div>
+
+
+                                               </form>
+                                             </div>
+                                           </div>
+                                         </div>
+                                       </div>
+                                     </div>
+                                   </div>
+
 </tr>
 
 <?php
@@ -200,24 +274,24 @@ $total += $subtotal;
                   <div class="botoespagamento">
                     <div class="col-lg-12">
 
-                      <div class="col-lg-4">
-                        <a id="btnreceber"  data-target=".bs-example-modal-lg" data-toggle="modal" class="btn btn-success btn-lg btn-block">RECEBER</a>
+
+                      <div class="col-lg-3">
+
+  <a id="btnreceber" href="#desconto" data-toggle="modal" class="btn btn-success btn-lg btn-block">DESCONTO/ACRES</a>
+                      </div>
+                      <div class="col-lg-3">
+                        <a href="#modalrec"id="btnreceber" name="botaoreceberpedido" data-target=".bs-example-modal-lg" data-toggle="modal" class="btn btn-success btn-lg btn-block">RECEBER (ALT+R)</a>
 
                     </div>
 
-                    <div class="col-lg-4">
-                      <a id="btnreceber" href="#abrirmesa" data-toggle="modal" class="btn btn-success btn-lg btn-block">IMPRIMIR CONTA</a>
+                    <div class="col-lg-3">
+                      <a  href="#abrirmesa" data-toggle="modal" class="btn btn-success btn-lg btn-block">IMPRIMIR CONTA</a>
 
                   </div>
-                  <div class="col-lg-2">
-                    <form action="<?php echo base_url();?>vendas/mesasindex">
-
-                          <fieldset style="display: none;"></fieldset>
-
-                          <input id="btnreceber" type="submit" style="position:right;" class="btn btn-success col-lg-12 btn-lg"  name="cadastrar" value="SAIR" />
-
-
-                        </form>
+                  <div class="col-lg-3">
+<?php if(!$pagamento){ ?>
+                    <a  href="<?php echo site_url('vendas/excluirpedido/'.$pedido->id); ?>" id="excluirpedido" data-confirm="Tem certeza que deseja excluir essa mesa?"  class="btn btn-danger col-lg-12 btn-lg btn-block">EXCLUIR(ALT+P)</a>
+<?php }?>
                   </div>
                     </div>
                   </div>
@@ -232,107 +306,67 @@ $total += $subtotal;
 
 
 
- <div id="modalrec"class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-   <div class="modal-dialog modal-lg">
-     <div class="modal-content">
-       <div class="modal-header">
-         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-         <h4 class="modal-title">RECEBIMENTO - MESA <?php echo $mesa;?></h4>
-       </div>
-       <div class="painelrec">
+ <div class="modal fade" id="desconto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                   <div class="modal-dialog">
+                     <div class="modal-content">
+                       <div class="modal-header">
+                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                         <h4 class="modal-title">DESCONTO / ACRESCIMO</h4>
+                       </div>
+                       <div class="modal-body">
 
-         <div class="esquerdarecebimento">
-<div class="tabelamodalrec">
-           <table id="pagamento" class="table table-hover">
-       <thead>
-         <tr>
-           <th class="col-md-2">Pagamento</th>
-           <th class="col-md-2">Valor</th>
-           <th class="col-md-2">Obs</th>
-           <th class="col-md-2">Estornar</th>
-</tr>
-</thead>
-<tbody>
+                         <div class="row">
+                           <div class="col-lg-10">
 
+                             <form action="" id="formades" method="post">
 
-</tbody>
-</table>
+                               <div class="col-lg-6">
+                                 <div class="col-lg-6">
+                                 <label for="nome" class="control-label">DESCONTO R$</label>
+
+                                   <input type="text" class="form-control input-lg" name="desconto">
 </div>
 
-<?php
-$totalvenda = 0;
-$vlrserv=  ($totalitens*$taxaservico)/100;
-$totalvenda = $vlrserv+$totalitens;
- ?>
-<div class="totalmodal">
-<?php if(!$pagamento){?>
-  <h3>Total pedido <strong>R$<?php echo number_format($totalvenda,2,',','.')?></strong></h3>
-<?php }else{?>
-  <h3>Pago <strong>R$ <?php echo $vlrpago?></strong></h3>
+                                   <div class="col-lg-6">
+                                                                    <label for="nome" class="control-label">DESCONTO %</label>
 
-  <h3>Total pedido <strong>R$<?php echo number_format($totalvenda,2,',','.')?></strong></h3>
-<h3> Restante <strong> R$ <?php echo number_format($totalvenda-$vlrpago,2,',','.')?> </strong></h3>
-<?php }?>
+                                                                      <input type="text" class="form-control input-lg" name="desconto">
+                                   </div>
+                               </div>
 
 
-</div>
-         </div>
 
 
-         <div class="direitarecebimento">
-
-<form action="" method="post" id="form_tablepgto">
 
 
-           <div class="col-lg-12">
+<div class="col-lg-6">
+                                 <div class="col-lg-6">
+                                   <label for="nome" class="control-label">ACRESCIMO R$</label>
 
+                                     <input type="text" class="form-control input-lg" name="desconto">
 
-           <ul class="payment-methods">
-  <li class="payment-method">
-    <input name="payment_methods" type="radio" value="dinheiro" id="dinheiro">
-    <label for="dinheiro">DINHEIRO</label>
-  </li>
+                                 </div>
 
-  <li class="payment-method">
-    <input name="payment_methods" type="radio" value="credito" id="credito">
-    <label for="credito">CRÉDITO</label>
-  </li>
+                                 <div class="col-lg-6">
+                                   <label for="nome" class="control-label">ACRESCIMO %</label>
 
-  <li class="payment-method">
-    <input name="payment_methods" type="radio" value="debito" id="debito">
-    <label for="debito">DEBITO</label>
-  </li>
-  <li class="payment-method">
-    <input name="payment_methods" type="radio" value="cheque" id="cheque">
-    <label for="cheque">CHEQUE</label>
-  </li>
+                                     <input type="text" class="form-control input-lg" name="desconto">
 
-  <li class="payment-method">
-    <input name="payment_methods" type="radio" value="fiado" id="fiado">
-    <label for="fiado">FIADO</label>
-  </li>
-</ul>
-
-<input type="hidden" name="pedido" id="pedido" value="<?php echo $pedido?>"/>
-
-
-    <input type="hidden" name="numeromesa" id="numeromesa" value="<?php echo $mesa?>"/>
-
-<input type="hidden" name="totalvenda" value="<?php echo number_format($totalvenda,2,',','.')?>"/>
-<label for="valorpgto" class="control-label"> VALOR</label>
-<?php if(!$pagamento){?>
-<input type="hidden" name="vlrpago" value=""/>
-<?php }else{?>
-  <input type="hidden" name="vlrpago" value="<?php echo number_format($vlrpago,2,',','.')?>"/>
-<?php }?>
-<input type="text" class="form-control input-lg" name="vlrpgto" id="vlrpgto"/>
-
-</div>
-</form>
-
-
+                                 </div>
 </div>
 
+                             </form>
+                           </div>
+                         </div>
+
+                       </div>
+                       <div class="modal-footer">
+                         <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
+                         <button class="btn btn-success" type="button">Save changes</button>
+                       </div>
+                     </div>
+                   </div>
+                 </div>
 
 
 
@@ -341,32 +375,159 @@ $totalvenda = $vlrserv+$totalitens;
 
 
 
-
-
-         <div class="totais">
-
-           <form action="" method="post" id="form_confirmarec">
-
-                 <fieldset style="display: none;"></fieldset>
-
-                 <input  type="submit" style="position:right;" class="btn btn-success col-lg-12 btn-lg"  name="cadastrar" value="CONFIRMAR PAGAMENTO" />
-
-
-               </form>
-        <h3>
-
-
-        </h3>
-</div>
-         </div>
-
-         </div>
-       </div>
-     </div>
            </section>
 
 
+           <div id="modalrec" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
+             <div class="modal-dialog modal-lg">
+               <div class="modal-content">
+                 <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                   <h4 class="modal-title">RECEBIMENTO - MESA <?php echo $mesa;?></h4>
+                 </div>
+                 <div id="painelrec"class="painelrec">
 
+                   <div class="esquerdarecebimento">
+          <div class="tabelamodalrec">
+                     <table id="pagamento" class="table table-hover">
+                 <thead>
+                   <tr>
+                     <th class="col-md-2">Pagamento</th>
+                     <th class="col-md-2">Valor</th>
+
+                     <th class="col-md-2">Estornar</th>
+          </tr>
+          </thead>
+          <tbody>
+          <?php if(!$pagamento){?>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <?php }else{ foreach($pagamento as $pg){?>
+            <tr>
+              <td><?php echo $pg['formarec_nome']?></td>
+              <td><?php echo $pg['valortotal']?></td>
+              <td></td>
+            </tr>
+            <?php } }?>
+          </tbody>
+          </table>
+          </div>
+
+          <?php
+          $totalvenda = 0;
+          $vlrserv=  ($totalitens*$taxaservico)/100;
+          $totalvenda = $vlrserv+$totalitens;
+           ?>
+          <div class="totalmodal">
+          <?php if(!$pagamento){?>
+            <h3>Total pedido <strong>R$<?php echo number_format($totalvenda,2,',','.')?></strong></h3>
+          <?php }else{?>
+            <h3>Pago <strong>R$ <?php echo number_format($vlrpago,2,',','.')?></strong></h3>
+
+            <h3>Total pedido <strong>R$ <?php echo number_format($totalvenda,2,',','.')?></strong></h3>
+          <h3> Restante <strong> R$ <?php echo number_format($totalvenda-$vlrpago,2,',','.')?> </strong></h3>
+          <?php }?>
+
+
+          </div>
+                   </div>
+
+
+                   <div class="direitarecebimento">
+           <div class="col-lg-12">
+          <form action="" method="post" id="form_tablepgto">
+
+
+
+            <div class="row">
+                                                              <div class="form-group">
+
+                     <ul class="payment-methods">
+            <li class="payment-method">
+              <input name="payment_methods" type="radio" value="dinheiro" id="dinheiro">
+              <label for="dinheiro">DINHEIRO</label>
+            </li>
+
+            <li class="payment-method">
+              <input name="payment_methods" type="radio" value="credito" id="credito">
+              <label for="credito">CRÉDITO</label>
+            </li>
+
+            <li class="payment-method">
+              <input name="payment_methods" type="radio" value="debito" id="debito">
+              <label for="debito">DEBITO</label>
+            </li>
+            <li class="payment-method">
+              <input name="payment_methods" type="radio" value="cheque" id="cheque">
+              <label for="cheque">CHEQUE</label>
+            </li>
+
+            <li class="payment-method">
+              <input name="payment_methods" type="radio" value="fiado" id="fiado">
+              <label for="fiado">FIADO</label>
+            </li>
+          </ul>
+
+          </div>
+          </div>
+
+          <div class="col-lg-4">
+                                                            <div class="form-group">
+          <input type="hidden" name="pedido" id="pedido" value="<?php echo $pedido->id?>"/>
+
+
+              <input type="hidden" name="numeromesa" id="numeromesa" value="<?php echo $mesa?>"/>
+
+          <input type="hidden" name="totalvenda" value="<?php echo number_format($totalvenda,2,',','.')?>"/>
+          <label for="valorpgto" class="control-label"> VALOR</label>
+          <?php if(!$pagamento){?>
+          <input type="hidden" name="vlrpago" value=""/>
+          <?php }else{?>
+            <input type="hidden" name="restante" value="<?php echo number_format($totalvenda-$vlrpago,2,',','.')?>"/>
+            <input type="hidden" name="vlrpago" value="<?php echo number_format($vlrpago,2,',','.')?>"/>
+          <?php }?>
+          <input type="text" class="form-control input-lg" name="vlrpgto" id="vlrpgto"/>
+
+          </div>
+          </div>
+          </form>
+          </div>
+
+          </div>
+
+
+
+
+
+
+
+
+
+
+
+                   <div class="totais">
+
+                     <form action="" method="post" id="form_confirmarec">
+
+                           <fieldset style="display: none;"></fieldset>
+
+                           <input  type="submit" style="position:right;" class="btn btn-success col-lg-12 btn-lg"  name="cadastrar" value="CONFIRMAR PAGAMENTO" />
+
+
+                         </form>
+                  <h3>
+
+
+                  </h3>
+          </div>
+                   </div>
+
+                   </div>
+                 </div>
+               </div>
 
 
 
@@ -381,7 +542,34 @@ $totalvenda = $vlrserv+$totalitens;
 <script>
 
 
+$(document).on('keydown', function(e) {
+  console.log(e.which); // Retorna o número código da tecla
+  console.log(e.altKey); // Se o alt foi Pressionado retorna true
+if(e.which==115){
+  $('#produto').focus();
+
+}
+  if ((e.altKey) && (e.which === 82)) {
+// Pesquisar (Alt + P)
+//if (e.which ===56) {
+$('#modalrec').modal('show');
+//  $('#excluirpedido').trigger('click');
+  }
+
+  if ((e.altKey) && (e.which === 80)) {
+// Pesquisar (Alt + P)
+//if (e.which ===56) {
+  $('#excluirpedido').trigger('click');
+  }
+
+
+});
+
 $('#vlrpgto').maskMoney();
+
+
+
+
 
 
 
@@ -398,6 +586,8 @@ $('#form_tablepgto').keypress(function(e){
     var vlrpgto = $this.find("input[name='vlrpgto']").val();
 var pedido = $this.find("input[name='pedido']").val();
 var vlrpago = $this.find("input[name='vlrpago']").val();
+var restante = $this.find("input[name='restante']").val();
+var numeromesa = $this.find("input[name='numeromesa']").val();
 var totalvenda = $this.find("input[name='totalvenda']").val();
 
 
@@ -417,14 +607,42 @@ var totalvenda = $this.find("input[name='totalvenda']").val();
     var hiddens =  '<input type="hidden" name="tiporecebimento[]" value="'+radio+'" />'+
     '<input type="hidden" name="pedido[]" value="'+pedido+'" />'+
     '<input type="hidden" name="totalvenda[]" value="'+totalvenda+'" />'+
+      '<input type="hidden" name="numeromesa[]" value="'+numeromesa+'" />'+
+      '<input type="hidden" name="restante[]" value="'+restante+'" />'+
       '<input type="hidden" name="vlrpago[]" value="'+vlrpago+'" />'+
     '<input type="hidden" name="vlrpgto[]" value="'+vlrpgto+'" />';
 
 
     $('#form_confirmarec').find('fieldset').append( hiddens );
+var dados = $( hiddens ).serialize();
+
+    $.ajax({
+    type: "POST",
+    url:"<?php echo base_url();?>vendas/pagamento",
+    data:dados,
+    dataType:'json',
+    success:function(data)
+    {
+
+      if(data.result == true){
 
 
-    $('#form_tablepgto').trigger("reset");
+
+
+        window.location.href="<?php echo base_url();?>vendas/mesasindex";
+      }
+
+      else{
+
+
+location.reload();
+
+
+      }
+
+    }
+
+    });
 
     return false;
 	}
@@ -432,9 +650,72 @@ var totalvenda = $this.find("input[name='totalvenda']").val();
 });
 
 
+$(document).ready(function(){
+
+      $('a[data-confirm]').click(function(ev){
+        var href = $(this).attr('href');
+        if(!$('#dataConfirmModal').length){
+          $('body').append('<div id="dataConfirmModal" class="modal fade" role="dialog" aria-labelledby="myModalLabel" tabindex="-1"aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button><h2 id="dataConfirmLabel">Pedido</h2></div><h2><div class="modal-body"></div></h2><div class="modal-footer"><a class="btn btn-success btn-lg col-lg-4" id="dataConfirmOK">SIM</a> <button  class="btn btn-danger btn-lg col-lg-4" data-dismiss="modal" aria-hidden="true">NÃO</button></div></div></div></div>');
+        }
+        $('#dataConfirmModal').find('.modal-body').text($(this).attr('data-confirm'));
+        $('#dataConfirmOK').attr('href',href);
+        $('#dataConfirmModal').modal({show:true});
+        return false;
+      });
+
+
+});
+
+
+$('#inserecliente').submit(function(){
+
+  var $this = $( this );
+
+
+ var idcliente = $this.find("input[name='id']").val();
+  var nome = $this.find("input[name='nome']").val();
+  var idpedido = $this.find("input[name='idpedido']").val();
+
+  var hiddens =  '<input type="hidden" name="idcliente" value="'+idcliente+'" />'+
+  '<input type="hidden" name="nome" value="'+nome+'" />'+
+    '<input type="hidden" name="idp" value="'+idpedido+'" />';
+
+
+
+
+
+
+
+  var dados = $(hiddens).serialize();
+  $.ajax({
+  type: "POST",
+  url:"<?php echo base_url();?>vendas/addclientepedido",
+  data:dados,
+  dataType:'json',
+  success:function(data)
+  {
+
+if(data.result == true){
+
+
+
+
+location.reload();
+}
+
+else{
+    location.reload();
+}
+
+  }
+
+  });
+return false;
+
+});
 $('#form_confirmarec').submit(function(){
 
-  
+
 
   var dados = $( '#form_confirmarec' ).serialize();
   $.ajax({
@@ -454,7 +735,10 @@ if(data.result == true){
 }
 
 else{
-    location.reload();
+
+$("#painelrec").load("<?php echo current_url();?> #painelrec" );
+    //location.reload();
+
 }
 
   }
@@ -591,6 +875,26 @@ $("input[type='radio']").click(function(){
 });
 
 
+$("#cliente").autocomplete({
+
+    source: "<?php echo base_url(); ?>cliente/autoCompleteCliente",
+
+    minLength: 2,
+
+    select: function(event, ui) {
+
+
+
+        $("#id").val(ui.item.id);
+        $("#nome").val(ui.item.nome);
+
+
+
+
+
+    }
+
+});
 
 
 $("#produto").autocomplete({

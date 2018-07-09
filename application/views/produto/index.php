@@ -8,6 +8,16 @@
               <li><i class="fa fa-table"></i>Produtos</li>
 
             </ol>
+
+            <script src="<?php echo base_url()?>assest/js/jquery.js"></script>
+            <script src="<?php echo base_url()?>assest/js/jquery-ui-1.10.4.min.js"></script>
+            <script src="<?php echo base_url()?>assest/js/jquery-1.8.3.min.js"></script>
+
+
+            <script src="<?php echo base_url()?>assest/js/validate.js"></script>
+
+
+              <script src="<?php echo base_url()?>assest/js/maskmoney.js"></script>
             <div class="box-tools">
                   <a href="#produto" data-toggle="modal" class="btn btn-success">NOVO PRODUTO</a>
                   <a href="#pizza" data-toggle="modal" class="btn btn-success">NOVA PIZZA</a>
@@ -33,9 +43,9 @@
 		<th>Nome produto</th>
 		<th>Custo</th>
 		<th>Venda</th>
-		<th>Impressora</th>
-		<th>Vendermeio</th>
-		<th>Porc Meio</th>
+
+
+		<th>Cod barras</th>
 		<th>Actions</th>
     </tr>
 	<?php foreach($produto as $p){ ?>
@@ -46,9 +56,9 @@
 		<td><?php echo $p['nomeproduto']; ?></td>
 		<td>R$ <?php echo number_format($p['custo'],2,',','.')  ?></td>
 		<td>R$ <?php echo number_format($p['venda'],2,',','.') ?></td>
-		<td><?php echo $p['impressora']; ?></td>
-		<td><?php echo $p['vendermeio']; ?></td>
-		<td><?php echo $p['porc_meio']; ?></td>
+
+		<td><?php echo $p['codbarra']; ?></td>
+
 		<td>
 
             <!--  <a href="<?php echo site_url('produto/imprimir/'.$p['impressora']); ?>" class="btn btn-danger btn-xs">imprimir</a>-->
@@ -104,12 +114,12 @@
 
             <label for="custo" class="col-md-1 control-label">Custo</label>
              <div class="col-md-2">
-               <input type="text" name="custo" value="<?php echo number_format($p['custo'],2,',','.'); ?>" onfocus="this.value=''"; class="form-control" id="custo" />
+               <input type="text" name="custo" value="<?php echo number_format($p['custo'],2,',','.'); ?>"  onfocus="this.value='';" class="form-control" id="custo<?php echo $p['id']?>" />
              </div>
 
              <label for="venda" class="col-md-1 control-label">Venda</label>
              <div class="col-md-2">
-               <input type="text" name="venda" value="<?php echo number_format($p['venda'],2,',','.'); ?>" onfocus="this.value=''"; class="form-control required" id="venda" required/>
+               <input type="text" name="venda" value="<?php echo number_format($p['venda'],2,',','.'); ?>" onfocus="this.value='';" class="form-control required" id="venda<?php echo $p['id']?>" required/>
                  <input type="hidden" value="1" id="status" name="status"/>
              </div>
 
@@ -137,6 +147,14 @@
                            </div>
                          </div>
                        </div>
+                       <script>
+
+
+                       $('#venda<?php echo $p['id']?>').maskMoney();
+                       $('#custo<?php echo $p['id']?>').maskMoney();
+
+
+                       </script>
 
     </tr>
 	<?php } ?>
@@ -198,12 +216,21 @@ $Comment = getPrinterProperty("Comment"); ?>
                        <div class="form-group">
                          <label for="nomeproduto" class="col-md-1 control-label">Nome</label>
                          <div class="col-md-5">
-                           <input type="text" name="nomeproduto" value=" " class="form-control" id="nomeproduto" required/>
+                           <input type="text" name="nomeproduto" value="" class="form-control" id="nomeproduto" required/>
                          </div>
 
-                         <label for="categoria_id" class="col-md-2 control-label">Categoria</label>
+                         <label for="codbarra" class="col-md-2 control-label">Cod barras</label>
                          <div class="col-md-4">
-                           <select name="categoria_id" class="form-control">
+                           <input type="text" name="codbarra" value="" class="form-control" id="codbarra"/>
+                         </div>
+                       </div>
+</div>
+</br>
+ <div class="row">
+   <div class="form-group">
+                         <label for="categoria_id" class="col-md-1 control-label">Categoria</label>
+                         <div class="col-md-2">
+                           <select name="categoria_id" class="form-control" required>
                              <option value="">Selecione</option>
                              <?php
                              foreach($categoriaprodutos as $categoriaproduto)
@@ -217,87 +244,79 @@ $Comment = getPrinterProperty("Comment"); ?>
                          </div>
 
 
+
+
+                       <label for="custo" class="col-md-1 control-label">Custo</label>
+                        <div class="col-md-2">
+                          <input type="text" name="custo" value="" class="form-control" id="custo" />
+                        </div>
+
+                        <label for="venda" class="col-md-1 control-label">Venda</label>
+                        <div class="col-md-2">
+                          <input type="text" name="venda" value="" class="form-control" id="venda" required/>
+                            <input type="hidden" value="1" id="status" name="status"/>
+                            <input type="hidden" value="1" id="tipoproduto" name="tipoproduto"/>
+                        </div>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="form-group">
+                       <label for="categoria_id" class="col-md-2 control-label">Impressora</label>
+                       <div class="col-md-4">
+                         <select name="impressora" class="form-control">
+                           <option value="">Selecione</option>
+
+                           <?php foreach($Name as $i => $n){
+                             //  $Printers[$i] = (object)[
+                             echo '<option value="'.$n.'">'.$n.'</option>'; }?>
+                         </select>
+
                        </div>
 
+                       <label for="unidade" class="col-md-2 control-label">Unidade</label>
+                       <div class="col-md-4">
+                         <select name="unidade" class="form-control" required>
+                           <option value="">Selecione</option>
+                           <option value="UN">UN</option>
+                           <option value="KG">KG</option>
+                         </select>
+                       </div>
+                     </div>
+                   </div>
+                   <br/>
+                   <div class="row">
+                   <div class="col-lg-12">
 
+                   <button type="submit" class="btn btn-success btn-lg col-lg-3">
+                     <i class="fa fa-check"></i> CADASTRAR
+                   </button>
+                   </div>
+                 </div>
 
-</div>
-<br>
-<div class="row">
-
-<div class="form-group">
-
-  <label for="custo" class="col-md-1 control-label">Custo</label>
-   <div class="col-md-2">
-     <input type="text" name="custo" value=" " class="form-control" id="custo1" />
-   </div>
-
-   <label for="venda" class="col-md-1 control-label">Venda</label>
-   <div class="col-md-2">
-     <input type="text" name="venda" value=" " class="form-control" id="venda1" required/>
-       <input type="hidden" value="1" id="status" name="status"/>
-   </div>
-  <label for="categoria_id" class="col-md-2 control-label">Impressora</label>
-  <div class="col-md-4">
-    <select name="impressora" class="form-control">
-      <option value="">Selecione</option>
-
-      <?php foreach($Name as $i => $n){
-        //  $Printers[$i] = (object)[
-        echo '<option value="'.$n.'">'.$n.'</option>'; }?>
-    </select>
-
-  </div>
-
-
-
-
+                                       </form>
 
 </div>
-</div>
-<br>
-<div class="row">
 
-<div class="form-group">
-  <label for="unidade" class="col-md-2 control-label">Unidade</label>
-  <div class="col-md-4">
-    <select name="unidade" class="form-control">
-      <option value="">Selecione</option>
-      <option value="UN">UN</option>
-      <option value="KG">KG</option>
-    </select>
-  </div>
 
-</div>
-</div>
-<br>
-<button type="submit" class="btn btn-success">
-  <i class="fa fa-check"></i> CADASTRAR
-</button>
-                    </form>
+
+
+
+
+
+
+
                      </div>
                    </div>
                  </div>
                </div>
-               <script src="<?php echo base_url()?>assest/js/jquery.js"></script>
-               <script src="<?php echo base_url()?>assest/js/jquery-ui-1.10.4.min.js"></script>
-               <script src="<?php echo base_url()?>assest/js/jquery-1.8.3.min.js"></script>
 
 
-               <script src="<?php echo base_url()?>assest/js/validate.js"></script>
+<script>
 
-
-                 <script src="<?php echo base_url()?>assest/js/maskmoney.js"></script>
-
-                 <script>
-
-
-                 $('#venda').maskMoney();
-                 $('#custo').maskMoney();
-                 $('#venda1').maskMoney();
-                 $('#custo1').maskMoney();
-
-                 </script>
+$('#venda').maskMoney();
+$('#custo').maskMoney();
+</script>
 
 
 

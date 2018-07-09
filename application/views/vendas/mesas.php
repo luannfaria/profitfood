@@ -85,11 +85,11 @@
                   <?php   $me=1;   for($i=1;$i<=$numer;$i++) {
         ?>
 
-                          <div class="col-lg-4">
+                          <div class="col-md-12">
   <form id="formServicos" action="<?php echo base_url() ?>vendas/novamesa" method="post">
 
     <input type="hidden" name="numeromesa" value="<?php echo $me;?>" name="numermomesa"/>
-                          <input type="submit" id="botaomesas" class="btn btn-success btn-lg btn-block" style="margin:5px;"name="servico" value="MESA <?php echo $me;?>" />
+                          <input type="submit" id="botaomesas" class="btn btn-success col-md-3 btn-lg" style="margin:3px;"name="servico" value="MESA <?php echo $me;?>" />
 
 
 

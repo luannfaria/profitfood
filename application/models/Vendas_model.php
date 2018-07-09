@@ -20,6 +20,12 @@ public function get_all_mesas(){
   return $array;
 }
 
+public function addclientepedido($idpedido,$params){
+  //  $this->db->set('cliente_id','nomecliente',$idcliente,$nome);
+  $this->db->where('id',$idpedido);
+  return $this->db->update('pedidos',$params);
+}
+
 public function verificamesa($verificamesa){
   $this->db->select('*');
  $this->db->from('mesasabertas');
@@ -31,6 +37,32 @@ public function verificamesa($verificamesa){
    else{
      return FALSE;
    }
+
+}
+
+public function idpedidomesa($id){
+
+
+  $this->db->select('*');
+$this->db->from('mesasabertas');
+$this->db->where('numeromesa', $id);
+
+$this->db->limit(1);
+
+$query = $this->db->get();
+
+if ($query->num_rows() == 1)
+{
+//Use row() to get a single result
+$row = $query->row();
+
+//$row will now have if you printed the contents:
+//print_r( $row );
+//stdClass Object ( [email] => example@gmail.com )
+
+//Pass $query->email directly to reset_password
+}
+return $row->idpedido;
 
 }
 
@@ -73,7 +105,9 @@ public function totalpedido($id){
   return $result['total'];
 }
 public function pagamento($params){
-  return    $this->db->insert('pagamentopedido',$params);
+    $this->db->insert('pagamentopedido',$params);
+
+  return $this->db->insert_id();
 }
 public function excluiritem($id){
 
@@ -143,7 +177,7 @@ public function getitenspedido($id){
 public function deleteitens($id){
 
 
-    $this->db->delete('itenspedido',array('idpedido'=>$id));
+    $this->db->delete('itenspedido',array('pedido_id'=>$id));
     if ($this->db->affected_rows() != '0')
 {
 return TRUE;
@@ -224,7 +258,7 @@ public function getpedido($pedido){
 $row = $query->row();
 
 
-return $row->id;
+return $row;
  //Use row() to get a single result
 
 

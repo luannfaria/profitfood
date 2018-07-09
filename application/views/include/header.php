@@ -56,15 +56,36 @@
   <!-- container section start -->
   <section id="container" class="">
     <!--header start-->
-    <header class="header dark-bg">
+    <header class="header blue-bg">
       <div class="toggle-nav">
-        <div class="icon-reorder tooltips" data-original-title="Toggle Navigation" data-placement="bottom"><i class="icon_menu"></i></div>
+        <div class="icon-reorder tooltips" data-original-title="MENU" data-placement="bottom"><i class="icon_menu"></i></div>
       </div>
 
       <!--logo start-->
       <a href="#" class="logo">Profit <span class="lite"> </span></a>
       <!--logo end-->
+      <div class="top-nav notification-row">
+        <!-- notificatoin dropdown start-->
+        <ul class="nav pull-right top-menu">
 
+          <!-- task notificatoin start -->
+
+          <!-- task notificatoin end -->
+          <!-- inbox notificatoin start-->
+
+          <!-- inbox notificatoin end -->
+          <!-- alert notification start-->
+
+          <!-- alert notification end-->
+          <!-- user login dropdown start-->
+          <li class="eborder-top">
+            <a href="<?php echo site_url();?>dashboard/sair">SAIR <i class="fa fa-sign-out"></i> </a>
+          </li>
+
+          <!-- user login dropdown end -->
+        </ul>
+        <!-- notificatoin dropdown end-->
+      </div>
 
 
 
@@ -111,6 +132,18 @@
 
             </ul>
           </li>
+          <li class="sub-menu">
+            <a href="javascript:;" class="">
+                          <i class="icon_desktop"></i>
+                          <span>Clientes</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
+                      </a>
+            <ul class="sub">
+              <li><a class="" href="<?php echo base_url();?>cliente">Clientes</a></li>
+
+
+            </ul>
+          </li>
 
 
           <li class="sub-menu">
@@ -128,6 +161,19 @@
 
           <li class="sub-menu">
             <a href="javascript:;" class="">
+                          <i class="icon_table"></i>
+                          <span>Relatorios</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
+                      </a>
+            <ul class="sub">
+              <li><a class="" href="#">Mais vendidos</a></li>
+              <li><a class="" href="#">Comissões</a></li>
+              <li><a class="" href="#">Vendas</a></li>
+            </ul>
+          </li>
+
+          <li class="sub-menu">
+            <a href="javascript:;" class="">
                           <i class="icon_documents_alt"></i>
                           <span>Configurações</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
@@ -135,13 +181,14 @@
             <ul class="sub">
               <li><a class="" href="<?php echo base_url();?>configuracoes">Configurações</a></li>
               <li><a class="" href="<?php echo base_url();?>usuario"><span>Usuarios</span></a></li>
-              <li><a class="" href="#"><span>Contact Page</span></a></li>
-              <li><a class="" href="#">Blank Page</a></li>
+              <li><a class="" href="#"><span>Permissões</span></a></li>
+              <li><a class="" href="#">Garçons</a></li>
               <li><a class="" href="#">404 Error</a></li>
             </ul>
           </li>
 
         </ul>
-        <!-- sidebar menu end-->
+      <!-- sidebar menu end-->
       </div>
+
     </aside>
