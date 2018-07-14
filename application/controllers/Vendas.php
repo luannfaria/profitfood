@@ -14,6 +14,8 @@ class Vendas extends CI_Controller {
 
 		$data['mesasaberta'] = $this->Vendas_model->get_mesas_abertas();
 	 $data['mesas'] = $this->Vendas_model->get_all_mesas();
+
+
 		$this->load->view('include/header');
 		 $this->load->view('vendas/mesas',$data);
 		$this->load->view('include/footer');
@@ -255,6 +257,13 @@ public function abremesa(){
 						redirect('vendas/mesasindex');
 
 }
+
+public function imprimirconta($id){
+
+	$this->load->helper('print');
+
+	teste($id);
+}
 public function atualizaitem(){
 
 			$id = $this->input->post('iditem');
@@ -269,7 +278,7 @@ public function atualizaitem(){
 						echo json_encode(array('result'=> false));
 				}
 }
-	public function imprimiproduto($id){
+/*	public function imprimiproduto($id){
 
 		$itemvenda = $this->Vendas_model->getprodutoimprimir($id);
 
@@ -289,7 +298,7 @@ printitem($imprimir,$mesa);
 
 	redirect('vendas/mesasindex');
 
-	}
+}*/
 public function excluirpedido($id){
 
 
@@ -300,15 +309,15 @@ redirect('vendas/mesasindex');
 
 
 }
-	public function imprimiconta($id){
+	public function testepdf(){
 
 		//	$data[] = $this->Vendas_model->getitensimprimir($id);
 
 			$this->load->helper('print');
 
-			conta($id);
+			teste();
 
-				redirect('vendas/mesasindex');
+		//		redirect('vendas/mesasindex');
 
 
 	}
@@ -384,7 +393,7 @@ public function additem(){
 				echo json_encode(array('result'=> true));
 
 }
-	public function itemmesa(){
+	/*public function itemmesa(){
 
 //$count = count($this->input->post('nomeproduto'));
 
@@ -426,7 +435,7 @@ public function additem(){
 
 	//printitem($imprimir,$mesa);
 echo json_encode(array('result'=> true));
-	}
+}*/
 
 
 	//			$nomeproduto = $this->input->post('nomeproduto')[0];

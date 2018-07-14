@@ -9,7 +9,7 @@
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>Elements | Creative - Bootstrap 3 Responsive Admin Template</title>
+  <title>Profit sistemas</title>
 
   <!-- Bootstrap CSS -->
   <link href="<?php echo base_url();?>assest/css/bootstrap.min.css" rel="stylesheet">
@@ -41,79 +41,142 @@
 <body>
 
   <!-- container section start -->
-  <section id="container" class="">
+
     <!--header start-->
-    <header class="header dark-bg">
 
-       <div class="nav search-row" id="top_menu">
-         <!--  search form start -->
-         <ul class="nav top-menu">
-           <li>
-             <form class="navbar-form">
-               <H4>MESA <?php echo $pedido->numeromesa ?></h4>
-             </form>
-           </li>
-         </ul>
-
-      </div>
-
-
-      <!--logo end-->
+  <main>
 
 
 
-      <div class="top-nav notification-row">
-        <!-- notificatoin dropdown start-->
-        <ul class="nav pull-right top-menu">
+    <header> <h4>MESA <?php echo $pedido->numeromesa ?></h4></header>
+
+
+
+<div class="row">
+    <ul>
+        
+        
+        
+         <?php $i=0;foreach($produtos as $pod){?>
+        
+<li  value="<?php echo $i;?>"onclick="produto(<?php echo $i;?>)">
+    
+
+                          <div class="col-lg-12">
+                              <input type="button" class="btn btn-success btn-lg col-lg-4 col-xs-5" style="margin:5px;" name="nomeproduto[]" value="<?php echo $pod['nomeproduto'] ?>">
+                               <input type="hidden" name="idproduto[]" value="<?php echo $pod['id'] ?>">
+                              <input type="hidden" name="valorproduto[]" value="<?php echo $pod['venda'] ?>">
+                              <input type="hidden" name="mesa[]" value="<?php echo $mesa ?>">
+                              <input type="hidden" name="pedido[]" value="<?php echo $pedido->id ?>">
+     </div>
+
+</li>
+                        <?php $i++;}?>
+    </ul>
+                       
+                      </div>
+
+
+          
+
+
+    </main>
+
+  <footer> 
+      
+      <form action="<?php echo base_url();?>mobile/additem"  method="post" >
+                           <fieldset  id="fieldset"></fieldset>
+<div class="row">
+    <div class="col-lg-12">
+                           <input  type="submit"  class="btn btn-success col-lg-8 btn-lg"  name="cadastrar" value="REVISAR" />
+    </div></div>
 
           <!-- task notificatoin start -->
+                         </form>
+      
+    </footer>
+</body>
 
-          <!-- task notificatoin end -->
-          <!-- inbox notificatoin start-->
-    <!--  toin end -->
-          <!-- alert notification start-->
+    <script src="<?php echo base_url()?>assest/js/jquery.js"></script>
+<script src="<?php echo base_url()?>assest/js/jquery-ui-1.10.4.min.js"></script>
+<script src="<?php echo base_url()?>assest/js/maskmoney.js"></script>
+<script src="<?php echo base_url()?>assest/js/bootstrap.js"></script>
+<script src="<?php echo base_url()?>assest/js/validate.js"></script>
+    
+    <script>
+        
+       
+  
+            function produto(value){
+                
+               var $this = $( this );
+                
+var nomeproduto = document.getElementsByName('nomeproduto[]');
+var idproduto =  document.getElementsByName('idproduto[]');
+   var valorproduto =  document.getElementsByName('valorproduto[]');
+                var idpedido =  document.getElementsByName('pedido[]');
+                var nmesa =  document.getElementsByName('mesa[]');
+                
+                
+                var nomeprodutook = nomeproduto[value].value;
+                
+                
+                  var hiddens =  '<input type="hidden" name="produto[]" value="'+idproduto[value].value+'" />'+
+    '<input type="hidden" name="nome[]" value="'+nomeproduto[value].value+'" />'+
+                      '<input type="hidden" name="pedido[]" value="'+idpedido[value].value+'" />'+
+                      '<input type="hidden" name="numeromesa[]" value="'+nomeproduto[value].value+'" />'+
+    '<input type="hidden" name="valorproduto[]" value="'+valorproduto[value].value+'" />';
+      
+ 
 
-          <!-- alert notification end-->
-          <!-- user login dropdown start-->
-          <li class="dropdown">
-            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                            <span class="profile-ava">
-                                <img alt="" src="">
-                            </span>
-                            <span class="username">OK</span>
-                            <b class="caret"></b>
-                        </a>
-            <ul class="dropdown-menu extended logout">
-              <div class="log-arrow-up"></div>
-
-
-              <li>
-                <a href="login.html"><i class="icon_key_alt"></i>SAIR</a>
-              </li>
-
-            </ul>
-          </li>
-          <!-- user login dropdown end -->
-        </ul>
-        <!-- notificatoin dropdown end-->
-      </div>
-    </header>
-    <section id="main-content">
-      <section class=" wrapper">
-              <div class="row">
-
-                    <div class="col-lg-12">
-
-                        <?php foreach($categorias as $cat){?>
-
-                                                           <div class="col-lg-4">
-     <input type="submit"  class="btn btn-success btn-lg btn-block" style="margin:5px;"name="servico" value=" <?php echo $cat['nomedescricao'];?>" />
-   </div>
-                        <?php }?>
-                    </div>
-
-              </div>
+    $('#fieldset').append( hiddens );
+             //   var $this = $( this );
 
 
-      </section>
-    </section>
+   
+   // var vlrpgto = $this.find("input[name='itemmobile[value]']").val();
+
+   
+    //var item = $(this).val();
+                
+                alert(nomeprodutook);
+            }
+        
+         $('#itenspedido').submit(function(){
+
+
+
+  var dados = $( '#fieldset' ).serialize();
+  $.ajax({
+  type: "POST",
+  url:"<?php echo base_url();?>mobile/additem",
+  data:dados,
+  dataType:'json',
+  success:function(data)
+  {
+
+if(data.result == true){
+
+
+
+
+  alert('ok');
+}
+
+else{
+
+$("#painelrec").load("<?php echo current_url();?> #painelrec" );
+    //location.reload();
+
+}
+
+  }
+
+  });
+  return false;
+
+
+});
+        
+        
+    </script>

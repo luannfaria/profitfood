@@ -50,7 +50,7 @@
 
               <input type="hidden" name="datacadastro" value="<?php echo date('d/m/Y') ;?>" class="has-datepicker form-control" id="datepicker" />
 
-          <div class="col-md-3">
+          <div class="col-md-2">
 
             <label class="control-label"><span class="text-danger">*</span>Permissões</label>
             <div class="form-group">

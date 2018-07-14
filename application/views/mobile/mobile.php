@@ -93,7 +93,54 @@
     <section id="main-content">
       <section class=" wrapper">
 
-        <div id="mesas" class="row">
+
+        <div id="botoes" class="col-lg-10">
+          <div class="row">
+
+<input type="submit" id="botaomobile" class="btn btn-success col-lg-10 btn-lg btn-block" style="margin:5px;"name="servico" value="MESAS ABERTAS" />
+               <input type="submit" id="botaomobile" onclick="abrirmesa()" class="btn btn-success col-lg-10 btn-lg btn-block" style="margin:5px;"name="servico" value="ABRIR MESA" />
+          </div>
+        </div>
+
+
+                          <?php
+                          if(!$mesasaberta){?>
+
+                              <div class="row">
+                                <h2> Nenhuma mesa aberta </h2>
+                              </div>
+
+
+                          <?php }else{ ?>
+
+
+                        <div class="col-lg-12">
+
+                          <div class="row">
+                        <?php      foreach ($mesasaberta as $ma) {
+?>
+<div class="col-lg-3">
+<a href="<?php echo site_url('mobile/editamesa/'.$ma['idpedido']); ?>">
+<div class="info-box blue-bg">
+<div class="col-md-12 col-md-12 col-sm-12 col-xs-12">
+
+<div class="title"></div>
+<div class="mesas"><i class="fa fa-cutlery"> </i>MESA <?php echo $ma['numeromesa']; ?></div>
+
+</div>
+</div></a>
+</div>
+                              <?php
+} ?>
+</div>
+</div>
+
+
+<?php }?>
+
+
+
+       <div id="mesas" style="display:none;"class="row">
           <div class="col-lg-12">
             <div class="row">
        <?php foreach ($mesas as $m) { ?>
@@ -148,6 +195,13 @@
 
 <script type="text/javascript">
 
+function abrirmesa(){
+  var x = document.getElementById("mesas");
+  var y = document.getElementById("botoes");
+
+        x.style.display = "block";
+        y.style.display = "none";
+}
 $(document).on('click', 'span', function(event) {
             var $idcat = $(this).attr('idAcao');
 

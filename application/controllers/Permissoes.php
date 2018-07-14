@@ -16,9 +16,9 @@ class Permissoes extends CI_Controller
 
 
 
-        $this->load->helper(array('form', 'codegen_helper'));
+      //  $this->load->helper(array('form', 'codegen_helper'));
         $this->load->model('Permissoes_model', '', true);
-        $this->data['menuConfiguracoes'] = 'Permissões';
+    //    $this->data['menuConfiguracoes'] = 'Permissões';
     }
 
     public function index()

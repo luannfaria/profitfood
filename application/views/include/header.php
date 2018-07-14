@@ -62,7 +62,7 @@
       </div>
 
       <!--logo start-->
-      <a href="#" class="logo">Profit <span class="lite"> </span></a>
+      <a href="<?php echo site_url();?>dashboard/painel" class="logo">Profit <span class="lite"> </span></a>
       <!--logo end-->
       <div class="top-nav notification-row">
         <!-- notificatoin dropdown start-->
@@ -98,29 +98,40 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu">
           <li class="active">
-            <a class="" href="#">
+            <a class="" href="<?php echo site_url();?>dashboard/painel">
                           <i class="icon_house_alt"></i>
                           <span>Painel</span>
                       </a>
           </li>
           <li class="sub-menu">
             <a href="javascript:;" class="">
-                          <i class="icon_document_alt"></i>
+                          <i class="fa fa-star"></i>
                           <span>Vendas</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
             <ul class="sub">
+              <?php if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vServico')) {
+            ?>
               <li><a class="" href="#">BALCÃO</a></li>
+            <?php } if ($this->permission->checkPermission($this->session->userdata('permissao'), 'aServico')) {
+            ?>
               <li><a class="" href="#">DELIVERY</a></li>
+              <?php } if ($this->permission->checkPermission($this->session->userdata('permissao'), 'eServico')) {
+            ?>
               <li><a class="" href="<?php echo base_url();?>vendas/mesasindex">MESAS</a></li>
-              <li><a class="" href="<?php echo base_url();?>mobile">MOBILE</a></li>
-              <li><a class="" href="#">PDV</a></li>
 
+            <?php } if ($this->permission->checkPermission($this->session->userdata('permissao'), 'dServico')) {
+            ?>
+              <li><a class="" href="<?php echo base_url();?>mobile">MOBILE</a></li>
+            <?php } if ($this->permission->checkPermission($this->session->userdata('permissao'), 'dServico')) {
+            ?>
+              <li><a class="" href="<?php echo base_url();?>pdv">PDV</a></li>
+<?PHP } ?>
             </ul>
           </li>
           <li class="sub-menu">
             <a href="javascript:;" class="">
-                          <i class="icon_desktop"></i>
+                          <i class="fa fa-tags"></i>
                           <span>Produtos</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
@@ -134,7 +145,7 @@
           </li>
           <li class="sub-menu">
             <a href="javascript:;" class="">
-                          <i class="icon_desktop"></i>
+                          <i class="fa fa-users"></i>
                           <span>Clientes</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
@@ -148,20 +159,20 @@
 
           <li class="sub-menu">
             <a href="javascript:;" class="">
-                          <i class="icon_table"></i>
+                          <i class="fa fa-dollar"></i>
                           <span>Financeiro</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
             <ul class="sub">
-              <li><a class="" href="#">Contas a pagar</a></li>
-              <li><a class="" href="#">Contas a receber</a></li>
+              <li><a class="" href="<?php echo base_url();?>contasapagar/index">Contas a pagar</a></li>
+              <li><a class="" href="<?php echo base_url();?>contasareceber/index">Contas a receber</a></li>
               <li><a class="" href="<?php echo base_url();?>fluxo/fluxo">Caixa</a></li>
             </ul>
           </li>
 
           <li class="sub-menu">
             <a href="javascript:;" class="">
-                          <i class="icon_table"></i>
+                          <i class="fa fa-bar-chart-o"></i>
                           <span>Relatorios</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
@@ -174,16 +185,16 @@
 
           <li class="sub-menu">
             <a href="javascript:;" class="">
-                          <i class="icon_documents_alt"></i>
+                          <i class="fa fa-cogs"></i>
                           <span>Configurações</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
             <ul class="sub">
               <li><a class="" href="<?php echo base_url();?>configuracoes">Configurações</a></li>
               <li><a class="" href="<?php echo base_url();?>usuario"><span>Usuarios</span></a></li>
-              <li><a class="" href="#"><span>Permissões</span></a></li>
-              <li><a class="" href="#">Garçons</a></li>
-              <li><a class="" href="#">404 Error</a></li>
+              <li><a class="" href="<?php echo base_url();?>permissoes"><span>Permissões</span></a></li>
+            
+              <li><a class="" href="<?php echo base_url();?>configuracoes/impressoras">Impressoras</a></li>
             </ul>
           </li>
 

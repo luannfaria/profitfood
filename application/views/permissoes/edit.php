@@ -216,11 +216,11 @@
           <div class="col-lg-6">
             <section class="panel">
               <header class="panel-heading">
-                SERVIÇOS
+                TIPO DE VENDAS
               </header>
               <div class="panel-body">
                 <div class="checkbox">
-                  <label>Visualizar menu
+                  <label>BALCÃO
                                             <input <?php if (isset($permissoes['vServico'])) {
     if ($permissoes['vServico'] == '1') {
         echo 'checked';
@@ -231,7 +231,7 @@
                 </div>
 
                 <div class="checkbox">
-                  <label>Adicionar serviço
+                  <label>DELIVERY
                                             <input <?php if (isset($permissoes['aServico'])) {
     if ($permissoes['aServico'] == '1') {
         echo 'checked';
@@ -242,7 +242,7 @@
                 </div>
 
                 <div class="checkbox">
-                  <label>Editar serviço
+                  <label>MESAS
                                             <input <?php if (isset($permissoes['eServico'])) {
     if ($permissoes['eServico'] == '1') {
         echo 'checked';
@@ -253,7 +253,7 @@
                 </div>
 
                 <div class="checkbox">
-                  <label>Excluir serviço
+                  <label>PDV
                                             <input <?php if (isset($permissoes['dServico'])) {
     if ($permissoes['dServico'] == '1') {
         echo 'checked';

@@ -21,6 +21,32 @@ function index(){
 
 }
 
+    
+    public function additem(){
+        
+        
+        
+        
+        $count = count($this->input->post('valorproduto'));
+
+			for($i=0;$i<$count;$i++){
+							$params = array(
+								'nome_produto' =>$this->input->post('nome')[$i],
+								'valorproduto'=> $this->input->post('valorproduto')[$i],
+								'produto_id'=> $this->input->post('produto')[$i],
+								//'qtdd' => $this->input->post('quantidade')[$i],
+								'garcom'=>$this->input->post('garcom')[$i],
+								'mesa'=>$this->input->post('mesa')[$i],
+								'pedido_id'=>$this->input->post('pedido')[$i]
+							
+
+
+
+							);
+
+							$null=$this->Vendas_model->itensmesa($params);
+    }
+    }
 function getprodutoscategorias(){
   $idcat = $this->input->post('idcat');
 
@@ -37,30 +63,8 @@ function mesas(){
 	if($this->Vendas_model->verificamesa($verificamesa)==TRUE){
 
 
-$data['categorias'] = $this->Categoria_model->get_all_categoriaprodutos();
-		$pedido=	$this->Vendas_model->idpedidomesa($verificamesa);
-		$data['empresa']= $this->Vendas_model->get_all_mesas();
-	 		$data['mesa'] = $this->Vendas_model->getmesa($pedido);
-	 		$data['horamesa']= $this->Vendas_model->gethora($pedido);
-	 			$data['pedido'] = $this->Vendas_model->getpedido($pedido);
-	 			$data['itenspedido'] = $this->Vendas_model->getitenspedido($pedido);
-	 				$data['totalitens'] = $this->Vendas_model->totalpedido($pedido);
-	 				$data['pagamento'] = $this->Vendas_model->valorpago($pedido);
-
-
-	 //	$this->$data['pedido'] = $this->Vendas_model->getpedido($pedido);
-	 //$this->load->model('Produto_model');
-	 //$username = $this->session->userdata('login');
-	 //$data['login']=$username;
-	 //$data['mesas'] = $this->Vendas_model->get_all_mesas();
-	 //$data['produtos'] = $this->Produto_model->get_all_produto();
-	 //$this->load->view('include/header');
-	//  	$this->load->view('vendas/pedidoaberto',$this->$data);
-	// $this->load->view('include/footer');
-	$this->load->view('mobile/pedido',$data);
-
-					$data['custom_error'] = '<div class="form_error"><p>An Error Occured.</p></div>';
-					redirect('mobile/index');
+	redirect('mobile/index');
+					//redirect('mobile/index');
 
 
 	}
@@ -103,6 +107,8 @@ $data['login']=$username;
  //$id = $this->Vendas_model->getidpedido($pedido);
  	//		$username = $this->session->userdata('login');
  	//		$this->$data['login']=$username;
+
+	$this->$data['produtos'] = $this->Produto_model->getprodutosmobile();
  	$this->$data['empresa']= $this->Vendas_model->get_all_mesas();
  		$this->$data['mesa'] = $this->Vendas_model->getmesa($pedido);
  		$this->$data['horamesa']= $this->Vendas_model->gethora($pedido);
@@ -110,7 +116,7 @@ $data['login']=$username;
  		$this->	$data['itenspedido'] = $this->Vendas_model->getitenspedido($pedido);
  				$this->$data['totalitens'] = $this->Vendas_model->totalpedido($pedido);
  				$this->$data['pagamento'] = $this->Vendas_model->valorpago($pedido);
-
+$this->$data['produtos'] = $this->Produto_model->get_all_produto();
 
 					 $this->$data['categorias'] = $this->Categoria_model->get_all_categoriaprodutos();
  //	$this->$data['pedido'] = $this->Vendas_model->getpedido($pedido);
@@ -124,6 +130,24 @@ $data['login']=$username;
 // $this->load->view('include/footer');
 $this->load->view('mobile/pedido',$this->$data);
 }
+
+}
+
+function editamesa($id){
+$data['produtos'] = $this->Produto_model->get_all_produto();
+	$username = $this->session->userdata('login');
+	$data['login']=$username;
+	$data['empresa']= $this->Vendas_model->get_all_mesas();
+	$data['mesa'] = $this->Vendas_model->getmesa($id);
+	$data['horamesa']= $this->Vendas_model->gethora($id);
+	$data['pedido'] = $this->Vendas_model->getpedido($id);
+	$data['itenspedido'] = $this->Vendas_model->getitenspedido($id);
+		$data['totalitens'] = $this->Vendas_model->totalpedido($id);
+		$data['pagamento'] = $this->Vendas_model->valorpago($id);
+
+
+	 $this->load->view('mobile/pedido',$data);
+
 
 }
 }

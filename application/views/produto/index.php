@@ -20,7 +20,7 @@
               <script src="<?php echo base_url()?>assest/js/maskmoney.js"></script>
             <div class="box-tools">
                   <a href="#produto" data-toggle="modal" class="btn btn-success">NOVO PRODUTO</a>
-                  <a href="#pizza" data-toggle="modal" class="btn btn-success">NOVA PIZZA</a>
+                  <a href="<?php echo base_url()?>vendas/testepdf"  class="btn btn-success">NOVA PIZZA</a>
                 </div>
                 <br>
 
@@ -37,27 +37,26 @@
 
 <table class="table table-striped">
     <tr>
-		<th>ID</th>
-		<th>Categoria Id</th>
-		<th>Status</th>
-		<th>Nome produto</th>
-		<th>Custo</th>
-		<th>Venda</th>
+		<th>COD. DE BARRAS</th>
+		<th>PRODUTO</th>
+		<th>CUSTO</th>
+		<th>VENDA</th>
+		<th>STATUS</th>
 
 
-		<th>Cod barras</th>
-		<th>Actions</th>
+
+
+		<th>AÇÕES</th>
     </tr>
 	<?php foreach($produto as $p){ ?>
     <tr>
-		<td><?php echo $p['id']; ?></td>
-		<td><?php echo $p['categoria_id']; ?></td>
-		<td><?php echo $p['status']; ?></td>
+		<td><?php echo $p['codbarra']; ?></td>
 		<td><?php echo $p['nomeproduto']; ?></td>
+
 		<td>R$ <?php echo number_format($p['custo'],2,',','.')  ?></td>
 		<td>R$ <?php echo number_format($p['venda'],2,',','.') ?></td>
 
-		<td><?php echo $p['codbarra']; ?></td>
+		<td><?php echo $p['status']; ?></td>
 
 		<td>
 
@@ -127,11 +126,15 @@
             <label for="categoria_id" class="col-md-2 control-label">Impressora</label>
             <div class="col-md-4">
               <select name="impressora" class="form-control">
-                <option value="">Selecione</option>
+                 <option value="">Selecione</option>
+                <?php
+                foreach($impressoras as $imp)
+                {
+                  $selected = ($imp['impressora'] == $this->input->post('impressora')) ? ' selected="selected"' : "";
 
-                <?php foreach($Name as $i => $n){
-                  //  $Printers[$i] = (object)[
-                  echo '<option value="'.$n.'">'.$n.'</option>'; }?>
+                  echo '<option value="'.$imp['impressora'].'" '.$selected.'>'.$imp['localimpressao'].'</option>';
+                }
+                ?>
               </select>
 
             </div>
@@ -165,39 +168,7 @@
 <div class="pull-right">
 
 </div>
-<?php
-//Função para tratar o retorno
-function getPrinterProperty($key){
-    $str = shell_exec('wmic printer get '.$key.' /value');
 
-    $keyname = "$key=";
-    $validValues = [];
-    $fragments = explode(PHP_EOL,$str);
-    foreach($fragments as $fragment){
-        if($fragment == ""){
-            continue;
-        }
-        if (preg_match('/('.$keyname.')/i', $fragment)) {
-            array_push($validValues,str_replace($keyname,"",$fragment));
-        }
-    }
-    return $validValues;
-}
-//Esplanação dos commandos:
-// wmic /node:SERVER1 printer list status // Lista status das impressoras de um servidor remoto
-// wmic printer list status // Lista status das impressoras  do servidor local
-// wmic printer get // Obtem todas as propriedades da impressoa
-// wmic printer get <propriedade> /value //Lista uma propriedade no formato chave=valor do servidor remoto
-// wmic printer get <propriedade> /value //Lista uma propriedade no formato chave=valor do servidor local
-
-//Obtém algumas propriedades, nesse caso vou pegar só algumas
-$Name = getPrinterProperty("Name");
-$Description =  getPrinterProperty("Description");
-$Network = getPrinterProperty("Network");
-$Local = getPrinterProperty("Local");
-$PortName = getPrinterProperty("PortName");
-$Default = getPrinterProperty("Default");
-$Comment = getPrinterProperty("Comment"); ?>
 
 
 <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="produto" class="modal fade">
@@ -266,10 +237,14 @@ $Comment = getPrinterProperty("Comment"); ?>
                        <div class="col-md-4">
                          <select name="impressora" class="form-control">
                            <option value="">Selecione</option>
+                           <?php
+                           foreach($impressoras as $imp)
+                           {
+                             $selected = ($imp['impressora'] == $this->input->post('impressora')) ? ' selected="selected"' : "";
 
-                           <?php foreach($Name as $i => $n){
-                             //  $Printers[$i] = (object)[
-                             echo '<option value="'.$n.'">'.$n.'</option>'; }?>
+                             echo '<option value="'.$imp['impressora'].'" '.$selected.'>'.$imp['localimpressao'].'</option>';
+                           }
+                           ?>
                          </select>
 
                        </div>
