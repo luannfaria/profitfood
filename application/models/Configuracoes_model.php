@@ -17,6 +17,12 @@ class Configuracoes_model extends CI_Model
 
   }
 
+  public function getimpressoras(){
+    $this->db->order_by('id', 'ASC');
+    return $this->db->get('impressoras')->result_array();
+
+  }
+
   public function update_empresa($id,$params){
     $this->db->where('id',$id);
      $this->db->update('empresa',$params);

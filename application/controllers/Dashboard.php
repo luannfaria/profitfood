@@ -10,7 +10,7 @@ public function __construct(){
 
 
 			$this->load->model('Dashboard_model','',TRUE);}
-	
+
 	public function index()
 	{
 		if( (!session_id()) || (!$this->session->userdata('logado'))){
@@ -69,10 +69,11 @@ public function __construct(){
         redirect('dashboard/index');
     }
 
-
+		$this->load->model('Configuracoes_model');
+      $data['empresa'] = $this->Configuracoes_model->get_empresa();
 
     $this->load->view('include/header');
-
+  $this->load->view('dashboard/painel',$data);
     $this->load->view('include/footer');
 
 

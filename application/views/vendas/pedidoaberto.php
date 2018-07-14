@@ -277,7 +277,7 @@ $total += $subtotal;
 
                       <div class="col-lg-3">
 
-  <a id="btnreceber" href="#desconto" data-toggle="modal" class="btn btn-success btn-lg btn-block">DESCONTO/ACRES</a>
+  <a id="btnreceber" href="#desconto" data-toggle="modal" class="btn btn-success btn-lg btn-block">DESCONTO</a>
                       </div>
                       <div class="col-lg-3">
                         <a href="#modalrec"id="btnreceber" name="botaoreceberpedido" data-target=".bs-example-modal-lg" data-toggle="modal" class="btn btn-success btn-lg btn-block">RECEBER (ALT+R)</a>
@@ -285,7 +285,7 @@ $total += $subtotal;
                     </div>
 
                     <div class="col-lg-3">
-                      <a  href="#abrirmesa" data-toggle="modal" class="btn btn-success btn-lg btn-block">IMPRIMIR CONTA</a>
+                      <a  href="<?php echo site_url('vendas/imprimirconta/'.$pedido->id); ?>"  class="btn btn-success btn-lg btn-block">IMPRIMIR CONTA</a>
 
                   </div>
                   <div class="col-lg-3">
@@ -301,7 +301,7 @@ $total += $subtotal;
                 </div>
 
                 <!-- FIM DIV DIREITA !-->
-</div>
+
  <!-- INICIO DIV PEDIDO !-->
 
 
@@ -320,40 +320,7 @@ $total += $subtotal;
 
                              <form action="" id="formades" method="post">
 
-                               <div class="col-lg-6">
-                                 <div class="col-lg-6">
-                                 <label for="nome" class="control-label">DESCONTO R$</label>
 
-                                   <input type="text" class="form-control input-lg" name="desconto">
-</div>
-
-                                   <div class="col-lg-6">
-                                                                    <label for="nome" class="control-label">DESCONTO %</label>
-
-                                                                      <input type="text" class="form-control input-lg" name="desconto">
-                                   </div>
-                               </div>
-
-
-
-
-
-
-<div class="col-lg-6">
-                                 <div class="col-lg-6">
-                                   <label for="nome" class="control-label">ACRESCIMO R$</label>
-
-                                     <input type="text" class="form-control input-lg" name="desconto">
-
-                                 </div>
-
-                                 <div class="col-lg-6">
-                                   <label for="nome" class="control-label">ACRESCIMO %</label>
-
-                                     <input type="text" class="form-control input-lg" name="desconto">
-
-                                 </div>
-</div>
 
                              </form>
                            </div>
@@ -361,9 +328,10 @@ $total += $subtotal;
 
                        </div>
                        <div class="modal-footer">
-                         <button data-dismiss="modal" class="btn btn-default" type="button">Close</button>
-                         <button class="btn btn-success" type="button">Save changes</button>
+                         <button data-dismiss="modal" class="btn btn-default" type="button">FECHAR</button>
+                         <button class="btn btn-success" type="button">SALVAR</button>
                        </div>
+                         
                      </div>
                    </div>
                  </div>
@@ -409,7 +377,7 @@ $total += $subtotal;
             <tr>
               <td><?php echo $pg['formarec_nome']?></td>
               <td><?php echo $pg['valortotal']?></td>
-              <td></td>
+              <td>  <a  href="<?php echo site_url('vendas/excluirpgto/'.$pg['id']); ?>"   class="btn btn-danger">EXC</a></td>
             </tr>
             <?php } }?>
           </tbody>
@@ -809,10 +777,13 @@ success:function(data)
 {
 
   if(data.result == true){
-    location.reload();
+    window.location.reload();
+//    $( "#painelvenda" ).load("<?php echo current_url();?> #painelvenda" );
+//    $('#form_prepare').trigger("reset");
+//  $( "#form_prepare" ).load("<?php echo current_url();?> #form_prepare" );
 
-    $('#form_prepare').trigger("reset");
-    $('#produto').focus();
+
+
 
   }
   else{

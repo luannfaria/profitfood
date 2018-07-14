@@ -28,6 +28,23 @@ class Produto_model extends CI_Model
      				echo json_encode($row_set);
      		}
      }
+
+
+          public function autoCompleteProdutocodbarra($q){
+
+          		$this->db->select('*');
+
+          		$this->db->like('nomeproduto', $q);
+            //  $this->db->or();
+             $this->db->or_like('codbarra', $q);
+          		$query = $this->db->get('produto');
+          		if($query->num_rows() > 0){
+          				foreach ($query->result_array() as $row){
+          						$row_set[] = array('label'=>$row['codbarra'].' - '.$row['nomeproduto'].' | Preço: R$ '.$row['venda'].'','id'=>$row['id'],'nomeproduto'=>$row['nomeproduto'],'venda'=>$row['venda'],'codbarra'=>$row['codbarra']);
+          				}
+          				echo json_encode($row_set);
+          		}
+          }
     function get_produto($id)
     {
         return $this->db->get_where('produto',array('id'=>$id))->row_array();
@@ -45,6 +62,14 @@ class Produto_model extends CI_Model
     /*
      * Get all produto
      */
+
+     function getprodutosmobile(){
+
+
+             $this->db->order_by('nomeproduto', 'asc');
+             return $this->db->get('produto')->result_array();
+
+     }
     function get_all_produto()
     {
 

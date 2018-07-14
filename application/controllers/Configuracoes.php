@@ -33,6 +33,7 @@ $id = $this->input->post('id');
 					'telefone'=>$this->input->post('telefone'),
 					'taxaservico'=>$this->input->post('taxaservico'),
 					'numeromesas'=>$this->input->post('numeromesas'),
+					'impcaixa'=>$this->input->post('impressora')
 
 			);
 
@@ -50,12 +51,21 @@ $id = $this->input->post('id');
 
 }
 
+public function impressoras(){
+
+	$this->load->view('include/header');
+   $this->load->view('configuracoes/impressoras');
+  $this->load->view('include/footer');
+
+
+}
+
 public function addimpressora(){
 
 		$params = array(
-					'tipoimpressora'=> $this->input->post('tipoimpressora'),
-					'impressora'=> $this->input->post('impressora'),
-					'localimpressao'=> $this->input->post('localimpressao')
+					'localimpressao'=> $this->input->post('nomeimpressora'),
+					'impressora'=> $this->input->post('impressora')
+
 		);
 
 		if($this->Configuracoes_model->addimpressora($params)==true){
@@ -67,4 +77,6 @@ public function addimpressora(){
 			}
 
 }
+
+
 }

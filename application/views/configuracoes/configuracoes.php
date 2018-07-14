@@ -86,7 +86,7 @@
                       <div class="col-lg-2">
             						<label for="cnpj" class="control-label"><span class="text-danger">*</span>CNPJ</label>
 
-            							<input type="text" name="cnpj" value="<?php echo $empresa['cnpj']; ?>" class="form-control"  id="cnpj" />
+            							<input type="text" name="cnpj" id="cnpj"value="<?php echo $empresa['cnpj']; ?>" class="form-control"  id="cnpj" />
             							<span class="text-danger"><?php echo form_error('cnpj');?></span>
 
             					</div>
@@ -132,7 +132,7 @@
   <div class="col-md-2">
     <label for="telefone" class="control-label"><span class="text-danger">*</span>Telefone</label>
 
-      <input type="text" name="telefone" value="<?php echo $empresa['telefone']; ?>" class="form-control"  id="telefone" />
+      <input type="text" id="telefone"name="telefone" value="<?php echo $empresa['telefone']; ?>" class="form-control"  id="telefone" />
       <span class="text-danger"><?php echo form_error('telefone');?></span>
 
   </div>
@@ -153,6 +153,24 @@
       <span class="text-danger"><?php echo form_error('numeromesas');?></span>
 
   </div>
+
+
+
+
+      <div class="col-md-4">
+          <label for="impressoracaixa" class="control-label"><span class="text-danger">*</span>Impressora do caixa</label>
+        <select name="impressora" class="form-control">
+          <option value="">Selecione</option>
+
+          <?php foreach($Name as $i => $n){
+            //  $Printers[$i] = (object)[
+            echo '<option value="'.$n.'">'.$n.'</option>'; }?>
+        </select>
+
+
+      </div>
+
+
 
   <div class="col-md-6">
     <br>
@@ -311,24 +329,13 @@
          <script src="<?php echo base_url()?>assest/js/bootstrap.js"></script>
            <script src="<?php echo base_url()?>assest/js/validate.js"></script>
 
-<script>
-function divimp(valor){
-
-  if( valor=="1" ){
-      document.getElementById("local").style.display = "block";
-      document.getElementById("rede").style.display = "none";
-  }
-  else{
-    document.getElementById("local").style.display = "none";
-    document.getElementById("rede").style.display = "block";
-  }
-
-
-}
-
-</script>
+           <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+       <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 
 <SCRIPT>
+
+$("#cnpj").mask("00.000.000/0000-00");
+$("#telefone").mask("(00)0000-0000");
 $('#addimpressora').validate({
 
   rules:{

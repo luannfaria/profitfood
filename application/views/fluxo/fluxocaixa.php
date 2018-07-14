@@ -154,18 +154,18 @@ if (!$result) {
                        <h4 class="modal-title">Entrada caixa</h4>
                      </div>
                      <div class="modal-body">
-                       <div class="box-body">
+
 
                          <div class="row">
-                      <form id="formEntrada" action="<?php echo base_url() ?>contasareceber/entradacaixa" method="post">
-                         <div class="col-md-3">
+                      <form action="<?php echo base_url() ?>fluxo/entradacaixa" method="post">
+                         <div class="col-md-4">
                						<label for="numero" class="control-label">Nº Documento</label>
                           <div class="form-group">
                             	<input type="text" name="numero" value="<?php echo $this->input->post('numero'); ?>" class="form-control" id="numero" />
 
                           </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-md-6">
                           <label for="descricao" class="control-label"><span class="text-danger">*</span>Descrição</label>
                           <div class="form-group">
                             <input type="text" name="descricao" value="<?php echo $this->input->post('descricao'); ?>" class="form-control" id="descricao" required/>
@@ -173,7 +173,7 @@ if (!$result) {
                           </div>
                         </div>
 
-                        <div class="col-md-3">
+                        <div class="col-md-2">
                           <label for="valor" class="control-label"><span class="text-danger">*</span>Valor</label>
                           <div class="form-group">
                             <input type="text" name="valor" value="<?php echo $this->input->post('valor'); ?>"  class="form-control" id="valor" required/>
@@ -182,7 +182,7 @@ if (!$result) {
                         </div>
 
 
-                        <div class="col-md-8">
+                        <div class="col-md-4">
                           <label for="obs" class="control-label">Observação</label>
                           <div class="form-group">
                             <input type="text" name="obs" value="<?php echo $this->input->post('obs'); ?>" class="form-control" id="obs" />
@@ -205,7 +205,7 @@ if (!$result) {
 
 
                         <?php date_default_timezone_set('America/Sao_Paulo'); ?>
-                                                <div class="col-md-3">
+                                                <div class="col-md-4">
                                       						<label for="datavencimento" class="control-label"><span class="text-danger">*</span>Data</label>
                                       						<div class="form-group">
                                                     <input type="hidden" name="datavencimento" value="<?php
@@ -216,21 +216,21 @@ if (!$result) {
                                       					</div>
                                                 <br>
 
-                                                <div class="col-lg-4">
+                                                <div class="col-md-4">
                                                   <label for="">&nbsp</label>
                                                   <div class="form-group">
                                                 <input type="submit" class="btn btn-success" name="entradacaixa" value="RECEBER" />
                                               </div>
                                                 </div>
-                      </div>
-                    </div>
+
+
 
 
 
 
                         </form>
 
-
+</div>
                      </div>
 
                    </div>
@@ -248,15 +248,15 @@ if (!$result) {
                                     <div class="modal-body">
  <div class="box-body">
                                       <div class="row">
-                                   <form id="formSaida" action="<?php echo base_url() ?>contasapagar/saidacaixa" method="post">
-                                      <div class="col-md-3">
+                                   <form action="<?php echo base_url() ?>fluxo/saidacaixa" method="post">
+                                      <div class="col-md-2">
                                        <label for="numero" class="control-label">Nº Documento</label>
                                        <div class="form-group">
                                            <input type="text" name="numero" value="<?php echo $this->input->post('numero'); ?>" class="form-control" id="numero" />
 
                                        </div>
                                      </div>
-                                     <div class="col-lg-6">
+                                     <div class="col-md-5">
                                        <label for="descricao" class="control-label"><span class="text-danger">*</span>Descrição</label>
                                        <div class="form-group">
                                          <input type="text" name="descricao" value="<?php echo $this->input->post('descricao'); ?>" class="form-control" id="descricao" required/>
@@ -264,7 +264,7 @@ if (!$result) {
                                        </div>
                                      </div>
 
-                                     <div class="col-md-3">
+                                     <div class="col-md-2">
                                        <label for="valor" class="control-label"><span class="text-danger">*</span>Valor</label>
                                        <div class="form-group">
                                          <input type="text" name="valor" value="<?php echo $this->input->post('valor'); ?>"  class="form-control" id="valorsaida" required/>
@@ -273,7 +273,7 @@ if (!$result) {
                                      </div>
 
 
-                                     <div class="col-md-8">
+                                     <div class="col-md-6">
                                        <label for="obs" class="control-label">Observação</label>
                                        <div class="form-group">
                                          <input type="text" name="obs" value="<?php echo $this->input->post('obs'); ?>" class="form-control" id="obs" />
@@ -296,7 +296,7 @@ if (!$result) {
 
 
                                      <?php date_default_timezone_set('America/Sao_Paulo'); ?>
-                                                             <div class="col-md-3">
+                                                             <div class="col-md-4">
                                                                <label for="datavencimento" class="control-label"><span class="text-danger">*</span>Data</label>
                                                                <div class="form-group">
                                                                  <input type="hidden" name="datavencimento" value="<?php
@@ -307,7 +307,7 @@ if (!$result) {
                                                              </div>
                                                              <br>
 
-                                                             <div class="col-lg-4">
+                                                             <div class="col-md-4">
                                                                <label for="">&nbsp</label>
                                                                <div class="form-group">
                                                              <input type="submit" class="btn btn-danger" name="saidacaixa" value="PAGAR" />

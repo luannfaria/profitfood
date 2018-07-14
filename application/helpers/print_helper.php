@@ -4,9 +4,9 @@
 
 require __DIR__ . '/../../autoload.php';
 use Mike42\Escpos\Printer;
-use Mike42\Escpos\PrintConnectors\NetworkPrintConnector;
+
 use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
-use Mike42\Escpos\PrintConnectors\CupsPrintConnector;
+
 
 
 /* Most printers are open on port 9100, so you just need to know the IP
@@ -88,6 +88,62 @@ $printer -> feed(2);
 
 
 
+ }
+
+ function teste($id){
+
+   $CI = get_instance();
+   $CI->load->model('Vendas_model');
+   $CI->load->model('Configuracoes_model');
+     $empresa = $CI->Configuracoes_model->get_empresa();
+$pedido = $CI->Vendas_model->getpedidoimprimir($id);
+  //   $pedido = $CI->Vendas_model->getpedido($id);
+ 		$itenspedido = $CI->Vendas_model->getitenspedido($id);
+    $mesa =  $CI->Vendas_model->getmesa($id);
+$nome = $empresa['nomefantasia'];
+$impressora = $empresa['impcaixa'];
+$nmesa =$mesa;
+
+
+$imprimirpedido=NULL;
+ foreach($pedido as $p){
+   $imprimirpedido[] = [
+     'mesa'=> $p['numeromesa'],
+     'data' => $p['data']
+   ];
+ }
+try {
+
+  $connector = null;
+    $connector = new WindowsPrintConnector($impressora);
+
+    /* Print a "Hello world" receipt" */
+//echo $nome;
+
+    /*CABELHAÇO CONTA*/
+    $printer = new Printer($connector);
+
+
+    foreach($imprimirpedido as $ipd){
+
+
+      $printer -> setJustification(Printer::JUSTIFY_LEFT);
+      $printer -> text("Data: ".$ipd['data']);
+          $printer -> feed(2);
+          $printer -> selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
+      $printer -> setJustification(Printer::JUSTIFY_CENTER);
+      $printer -> text("*** Mesa:".$ipd['mesa']." ***");
+      //$printer -> feed(1);
+    //   echo $iten['nome_produto'];
+    }
+
+$printer -> cut();
+$printer -> pulse();
+    /* Close printer */
+    $printer -> close();
+} catch (Exception $e) {
+    echo "Couldn't print to this printer: " . $e -> getMessage() . "\n";
+}
  }
 
  function conta($id){

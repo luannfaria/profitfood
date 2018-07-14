@@ -68,11 +68,42 @@ class Fluxo extends CI_Controller{
       $this->load->view('fluxo/fluxocaixa',$data);
       $this->load->view('include/footer');
     }
+function saidacaixa(){
 
+  $tipomov='2';
+  $descricao = $this->input->post('descricao')." Nº DOC ".$this->input->post('numero');
+    $params = array(
+        'forma'=> $this->input->post('formarecebimento'),
+        'data'=>$this->input->post('datavencimento'),
+        'valor'=>$this->input->post('valor'),
+        'descricao'=>$descricao,
+        'tipomov'=>$tipomov
+    );
 
-function entradapgtopedido(){
+    $this->Fluxo_model->add($params);
+    redirect('fluxo/fluxo');
 
-  
+}
+function entradacaixa(){
+$tipomov='1';
+$descricao = $this->input->post('descricao')." Nº DOC ".$this->input->post('numero');
+  $params = array(
+      'forma'=> $this->input->post('formarecebimento'),
+      'data'=>$this->input->post('datavencimento'),
+      'valor'=>$this->input->post('valor'),
+      'descricao'=>$descricao,
+      'tipomov'=>$tipomov
+  );
+
+  $this->Fluxo_model->add($params);
+  redirect('fluxo/fluxo');
+
+}
+function caixa(){
+  $this->load->view('include/header');
+  $this->load->view('fluxo/caixa');
+  $this->load->view('include/footer');
+
 }
     function buscafluxo(){
 

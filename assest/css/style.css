@@ -30,7 +30,7 @@ body {
 
 h1,h2,h3,h4,h5{
 
-    font-weight: 500;
+    font-weight: 400;
 
 }
 
@@ -45,7 +45,34 @@ ul li {
     list-style: none;
 
 }
+main{
 
+  margin-top:120px;
+
+}
+header{
+
+  
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  background:white;
+  text-align:center;
+  padding: 20px 0;
+
+}
+
+footer{
+ 
+  position:fixed;
+  width:100%;
+  bottom:0vh;
+  left:0;
+  background:white;
+  text-align:center;
+  padding: 20px 0;
+}
 
 
 a, a:hover, a:focus {
@@ -994,17 +1021,6 @@ ul.sidebar-menu li.active a i {
 
 }
 
-.header {
-
-    position: fixed;
-
-    left: 0;
-
-    right: 0;
-
-    z-index: 1002;
-
-}
 
 
 
@@ -1813,7 +1829,31 @@ div[data-role="editor-toolbar"] {
 /* .info-box
 
 =================================================================== */
+.produto-mobile{
 
+  min-height: 70px;
+margin-top: 10px;
+  margin-bottom: 18px;
+
+  padding: 6px;
+  background: #2e42fa;
+
+  -webkit-box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.35), 0 3px 1px -1px rgba(0, 0, 0, 0.1);
+
+  -moz-box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.35), 0 3px 1px -1px rgba(0, 0, 0, 0.1);
+
+  box-shadow: inset 0 0 1px 1px rgba(255, 255, 255, 0.35), 0 3px 1px -1px rgba(0, 0, 0, 0.1);
+}
+.produto-mobile .nomeitem{
+
+  margin-top: 8px;
+
+  font-size: 20px;
+text-align: center;
+  font-weight: 600;
+color: : #FFF;
+
+}
 .info-box {
 
   min-height: 100px;
@@ -1874,6 +1914,7 @@ text-align: center;
   font-weight: 700;
 
 }
+.produtomo
 #product{
 
   padding: 0;
@@ -2564,6 +2605,100 @@ font-weight: bold;
   overflow-y: scroll;
 
 }
+
+.caixa{
+
+  border-width: 1px 1px 2px;
+
+  border-style: solid;
+
+  border-color: #000;
+
+  height:670px;
+  width: 100%;
+  background: #ccc;
+}
+.caixa .painel1{
+
+  height: 670px;
+  width: 100%;
+
+}
+
+
+
+
+
+.caixa .esquerda{
+
+  border-width: 1px 1px 1px;
+
+  border-style: solid;
+
+  border-color: #000;
+  float: left;
+    height: 85%;
+    width: 70%;
+    background: #FFF;
+
+}
+
+.caixa .esquerda .produtospdv{
+
+  border-width: 1px 1px 1px;
+
+  border-style: solid;
+
+  border-color: #000;
+  height:20%;
+  width: 100%;
+  background: #ccc;
+
+}
+.caixa .direita{
+
+  border-width: 1px 1px 1px;
+
+  border-style: solid;
+
+  border-color: #000;
+  float: right;
+    height: 100%;
+    width:30%;
+    background: #ccc;
+}
+.caixa .direita .pdvcab{
+
+  border-width: 1px 1px 1px;
+
+  border-style: solid;
+
+  border-color: #fff;
+  float: right;
+    height: 25%;
+    width:100%;
+    background: #f4f4f4;
+}
+
+.caixa .direita .totaispdv{
+  float: right;
+    height: 25%;
+    width:100%;
+
+}
+.caixa .direita .receber{
+
+  border-width: 1px 1px 1px;
+
+  border-style: solid;
+
+  border-color: #000;
+  float: right;
+    height: 50%;
+    width:100%;
+    background: #f4f4f4;
+}
+
 .esquerdarecebimento .totalmodal{
   height:35%;
   background: white;
