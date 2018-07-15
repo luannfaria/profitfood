@@ -47,10 +47,10 @@ ul li {
 }
 main{
 
-  margin-top:120px;
+  margin-top:100px;
 
 }
-header{
+/*header{
 
   
   position:fixed;
@@ -62,7 +62,7 @@ header{
   padding: 20px 0;
 
 }
-
+*/
 footer{
  
   position:fixed;
@@ -564,7 +564,7 @@ ul.sidebar-menu , ul.sidebar-menu li ul.sub{
 
 ul.sidebar-menu {
 
-    margin-top: 60px;
+    margin-top: 0px;
 
 }
 
@@ -993,7 +993,7 @@ ul.sidebar-menu li.active a i {
 
 #main-content {
 
-    margin-left: 170px;
+    margin-left: 190px;
 
 }
 
@@ -1002,8 +1002,8 @@ ul.sidebar-menu li.active a i {
 .header, .footer {
 
     min-height: 60px;
-
-    padding: 0 15px;
+    display: block;
+    padding: 0 10px;
 
 }
 
@@ -1050,7 +1050,7 @@ ul.sidebar-menu li.active a i {
 
     display: inline-block;
 
-    margin-top: 60px;
+    margin-top: 10px;
 
     padding: 12px;
 
@@ -1938,7 +1938,17 @@ width: 80%;
 
    overflow-y: scroll;
 }
+.tabelapdv{
 
+    
+
+        width: 100%;
+          height: 420px;
+        
+        
+           overflow-y: scroll;
+        
+}
 
 
 
@@ -2637,7 +2647,7 @@ font-weight: bold;
 
   border-color: #000;
   float: left;
-    height: 85%;
+    height: 100%;
     width: 70%;
     background: #FFF;
 
@@ -2654,6 +2664,12 @@ font-weight: bold;
   width: 100%;
   background: #ccc;
 
+}
+
+.esquerda .totalpdv{
+    width: 100%;
+    height: 17%;
+    background: #ccc;
 }
 .caixa .direita{
 
@@ -6922,6 +6938,30 @@ ul.inbox-pagination li {
     margin: 0 auto;
     width: 800px;
 }
+
+.modal-content-small {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    /*width:inherit;*/
+    height:inherit;
+    /* To center horizontally */
+    margin: 0 auto;
+    width: 300px;
+    height: 200px;
+    background: #fff;
+}
+
+
+.modal-content-receber {
+    /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
+    /*width:inherit;*/
+    height:inherit;
+    /* To center horizontally */
+    margin: 0 auto;
+    width: 500px;
+    height: 250px;
+    background: #fff;
+}
+
 
 
 

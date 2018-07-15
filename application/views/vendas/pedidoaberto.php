@@ -13,6 +13,8 @@
 
              <!-- INICIO DIV PEDIDO !-->
 
+             
+
 
 <div id="painelvenda" class="painelvenda">
   <link href="<?php echo base_url()?>assest/css/jquery-ui.css" rel="stylesheet">
@@ -39,7 +41,7 @@
                                                   <div class="form-group">
                                                     <label for="idservico" class="control-label"><i class="fa fa-spinner"> </i> Produtos</label>
 
-                                                    <input type="text" class="form-control input-lg  required" name="produto" id="produto" placeholder="Digite o nome do produto" required/>
+                                                    <input type="text" class="form-control input-lg  required" name="produto" id="produto"  placeholder="Digite o nome do produto" required/>
 
                                                     <input type="hidden" name="idproduto" id="idproduto" value=""/>
 
@@ -63,7 +65,7 @@
                                                 <div class="col-md-2">
                                                                                 <div class="form-group">
                                                                                   <label for="quantidade" class="control-label"><i class="fa fa-spinner"> </i> Qtdd</label>
-                                                                              <input type="text" class="form-control input-lg m-bot15 required"  name="quantidade" onkeyup="somenteNumeros(this);" id="quantidade" required/>
+                                                                              <input type="text" class="form-control input-lg m-bot15 required" value="1" onclick="this.value='1'" name="quantidade" onkeyup="somenteNumeros(this);" id="quantidade" required/>
                     </div>
                     </div>
 
@@ -510,6 +512,11 @@ $total += $subtotal;
 <script>
 
 
+
+$( document ).ready(function() {
+$('#produto').focus();
+});
+  
 $(document).on('keydown', function(e) {
   console.log(e.which); // Retorna o número código da tecla
   console.log(e.altKey); // Se o alt foi Pressionado retorna true
@@ -778,6 +785,7 @@ success:function(data)
 
   if(data.result == true){
     window.location.reload();
+    $('#produto').focus();
 //    $( "#painelvenda" ).load("<?php echo current_url();?> #painelvenda" );
 //    $('#form_prepare').trigger("reset");
 //  $( "#form_prepare" ).load("<?php echo current_url();?> #form_prepare" );
@@ -799,6 +807,7 @@ return false;
 
 
 });
+
 
 
 function somenteNumeros (num) {

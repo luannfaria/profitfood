@@ -27,12 +27,68 @@ $params = array(
 );
   $pedido = $this->Pdv_model->novavenda($params);
 
-  $this->$data['pdv']= $this->Pdv_model->getvenda($pedido);
-$this->$data['itenspdv']= $this->Pdv_model->getitens($pedido);
+
+    
+    redirect('pdv/editapdv/'.$pedido);
+  
+}
+
+
+public function desconto(){
+
+  $idpdv =$this->input->post('idpdv');
+  $valordesconto = $this->input->post('valordesconto');
+
+      if($this->Pdv_model->desconto($idpdv,$valordesconto)==TRUE){
+        echo json_encode(array('result'=> true));
+      }
+
+}
+
+public function editapdv($pedido){
+
+  $data['pdv']= $this->Pdv_model->getvenda($pedido);
+$data['itenspdv']= $this->Pdv_model->getitens($pedido);
+$data['totalitens'] = $this->Pdv_model->totalpedido($pedido);
+$data['pagamento'] = $this->Pdv_model->getpagamento($pedido);
 
   $this->load->view('include/header');
-  $this->load->view('pdv/pdv',$this->$data);
+  $this->load->view('pdv/pdv',$data);
   $this->load->view('include/footer');
+
+
+}
+
+public function pagamento(){
+
+        $params = array(
+
+          'valor' => $this->input->post('valorrecebido'),
+          'idpdv' => $this->input->post('idpdv'),
+          'nomerecebimento' => $this->input->post('formarecebimento')
+        );
+
+        if($this->Pdv_model->pagamento($params)!=null){
+          echo json_encode(array('result'=> true));
+        }
+        else{
+          echo json_encode(array('result'=> false));
+
+        }
+
+}
+
+public function excluiritem(){
+
+  $id = $this->input->post('id');
+  if($this->Pdv_model->excluiritem($id)== true){
+
+    echo json_encode(array('result'=> true));
+
+  }
+  else{
+        echo json_encode(array('result'=> false));
+    }
 }
 
 function buscapdv(){
@@ -46,7 +102,7 @@ $produto =$this->input->post('produto');
   }
 }
 
-public function additem($id){
+public function additem(){
 $pedido = $this->input->post('idpdv');
   $params = array(
     'nomeproduto' =>$this->input->post('nomeproduto'),
@@ -59,13 +115,7 @@ $pedido = $this->input->post('idpdv');
 
 $null=$this->Pdv_model->additem($params);
 
-
-$this->$data['pdv']= $this->Pdv_model->getvenda($pedido);
-$this->$data['itenspdv']= $this->Pdv_model->getitens($pedido);
-
-$this->load->view('include/header');
-$this->load->view('pdv/pdv',$this->$data);
-$this->load->view('include/footer');
+echo json_encode(array('result'=> true));
 
 
 }

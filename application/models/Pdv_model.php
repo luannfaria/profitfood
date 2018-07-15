@@ -31,6 +31,17 @@ function buscaproduto($id){
   }
 }
 
+public function excluiritem($id){
+
+  $this->db->delete('itenspdv',array('id'=>$id ));
+  if ($this->db->affected_rows() == '1')
+{
+return TRUE;
+}
+
+return FALSE;
+}
+
 public function novavenda($params){
 
 
@@ -38,6 +49,34 @@ public function novavenda($params){
 
 return $this->db->insert_id();
 
+}
+
+public function desconto($idpdv,$valordesconto){
+
+  $this->db->set('desconto',$valordesconto);
+  $this->db->where('id',$idpdv);
+   $this->db->update('pdv');
+   if ($this->db->affected_rows() == '1')
+{
+  return TRUE;
+}
+
+return FALSE;
+}
+
+public function getpagamento($id){
+
+  $this->db->select('*');
+ $this->db->from('pagamentopdv');
+ $this->db->where('idpdv', $id);
+
+  return $this->db->get()->result_array();
+}
+
+public function pagamento($params){
+  $this->db->insert('pagamentopdv',$params);
+
+return $this->db->insert_id();
 }
 
 public function getvenda($id){
@@ -56,6 +95,15 @@ $row = $query->row();
 
 return $row;
 }
+  }
+
+  public function totalpedido($id){
+
+    $sql = "SELECT sum(valor*qtdd) as total from itenspdv where idpdv='$id'";
+    $query = $this->db->query($sql);
+    $result = $query->row_array();
+  
+    return $result['total'];
   }
 
   function additem($params){
