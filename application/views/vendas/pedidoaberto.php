@@ -13,7 +13,7 @@
 
              <!-- INICIO DIV PEDIDO !-->
 
-             
+
 
 
 <div id="painelvenda" class="painelvenda">
@@ -333,7 +333,7 @@ $total += $subtotal;
                          <button data-dismiss="modal" class="btn btn-default" type="button">FECHAR</button>
                          <button class="btn btn-success" type="button">SALVAR</button>
                        </div>
-                         
+
                      </div>
                    </div>
                  </div>
@@ -516,7 +516,7 @@ $total += $subtotal;
 $( document ).ready(function() {
 $('#produto').focus();
 });
-  
+
 $(document).on('keydown', function(e) {
   console.log(e.which); // Retorna o número código da tecla
   console.log(e.altKey); // Se o alt foi Pressionado retorna true

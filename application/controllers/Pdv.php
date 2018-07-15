@@ -27,6 +27,7 @@ $params = array(
 );
   $pedido = $this->Pdv_model->novavenda($params);
 
+<<<<<<< HEAD
 
     
     redirect('pdv/editapdv/'.$pedido);
@@ -89,6 +90,14 @@ public function excluiritem(){
   else{
         echo json_encode(array('result'=> false));
     }
+=======
+  $this->$data['pdv']= $this->Pdv_model->getvenda($pedido);
+$this->$data['itenspdv']= $this->Pdv_model->getitens($pedido);
+
+  $this->load->view('include/header');
+  $this->load->view('pdv/pdv',$this->$data);
+  $this->load->view('include/footer');
+>>>>>>> cd8a4d858b8346aab7ab79bdf49b3e42779118fe
 }
 
 function buscapdv(){
@@ -102,7 +111,11 @@ $produto =$this->input->post('produto');
   }
 }
 
+<<<<<<< HEAD
 public function additem(){
+=======
+public function additem($id){
+>>>>>>> cd8a4d858b8346aab7ab79bdf49b3e42779118fe
 $pedido = $this->input->post('idpdv');
   $params = array(
     'nomeproduto' =>$this->input->post('nomeproduto'),
@@ -115,7 +128,17 @@ $pedido = $this->input->post('idpdv');
 
 $null=$this->Pdv_model->additem($params);
 
+<<<<<<< HEAD
 echo json_encode(array('result'=> true));
+=======
+
+$this->$data['pdv']= $this->Pdv_model->getvenda($pedido);
+$this->$data['itenspdv']= $this->Pdv_model->getitens($pedido);
+
+$this->load->view('include/header');
+$this->load->view('pdv/pdv',$this->$data);
+$this->load->view('include/footer');
+>>>>>>> cd8a4d858b8346aab7ab79bdf49b3e42779118fe
 
 
 }

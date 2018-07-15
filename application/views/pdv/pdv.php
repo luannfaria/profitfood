@@ -4,13 +4,13 @@
         <section class="caixa">
 
           <div class="painel1">
-            
+
           <div class="esquerda">
             <div class="produtospdv">
 
                 <div class="row">
                   <div class="col-lg-12">
-                 
+
                   <form id="prepare" action="" method="POST">
 
 
@@ -27,7 +27,7 @@
 
                                       <?php date_default_timezone_set('America/Sao_Paulo'); ?>
                                       <input type="hidden" name="hora" id="hora" value="<?php echo date('H:i') ;?>" />
-                                     
+
 <input type="hidden" name="venda" id="venda" />
 
 <input type="hidden" name="totalvenda" id="totalvenda"/>
@@ -98,7 +98,7 @@
         </div>
 </div>
 </div>
-            
+
           </div>
 
           <div class="direita">
@@ -138,16 +138,16 @@
                                 </tbody>
 
                                 </table>
-                  
+
 
 
                 </div>
                 <div class="col-lg-12">
-              
-               
-           
+
+
+
             </div>
-            
+
               </div>
 
 
@@ -174,7 +174,7 @@
       <option value="CARTAO DE CREDITO"> CARTÃO DE CRÉDITO</option>
       <option value="CARTAO DE DEBITO"> CARTÃO DE DÉBITO</option>
       <option value="CHEQUE"> CHEQUE</option>
-   
+
   </select>
   </div>
 </div>
@@ -201,7 +201,7 @@
 
 
 
-                        
+
 
                       </div>
 
@@ -227,13 +227,13 @@
                          </form>
 
                       </div>
-                      
+
                     </div>
                   </div>
                 </div>
 
               <div class="totaispdv">
-           
+
                     <div class="container">
 
 
@@ -318,10 +318,10 @@ return false;
 
 });
   var clock = document.getElementById('real-clock');
-    
+
 
     setInterval(function () {
-        clock.innerHTML = ((new Date).toLocaleString().substr(11, 8));  
+        clock.innerHTML = ((new Date).toLocaleString().substr(11, 8));
     }, 1000);
 
 
@@ -387,7 +387,7 @@ alert('Ocorreu um erro ao tentar excluir serviço.');
 
 $('#pagamento').submit(function(){
 
-  
+
   var dados = $('#pagamento').serialize();
 
 $.ajax({
@@ -420,7 +420,7 @@ location.reload();
 
 
 
- 
+
 
 });
 $('#prepare').submit(function(){
@@ -465,7 +465,7 @@ y.innerHTML = "TOTAL R$ "+valorpedido+",00";
     '<td><strong>R$ '+subtotal+',00 </strong></td>'+
 
      '<td><span idAcao='+idproduto+' title="Excluir" class="btn btn-danger"><i class="icon-remove icon-white">EXCLUIR</i></span></td>'+
-    
+
 
     '<td></td>'
 

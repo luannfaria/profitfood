@@ -54,13 +54,13 @@
 
 <div class="row">
 	<ul>
-		
-		
-		
+
+
+
 		 <?php $i=0;foreach($produtos as $pod){?>
-		
+
 <li  value="<?php echo $i;?>"onclick="produto(<?php echo $i;?>)">
-	
+
 
 						  <div class="col-lg-12">
 							  <input type="button" class="btn btn-success btn-lg col-lg-4 col-xs-5" style="margin:5px;" name="nomeproduto[]" value="<?php echo $pod['nomeproduto'] ?>">
@@ -73,17 +73,17 @@
 </li>
 						<?php $i++;}?>
 	</ul>
-					   
+
 					  </div>
 
 
-		  
+
 
 
 	</main>
 
-  <footer> 
-	  
+  <footer>
+
 	  <form action="<?php echo base_url();?>mobile/additem"  method="post" >
 						   <fieldset  id="fieldset"></fieldset>
 <div class="row">
@@ -93,7 +93,7 @@
 
 		  <!-- task notificatoin start -->
 						 </form>
-	  
+
 	</footer>
 </body>
 
@@ -102,46 +102,46 @@
 <script src="<?php echo base_url()?>assest/js/maskmoney.js"></script>
 <script src="<?php echo base_url()?>assest/js/bootstrap.js"></script>
 <script src="<?php echo base_url()?>assest/js/validate.js"></script>
-	
+
 	<script>
-		
-	   
-  
+
+
+
 			function produto(value){
-				
+
 			   var $this = $( this );
-				
+
 						var nomeproduto = document.getElementsByName('nomeproduto[]');
 			  			var idproduto =  document.getElementsByName('idproduto[]');
    						var valorproduto =  document.getElementsByName('valorproduto[]');
 				var idpedido =  document.getElementsByName('pedido[]');
 				var nmesa =  document.getElementsByName('mesa[]');
-				
-				
+
+
 				var nomeprodutook = nomeproduto[value].value;
-				
-				
+
+
 				  var hiddens =  '<input type="hidden" name="produto[]" value="'+idproduto[value].value+'" />'+
 				 '<input type="hidden" name="nome[]" value="'+nomeproduto[value].value+'" />'+
 					  '<input type="hidden" name="pedido[]" value="'+idpedido[value].value+'" />'+
 					  '<input type="hidden" name="numeromesa[]" value="'+nomeproduto[value].value+'" />'+
 	'<input type="hidden" name="valorproduto[]" value="'+valorproduto[value].value+'" />';
-	  
- 
+
+
 
 	$('#fieldset').append( hiddens );
 			 //   var $this = $( this );
 
 
-   
+
    // var vlrpgto = $this.find("input[name='itemmobile[value]']").val();
 
-   
+
 	//var item = $(this).val();
-				
+
 				alert(nomeprodutook);
 			}
-		
+
 		 $('#itenspedido').submit(function(){
 
 
@@ -178,5 +178,5 @@ $("#painelrec").load("<?php echo current_url();?> #painelrec" );
 
 });
 		
-		
+
 	</script>

@@ -102,7 +102,7 @@ return $row;
     $sql = "SELECT sum(valor*qtdd) as total from itenspdv where idpdv='$id'";
     $query = $this->db->query($sql);
     $result = $query->row_array();
-  
+
     return $result['total'];
   }
 
