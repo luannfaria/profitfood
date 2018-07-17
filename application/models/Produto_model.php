@@ -29,6 +29,15 @@ class Produto_model extends CI_Model
      		}
      }
 
+     public function excluir($id,$status){
+
+       $this->db->set('status',$status);
+       $this->db->where('id',$id);
+        $this->db->update('produto');
+
+        return true;
+     }
+
 
           public function autoCompleteProdutocodbarra($q){
 

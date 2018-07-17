@@ -124,6 +124,7 @@
                   <div class="totaispedido">
                     <div class="col-lg-12">
                       <div class="col-lg-6">
+
                 <?php        if(!$pagamento){?>
 
                         <h3>Subtotal </h3>
@@ -155,6 +156,7 @@ foreach($pagamento as $pg){
   $vlrpago += $pg['valortotal'];
 }
                       ?>
+                      <h4>Desconto</h4>
                       <h4>PAGO</h4>
                       <h3>Subtotal </h3>
 
@@ -175,6 +177,7 @@ foreach($pagamento as $pg){
                       <h3>Total </h3>
                     </div>
                     <div class="col-lg-6">
+                      <h4><?php echo $pedido->desconto ?></h4>
                       <h4>R$<?php echo number_format($vlrpago,2,',','.')?></h4>
                       <h3>R$<?php echo number_format($subtotal,2,',','.')?></h3>
                       <h4>R$<?php echo number_format($taxa,2,',','.')?></h4>
@@ -309,29 +312,29 @@ $total += $subtotal;
 
 
  <div class="modal fade" id="desconto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                   <div class="modal-dialog">
-                     <div class="modal-content">
-                       <div class="modal-header">
-                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                         <h4 class="modal-title">DESCONTO / ACRESCIMO</h4>
-                       </div>
-                       <div class="modal-body">
+     <div class="modal-dialog">
+       <div class="modal-content-small">
+         <div class="modal-header">
+           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+           <h4 class="modal-title">DESCONTO</h4>
+         </div>
+         <div class="modal-body">
 
                          <div class="row">
                            <div class="col-lg-10">
 
-                             <form action="" id="formades" method="post">
+                             <form id="descontopedido" action="" method="post">
 
-
-
-                             </form>
+                               <h4>DESCONTO</h4>
+                               <input type="hidden" id="idpedido" name="idpedido" value="<?php echo $pedido->id?>"/>
+                             <input type="text" class="form-control input-lg" name="valordesconto" id="valordesconto"/>
+                               </form>
                            </div>
                          </div>
 
                        </div>
                        <div class="modal-footer">
-                         <button data-dismiss="modal" class="btn btn-default" type="button">FECHAR</button>
-                         <button class="btn btn-success" type="button">SALVAR</button>
+
                        </div>
 
                      </div>
@@ -398,7 +401,7 @@ $total += $subtotal;
             <h3>Pago <strong>R$ <?php echo number_format($vlrpago,2,',','.')?></strong></h3>
 
             <h3>Total pedido <strong>R$ <?php echo number_format($totalvenda,2,',','.')?></strong></h3>
-          <h3> Restante <strong> R$ <?php echo number_format($totalvenda-$vlrpago,2,',','.')?> </strong></h3>
+          <h3> Restante <strong> R$ <?php echo number_format(($totalvenda)-($vlrpago)-($pedido->desconto),2,',','.')?> </strong></h3>
           <?php }?>
 
 
@@ -456,7 +459,7 @@ $total += $subtotal;
           <?php if(!$pagamento){?>
           <input type="hidden" name="vlrpago" value=""/>
           <?php }else{?>
-            <input type="hidden" name="restante" value="<?php echo number_format($totalvenda-$vlrpago,2,',','.')?>"/>
+            <input type="hidden" name="restante" value="<?php echo number_format(($totalvenda)-($vlrpago)-($pedido->desconto),2,',','.')?>"/>
             <input type="hidden" name="vlrpago" value="<?php echo number_format($vlrpago,2,',','.')?>"/>
           <?php }?>
           <input type="text" class="form-control input-lg" name="vlrpgto" id="vlrpgto"/>
@@ -509,9 +512,62 @@ $total += $subtotal;
 <script src="<?php echo base_url()?>assest/js/bootstrap.js"></script>
 <script src="<?php echo base_url()?>assest/js/validate.js"></script>
 
+
+
 <script>
+jQuery.browser = {};
+(function () {
+jQuery.browser.msie = false;
+jQuery.browser.version = 0;
+if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+jQuery.browser.msie = true;
+jQuery.browser.version = RegExp.$1;
+}
+})();
+
+$('#desconto').keypress(function(e){
+
+  	if(e.wich == 13 || e.keyCode == 13){
 
 
+var $this = $( this );
+
+
+                var dados = $('#descontopedido').serialize();
+
+$.ajax({
+type: "POST",
+url:"<?php echo base_url();?>vendas/desconto",
+data:dados,
+dataType:'json',
+success:function(data)
+{
+
+  if(data.result == true){
+
+
+
+
+   location.reload();
+  }
+
+  else{
+
+
+location.reload();
+
+
+  }
+
+}
+
+});
+return false;
+
+    }
+
+
+});
 
 $( document ).ready(function() {
 $('#produto').focus();
@@ -542,7 +598,7 @@ $('#modalrec').modal('show');
 
 $('#vlrpgto').maskMoney();
 
-
+$('#valordesconto').maskMoney();
 
 
 

@@ -44,14 +44,36 @@
 
 	<!--header start-->
 
-  <main>
 
 
 
-	<header> <h4>MESA <?php echo $pedido->numeromesa ?></h4></header>
+    <!-- container section start -->
+    <section id="container" class="">
+      <!--header start-->
+      <header class="header blue-bg">
+        <div class="toggle-nav">
+          <div class="icon-reorder tooltips" data-original-title="MENU" data-placement="bottom"><i class="icon_menu"></i></div>
+        </div>
+
+        <!--logo start-->
+        <a href="#" class="logo">MESA <?php echo $pedido->numeromesa ?> <span class="lite"> </span></a>
+
+      </header>
 
 
 
+
+
+
+  <div class="alert alert-success" id="success-alert" style="display: none ">
+    <button type="button" class="close" data-dismiss="alert">x</button>
+    <strong>Success! </strong>
+    Product have added to your wishlist.
+  </div>
+
+
+  <section id="main-content">
+        <section class="wrapper">
 <div class="row">
 	<ul>
 
@@ -63,7 +85,7 @@
 
 
 						  <div class="col-lg-12">
-							  <input type="button" class="btn btn-success btn-lg col-lg-4 col-xs-5" style="margin:5px;" name="nomeproduto[]" value="<?php echo $pod['nomeproduto'] ?>">
+							  <input type="button" class="btn btn-success btn-lg col-lg-3 col-xs-5" style="margin:5px;" name="nomeproduto[]" value="<?php echo $pod['nomeproduto'] ?>">
 							   <input type="hidden" name="idproduto[]" value="<?php echo $pod['id'] ?>">
 							  <input type="hidden" name="valorproduto[]" value="<?php echo $pod['venda'] ?>">
 							  <input type="hidden" name="mesa[]" value="<?php echo $mesa ?>">
@@ -76,11 +98,13 @@
 
 					  </div>
 
+</section>
+</section>
 
 
 
 
-	</main>
+
 
   <footer>
 
@@ -95,6 +119,7 @@
 						 </form>
 
 	</footer>
+</section>
 </body>
 
 	<script src="<?php echo base_url()?>assest/js/jquery.js"></script>
@@ -139,7 +164,7 @@
 
 	//var item = $(this).val();
 
-				alert(nomeprodutook);
+
 			}
 
 		 $('#itenspedido').submit(function(){
@@ -160,7 +185,11 @@ if(data.result == true){
 
 
 
-  alert('ok');
+  $("#myWish").click(function showAlert() {
+                $("#success-alert").fadeTo(2000, 500).slideUp(500, function(){
+               $("#success-alert").slideUp(500);
+                });
+              });
 }
 
 else{
@@ -177,6 +206,6 @@ $("#painelrec").load("<?php echo current_url();?> #painelrec" );
 
 
 });
-		
+
 
 	</script>

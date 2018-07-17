@@ -20,7 +20,7 @@
               <script src="<?php echo base_url()?>assest/js/maskmoney.js"></script>
             <div class="box-tools">
                   <a href="#produto" data-toggle="modal" class="btn btn-success">NOVO PRODUTO</a>
-                  <a href="<?php echo base_url()?>vendas/testepdf"  class="btn btn-success">NOVA PIZZA</a>
+                <!--  <a href="<?php echo base_url()?>vendas/testepdf"  class="btn btn-success">NOVA PIZZA</a> -->
                 </div>
                 <br>
 
@@ -41,6 +41,7 @@
 		<th>PRODUTO</th>
 		<th>CUSTO</th>
 		<th>VENDA</th>
+    <th>ESTOQUE</th>
 		<th>STATUS</th>
 
 
@@ -55,8 +56,8 @@
 
 		<td>R$ <?php echo number_format($p['custo'],2,',','.')  ?></td>
 		<td>R$ <?php echo number_format($p['venda'],2,',','.') ?></td>
-
-		<td><?php echo $p['status']; ?></td>
+<td></td>
+		<td><?php if($p['status']=='1'){ echo 'ATIVO'; }else{ echo 'INATIVO'; } ?></td>
 
 		<td>
 

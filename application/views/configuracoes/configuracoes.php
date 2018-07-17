@@ -42,13 +42,13 @@
                    <a data-toggle="tab" href="#empresa">Empresa</a>
                  </li>
                  <li class="">
-                   <a data-toggle="tab" href="#impressoras">Impressoras</a>
+                   <a data-toggle="tab" href="#">#</a>
                  </li>
                  <li class="">
-                   <a data-toggle="tab" href="#garcons">Garçons</a>
+                   <a data-toggle="tab" href="#">#</a>
                  </li>
                  <li class="">
-                   <a data-toggle="tab" href="#usuarios">Usuarios</a>
+                   <a data-toggle="tab" href="#">#</a>
                  </li>
 
                </ul>

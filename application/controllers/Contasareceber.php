@@ -47,6 +47,18 @@ public function add(){
       redirect('contasareceber/index');
 }
 
+
+public function busca(){
+
+  $status = $this->input->post('statusrec');
+
+  $data['$contasreceber'] = $this->Contasareceber_model->busca($status);
+
+  $this->load->view('include/header');
+  $this->load->view('contasareceber/index',$data);
+  $this->load->view('include/footer');
+
+}
 public function recebeconta($id){
 
 

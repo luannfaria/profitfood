@@ -22,12 +22,38 @@
             </ol>
 
             <div class="box-tools">
+              <div class="col-lg-5">
 <a href="#novoreceber"  data-toggle="modal" class="btn btn-success">NOVA CONTA</a>
+</div>
+  <div class="col-lg-7">
+    <form class="form-inline" method="post" action="<?php echo base_url();?>contasareceber/busca" >
+      <label for="formarecebimento" class="control-label">Status</label>
+
+      <div class="form-group">
+      <select name="statusrec" id="statusrec" class="form-control" required>
+        <option value="">Selecione </option>
+          <option value="ABERTO"> ABERTO</option>
+          <option value="ATRASADO"> ATRASADO</option>
+          <option value="PAGO"> PAGO</option>
+
+
+      </select>
+
+
+
+      </div>
+
+    <button class="btn btn-primary">PESQUISAR</button>
+
+
+    </form>
+  </div>
 
                 </div>
+
           </div>
         </div>
-
+<br>
 
         <div class="row">
                  <div class="col-sm-12">
@@ -266,7 +292,7 @@
                           <div class="col-md-4">
                             <label for="">&nbsp</label>
                             <div class="form-group">
-                          <input type="submit" class="btn btn-danger" name="contasapagar" value="SALVAR" />
+                          <input type="submit" class="btn btn-success btn-lg" name="contasapagar" value="SALVAR" />
                         </div>
                           </div>
                             </form>

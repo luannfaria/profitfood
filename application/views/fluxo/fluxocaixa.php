@@ -140,7 +140,9 @@ if (!$result) {
 
   </table>
 
-
+  <?php if (isset($links)) { ?>
+      <?php echo $links ?>
+  <?php } ?>
 
 
 

@@ -74,6 +74,15 @@ redirect('produto/index');
 
 }
 
+
+public function remove($id){
+
+	$status='2';
+
+$null=	$this->Produto_model->excluir($id,$status);
+
+redirect('produto/index');
+}
 public function autoCompleteProduto(){
 	if (isset($_GET['term'])){
 			$q = strtolower($_GET['term']);

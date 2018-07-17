@@ -126,12 +126,13 @@
                                 </thead>
                                 <tbody>
 
-                                <?php if($pagamento){
+                                <?php $totalpago=0;if($pagamento){
                                 foreach($pagamento as $pg){?>
 
                                 <tr>
                                 <td><?php echo $pg['valor']?></td>
                                     <td><?php echo $pg['nomerecebimento']?></td>
+                                    <?php $totalpago+=$pg['valor']; ?>
                                     <td></td>
 </tr>
                                 <?php } } ?>
@@ -183,11 +184,13 @@
     <label for="valorpgto" class="control-label"> VALOR</label>
 
       <div class="form-group">
-
+          <input type="hidden" id="valorjarecebido" name="valorjarecebido" value="<?php echo number_format($totalpago, 2, '.', '.') ?>"/>
           <input type="text" class="form-control input-lg" name="valorrecebido" id="valorrecebido"/>
           <input type="hidden" id="idpdv" name="idpdv" value="<?php echo $pdv->id?>"/>
-          <input type=hidden id="totalvenda" name="totalvenda" value="<?php echo $totalitens?>" />
-          <input type="hidden" id="valordescontovenda" name="valordescontovenda" value="<?php echo $pdv->desconto?>"/>
+
+            <input type="hidden" name="restante" value="<?php echo number_format (($totalitens)-($totalpago)-($pdv->desconto), 2,'.' , '.') ?>"/>
+          <input type="hidden" id="valordescontovenda" name="valordescontovenda" value="<?php if($pdv->desconto==null){ echo '0.00'; } else{ echo $pdv->desconto;} ?>"/>
+            <input type="hidden" id="totalvendapdv" name="totalvendapdv" value="<?php echo $totalitens?>"/>
       </div>
 </div>
 
@@ -247,7 +250,7 @@
                     <h3>Desconto R$ 0.00</h3>
                     <?php
     } ?>
-                 <h2>TOTAL R$ <?php echo number_format($totalitens-$pdv->desconto, 2, ',', '.')?></h2>
+                 <h2>TOTAL R$ <?php echo number_format($totalitens-$pdv->desconto, 2, '.', '.')?></h2>
 
               </div>
 </div>
@@ -265,12 +268,24 @@
 <script src="<?php echo base_url()?>assest/js/jquery.js"></script>
 <script src="<?php echo base_url()?>assest/js/jquery-ui-1.10.4.min.js"></script>
 <script src="<?php echo base_url()?>assest/js/maskmoney.js"></script>
-<script src="<?php echo base_url()?>assest/js/bootstrap.js"></script>
-<script src="<?php echo base_url()?>assest/js/validate.js"></script>
+
 
 
 <script>
+
+jQuery.browser = {};
+(function () {
+jQuery.browser.msie = false;
+jQuery.browser.version = 0;
+if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+jQuery.browser.msie = true;
+jQuery.browser.version = RegExp.$1;
+}
+})();
+
 $("#valordesconto").maskMoney();
+
+
 $("#valorrecebido").maskMoney();
 
 
@@ -353,7 +368,7 @@ $("#produto").autocomplete({
 });
 
 
-$('#vlrpgto').maskMoney();
+
 
 
 $(document).on('click', 'span', function(event) {
@@ -400,16 +415,17 @@ success:function(data)
 
   if(data.result == true){
 
+window.location.href = "<?php echo base_url();?>pdv/index";
 
 
+        //  $('#call-modal').trigger('click');
 
-   location.reload();
   }
 
   else{
 
-
 location.reload();
+
 
 
   }
@@ -417,8 +433,7 @@ location.reload();
 }
 
 });
-
-
+return false;
 
 
 
@@ -452,10 +467,7 @@ var valorpedido = Number(venda) + Number(totalvenda);
 document.getElementById('totalvenda').value = valorpedido;
 
 
-x = document.getElementById("valorteste");
-y = document.getElementById("total");
-x.innerHTML = "SUBTOTAL R$ "+valorpedido+",00";
-y.innerHTML = "TOTAL R$ "+valorpedido+",00";
+
 //  var nomeproduto = $('#precovenda').val();
   var tr = '<tr>'+
     '<td>'+codbarra+'</td>'+
@@ -525,5 +537,7 @@ return false;
 
 
 </script>
+
+
 </section>
 </section>

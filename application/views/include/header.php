@@ -9,7 +9,7 @@
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="img/favicon.png">
 
-  <title>PROFIT SISTEMAS - FOOD</title>
+  <title>PROFIT SISTEMAS - 1.0</title>
 
   <!-- Bootstrap CSS -->
   <!-- Bootstrap CSS -->
@@ -136,13 +136,27 @@
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
             <ul class="sub">
-              <li><a class="" href="<?php echo base_url();?>produto">PRODUTOS</a></li>
-              <li><a class="" href="<?php echo base_url();?>pizza">PIZZAS</a></li>
-              <li><a class="" href="<?php echo base_url();?>categoria">CATEGORIAS</a></li>
-                <li><a class="" href="#">ADICIONAIS</a></li>
+              <li><a class="" href="<?php echo base_url();?>produto">Produtos</a></li>
+              <li><a class="" href="<?php echo base_url();?>pizza">Pizzas</a></li>
+              <li><a class="" href="<?php echo base_url();?>categoria">Categorias</a></li>
+                <li><a class="" href="#">Adicionais</a></li>
 
             </ul>
           </li>
+
+          <li class="sub-menu">
+            <a href="javascript:;" class="">
+                          <i class="fa fa-users"></i>
+                          <span>Estoque</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
+                      </a>
+            <ul class="sub">
+              <li><a class="" href="#">Estoque</a></li>
+<li><a class="" href="#">Compras</a></li>
+<li><a class="" href="#">Ajuste de estoque</a></li>
+            </ul>
+          </li>
+
           <li class="sub-menu">
             <a href="javascript:;" class="">
                           <i class="fa fa-users"></i>
@@ -177,8 +191,8 @@
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
             <ul class="sub">
-              <li><a class="" href="#">Mais vendidos</a></li>
-              <li><a class="" href="#">Comissões</a></li>
+              <li><a class="" href="#">Financeiro</a></li>
+              <li><a class="" href="#">Produtos</a></li>
               <li><a class="" href="#">Vendas</a></li>
             </ul>
           </li>
@@ -193,7 +207,7 @@
               <li><a class="" href="<?php echo base_url();?>configuracoes">Configurações</a></li>
               <li><a class="" href="<?php echo base_url();?>usuario"><span>Usuarios</span></a></li>
               <li><a class="" href="<?php echo base_url();?>permissoes"><span>Permissões</span></a></li>
-            
+
               <li><a class="" href="<?php echo base_url();?>configuracoes/impressoras">Impressoras</a></li>
             </ul>
           </li>

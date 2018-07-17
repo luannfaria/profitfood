@@ -23,6 +23,15 @@ class Contasareceber_model extends CI_Model
     return $this->db->get('contasreceber')->result_array();
   }
 
+
+function busca($status){
+
+  $this->db->select('*');
+ $this->db->from('contasreceber');
+ $this->db->where('forma_pgtonome', $status);
+
+  return $this->db->get()->result_array();
+}
   public function receberconta($id,$params){
 
 

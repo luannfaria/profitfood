@@ -110,7 +110,7 @@ function caixa(){
       $this->load->library('table');
   $this->load->library('pagination');
       // init params
-      $config['base_url'] = base_url() . 'fluxo/fluxo';
+      $config['base_url'] = base_url() . 'fluxo/buscafluxo';
       $config['total_rows'] = $this->Fluxo_model->get_total();
       $config['per_page'] = 10;
       $config['next_link'] = '>>';

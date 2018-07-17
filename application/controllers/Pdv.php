@@ -27,11 +27,11 @@ $params = array(
 );
   $pedido = $this->Pdv_model->novavenda($params);
 
-<<<<<<< HEAD
 
-    
+
+
     redirect('pdv/editapdv/'.$pedido);
-  
+
 }
 
 
@@ -62,20 +62,77 @@ $data['pagamento'] = $this->Pdv_model->getpagamento($pedido);
 
 public function pagamento(){
 
-        $params = array(
+  $tipomov="1";
 
-          'valor' => $this->input->post('valorrecebido'),
-          'idpdv' => $this->input->post('idpdv'),
-          'nomerecebimento' => $this->input->post('formarecebimento')
-        );
+  date_default_timezone_set('America/Sao_Paulo');
+  $data = date('d/m/Y');
+  $idpedido = $this->input->post('idpdv');
 
-        if($this->Pdv_model->pagamento($params)!=null){
-          echo json_encode(array('result'=> true));
-        }
-        else{
-          echo json_encode(array('result'=> false));
+  $descricao= 'PAGAMENTO VENDA PDV Nº - '.$idpedido;
+    $valorrecebido = $this->input->post('valorrecebido');
+    $totalvenda = $this->input->post('totalvendapdv');
+    $restante =$this->input->post('restante');
+    $valorjarecebido = $this->input->post('valorjarecebido');
+    $valordescontovenda = $this->input->post('valordescontovenda');
+     $verificapgto = ($valordescontovenda + $valorjarecebido + $valorrecebido);
 
-        }
+
+if($restante>$valorrecebido){
+
+  $params = array(
+
+    'valor' => $this->input->post('valorrecebido'),
+    'idpdv' => $this->input->post('idpdv'),
+    'nomerecebimento' => $this->input->post('formarecebimento')
+  );
+
+
+$null=$this->Pdv_model->pagamento($params);
+
+
+
+      $fluxo = array(
+      		'valor'=>$this->input->post('valorrecebido'),
+      		'forma'=> $this->input->post('formarecebimento'),
+      		'tipomov'=>$tipomov,
+      		'descricao'=> $descricao,
+
+      		'data'=>$data
+      );
+
+      $this->load->model('Fluxo_model');
+      $null=	$this->Fluxo_model->add($fluxo);
+
+      echo json_encode(array('result'=> false));
+    }if ($restante<=$valorrecebido){
+
+      $params = array(
+
+        'valor' => $restante,
+        'idpdv' => $this->input->post('idpdv'),
+        'nomerecebimento' => $this->input->post('formarecebimento')
+      );
+
+
+    $null=$this->Pdv_model->pagamento($params);
+
+      $fluxo = array(
+          'valor'=>$restante,
+          'forma'=> $this->input->post('formarecebimento'),
+          'tipomov'=>$tipomov,
+          'descricao'=> $descricao,
+
+          'data'=>$data
+      );
+      $this->load->model('Fluxo_model');
+      $null=	$this->Fluxo_model->add($fluxo);
+
+            echo json_encode(array('result'=> true));
+    }
+
+
+
+
 
 }
 
@@ -90,14 +147,7 @@ public function excluiritem(){
   else{
         echo json_encode(array('result'=> false));
     }
-=======
-  $this->$data['pdv']= $this->Pdv_model->getvenda($pedido);
-$this->$data['itenspdv']= $this->Pdv_model->getitens($pedido);
 
-  $this->load->view('include/header');
-  $this->load->view('pdv/pdv',$this->$data);
-  $this->load->view('include/footer');
->>>>>>> cd8a4d858b8346aab7ab79bdf49b3e42779118fe
 }
 
 function buscapdv(){
@@ -111,11 +161,9 @@ $produto =$this->input->post('produto');
   }
 }
 
-<<<<<<< HEAD
+
 public function additem(){
-=======
-public function additem($id){
->>>>>>> cd8a4d858b8346aab7ab79bdf49b3e42779118fe
+
 $pedido = $this->input->post('idpdv');
   $params = array(
     'nomeproduto' =>$this->input->post('nomeproduto'),
@@ -128,17 +176,8 @@ $pedido = $this->input->post('idpdv');
 
 $null=$this->Pdv_model->additem($params);
 
-<<<<<<< HEAD
+
 echo json_encode(array('result'=> true));
-=======
-
-$this->$data['pdv']= $this->Pdv_model->getvenda($pedido);
-$this->$data['itenspdv']= $this->Pdv_model->getitens($pedido);
-
-$this->load->view('include/header');
-$this->load->view('pdv/pdv',$this->$data);
-$this->load->view('include/footer');
->>>>>>> cd8a4d858b8346aab7ab79bdf49b3e42779118fe
 
 
 }

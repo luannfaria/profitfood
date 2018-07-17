@@ -40,6 +40,19 @@ public function verificamesa($verificamesa){
 
 }
 
+public function desconto($pedido,$valordesconto){
+
+  $this->db->set('desconto',$valordesconto);
+  $this->db->where('id',$pedido);
+   $this->db->update('pedidos');
+   if ($this->db->affected_rows() == '1')
+{
+  return TRUE;
+}
+
+return FALSE;
+}
+
 public function idpedidomesa($id){
 
 

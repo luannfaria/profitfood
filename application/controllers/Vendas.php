@@ -258,6 +258,18 @@ public function abremesa(){
 
 }
 
+
+public function desconto(){
+
+  $pedido =$this->input->post('idpedido');
+  $valordesconto = $this->input->post('valordesconto');
+
+      if($this->Vendas_model->desconto($pedido,$valordesconto)==TRUE){
+        echo json_encode(array('result'=> true));
+      }
+
+}
+
 public function imprimirconta($id){
 
 	$this->load->helper('print');

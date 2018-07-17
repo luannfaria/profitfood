@@ -14,7 +14,7 @@
           		<div class="row clearfix">
 
 
-          <div class="col-md-3">
+          <div class="col-md-4">
 						<label for="login" class="control-label"><span class="text-danger">*</span>Login</label>
 						<div class="form-group">
 							<input type="text" name="login" value="<?php echo $this->input->post('login'); ?>" class="form-control" id="login" required />

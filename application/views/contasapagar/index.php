@@ -1,11 +1,5 @@
 <section id="main-content">
       <section class="wrapper">
-        <link href="<?php echo base_url()?>assest/css/bootstrap.min.css" rel="stylesheet">
-        <!-- bootstrap theme -->
-        <link href="<?php echo base_url();?>assest/css/bootstrap-theme.css" rel="stylesheet">
-        <link href="<?php echo base_url();?>assest/css/elegant-icons-style.css" rel="stylesheet" />
-        <link href="<?php echo base_url();?>assest/css/font-awesome.min.css" rel="stylesheet" />
-        <link href="<?php echo base_url();?>assest/css/bootstrap-datapicker.css" rel="stylesheet">
 
         <script src="<?php echo base_url()?>assest/js/jquery.js"></script>
         <script src="<?php echo base_url()?>assest/js/jquery-ui-1.10.4.min.js"></script>
@@ -30,6 +24,7 @@
 <a href="#novaconta"  data-toggle="modal" class="btn btn-success">NOVA CONTA</a>
 
                 </div>
+              <br>
           </div>
         </div>
 
@@ -87,7 +82,7 @@
                           <div class="col-md-4">
                             <label for="">&nbsp</label>
                             <div class="form-group">
-                          <input type="submit" class="btn btn-danger" name="contasapagar" value="SALVAR" />
+                          <input type="submit" class="btn btn-success btn-lg" name="contasapagar" value="SALVAR" />
                         </div>
                           </div>
                             </form>
