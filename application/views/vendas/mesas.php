@@ -40,8 +40,9 @@
 
                                   <?php }else{ ?>
                               <div class="panel-body">
-                                <div class="row">
-                                <div class="col-lg-12" style="background:#57889c;">
+  <div class="row">
+
+
                                 <?php      foreach ($mesasaberta as $ma) {
     ?>
  <div class="col-lg-2">
@@ -57,7 +58,7 @@
 </div>
                                       <?php
 } ?>
-</div>
+
 </div>
 </div>
 

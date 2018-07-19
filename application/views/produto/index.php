@@ -1,31 +1,50 @@
 <section id="main-content">
       <section class="wrapper">
 
+        <link href="<?php echo base_url() ?>assest/css/bootstrap.min.css" rel="stylesheet">
+       <!-- bootstrap theme -->
+       <link href="<?php echo base_url() ?>assest/css/bootstrap-theme.css" rel="stylesheet">
+       <!--external css-->
+       <!-- font icon -->
+       <link href="<?php echo base_url() ?>assest/css/elegant-icons-style.css" rel="stylesheet" />
+       <link href="<?php echo base_url() ?>assest/css/font-awesome.min.css" rel="stylesheet" />
+       <link href="<?php echo base_url() ?>assest/css/daterangepicker.css" rel="stylesheet" />
+       <link href="<?php echo base_url() ?>assest/css/bootstrap-datepicker.css" rel="stylesheet" />
+       <link href="<?php echo base_url() ?>assest/css/bootstrap-colorpicker.css" rel="stylesheet" />
+       <!-- date picker -->
+
+       <!-- color picker -->
+
+       <!-- Custom styles -->
+       <link href="<?php echo base_url() ?>assest/css/style.css" rel="stylesheet">
+       <link href="<?php echo base_url() ?>assest/css/style-responsive.css" rel="stylesheet" />
+       <script src="<?php echo base_url()?>assest/js/jquery.js"></script>
+       <script src="<?php echo base_url()?>assest/js/jquery-ui-1.10.4.min.js"></script>
+       <script src="<?php echo base_url()?>assest/js/jquery-1.8.3.min.js"></script>
+
+
+       <script src="<?php echo base_url()?>assest/js/validate.js"></script>
+
+
+         <script src="<?php echo base_url()?>assest/js/maskmoney.js"></script>
+
         <div class="row">
-                  <div class="col-md-12">
+                  <div class="col-md-7">
                     <ol class="breadcrumb">
               <li><i class="fa fa-home"></i><a href="#">Inicio</a></li>
               <li><i class="fa fa-table"></i>Produtos</li>
 
             </ol>
 
-            <script src="<?php echo base_url()?>assest/js/jquery.js"></script>
-            <script src="<?php echo base_url()?>assest/js/jquery-ui-1.10.4.min.js"></script>
-            <script src="<?php echo base_url()?>assest/js/jquery-1.8.3.min.js"></script>
 
 
-            <script src="<?php echo base_url()?>assest/js/validate.js"></script>
-
-
-              <script src="<?php echo base_url()?>assest/js/maskmoney.js"></script>
-            <div class="box-tools">
-                  <a href="#produto" data-toggle="modal" class="btn btn-success">NOVO PRODUTO</a>
-                <!--  <a href="<?php echo base_url()?>vendas/testepdf"  class="btn btn-success">NOVA PIZZA</a> -->
-                </div>
-                <br>
 
 
 </div>
+
+      <div class="col-md-5">
+              <a href="#produto" data-toggle="modal" class="btn btn-success">NOVO PRODUTO</a>
+      </div>
 </div>
 <!--<div class="pull-right">
 	<a href="<?php echo site_url('produto/add'); ?>" class="btn btn-success">Add</a>
@@ -56,7 +75,12 @@
 
 		<td>R$ <?php echo number_format($p['custo'],2,',','.')  ?></td>
 		<td>R$ <?php echo number_format($p['venda'],2,',','.') ?></td>
-<td></td>
+    <?php if($p['estoque']>0) { ?>
+<td><?php echo $p['estoque']; ?> UN</td>
+
+<?php }else{ ?>
+<td> SEM ESTOQUE</td>
+<?php } ?>
 		<td><?php if($p['status']=='1'){ echo 'ATIVO'; }else{ echo 'INATIVO'; } ?></td>
 
 		<td>

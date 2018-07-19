@@ -55,52 +55,43 @@
         <div class="col-lg-6">
           <section class="panel">
             <header class="panel-heading">
-              CLIENTES
+              ESTOQUE
             </header>
             <div class="panel-body">
               <div class="checkbox">
-                <label>Visualizar menu
-                                          <input <?php if (isset($permissoes['vCliente'])) {
-    if ($permissoes['vCliente'] == '1') {
+                <label>COMPRAS
+                                          <input <?php if (isset($permissoes['vCompra'])) {
+    if ($permissoes['vCompra'] == '1') {
         echo 'checked';
     }
-}?> name="vCliente" type="checkbox" value="1">
+}?> name="vCompra" type="checkbox" value="1">
 
                                       </label>
               </div>
 
               <div class="checkbox">
-                <label>Adicionar cliente
-                                          <input <?php if (isset($permissoes['aCliente'])) {
-    if ($permissoes['aCliente'] == '1') {
+                <label>AJUSTE DE ESTOQUE
+                                          <input <?php if (isset($permissoes['vEstoque'])) {
+    if ($permissoes['vEstoque'] == '1') {
         echo 'checked';
     }
-}?> name="aCliente" type="checkbox" value="1">
+}?> name="vEstoque" type="checkbox" value="1">
 
                                       </label>
               </div>
 
               <div class="checkbox">
-                <label>Editar cliente
-                                          <input <?php if (isset($permissoes['eCliente'])) {
-    if ($permissoes['eCliente'] == '1') {
+                <label>FORNECEDORES
+                                          <input <?php if (isset($permissoes['vFornecedores'])) {
+    if ($permissoes['vFornecedores'] == '1') {
         echo 'checked';
     }
-}?> name="eCliente" type="checkbox" value="1">
+}?> name="vFornecedores" type="checkbox" value="1">
 
                                       </label>
               </div>
 
-              <div class="checkbox">
-                <label>Excluir cliente
-                                          <input <?php if (isset($permissoes['dCliente'])) {
-    if ($permissoes['dCliente'] == '1') {
-        echo 'checked';
-    }
-}?> name="dCliente" type="checkbox" value="1">
 
-                                      </label>
-              </div>
 
             </div>
 
@@ -108,49 +99,49 @@
 
           <section class="panel">
             <header class="panel-heading">
-              AGENDA
+              PRODUTOS
             </header>
             <div class="panel-body">
               <div class="checkbox">
-                <label>Visualizar menu
-                                          <input <?php if (isset($permissoes['vAgenda'])) {
-    if ($permissoes['vAgenda'] == '1') {
+                <label>PRODUTOS
+                                          <input <?php if (isset($permissoes['vProduto'])) {
+    if ($permissoes['vProduto'] == '1') {
         echo 'checked';
     }
-}?> name="vAgenda" type="checkbox" value="1">
+}?> name="vProduto" type="checkbox" value="1">
 
                                       </label>
               </div>
 
               <div class="checkbox">
-                <label>Adicionar agendamento
-                                          <input <?php if (isset($permissoes['aAgenda'])) {
-    if ($permissoes['aAgenda'] == '1') {
+                <label>PIZZA
+                                          <input <?php if (isset($permissoes['vPizza'])) {
+    if ($permissoes['vPizza'] == '1') {
         echo 'checked';
     }
-}?> name="aAgenda" type="checkbox" value="1">
+}?> name="vPizza" type="checkbox" value="1">
 
                                       </label>
               </div>
 
               <div class="checkbox">
-                <label>Editar agendamento
-                                          <input <?php if (isset($permissoes['eAgenda'])) {
-    if ($permissoes['eAgenda'] == '1') {
+                <label>CATEGORIAS
+                                          <input <?php if (isset($permissoes['vCategoria'])) {
+    if ($permissoes['vCategoria'] == '1') {
         echo 'checked';
     }
-}?> name="eAgenda" type="checkbox" value="1">
+}?> name="vCategoria" type="checkbox" value="1">
 
                                       </label>
               </div>
 
               <div class="checkbox">
-                <label>Excluir agendamento
-                                          <input <?php if (isset($permissoes['dAgenda'])) {
-    if ($permissoes['dAgenda'] == '1') {
+                <label>ADICIONAIS
+                                          <input <?php if (isset($permissoes['vAdicionais'])) {
+    if ($permissoes['vAdicionais'] == '1') {
         echo 'checked';
     }
-}?> name="dAgenda" type="checkbox" value="1">
+}?> name="vAdicionais" type="checkbox" value="1">
 
                                       </label>
               </div>
@@ -221,44 +212,55 @@
               <div class="panel-body">
                 <div class="checkbox">
                   <label>BALCÃO
-                                            <input <?php if (isset($permissoes['vServico'])) {
-    if ($permissoes['vServico'] == '1') {
+                                            <input <?php if (isset($permissoes['vBalcao'])) {
+    if ($permissoes['vBalcao'] == '1') {
         echo 'checked';
     }
-}?> name="vServico" type="checkbox" value="1">
+}?> name="vBalcao" type="checkbox" value="1">
 
                                         </label>
                 </div>
 
+<div class="checkbox">
+                <label>MOBILE
+                                          <input <?php if (isset($permissoes['vMobile'])) {
+  if ($permissoes['vMobile'] == '1') {
+      echo 'checked';
+  }
+}?> name="vMobile" type="checkbox" value="1">
+
+                                      </label>
+              </div>
+
                 <div class="checkbox">
                   <label>DELIVERY
-                                            <input <?php if (isset($permissoes['aServico'])) {
-    if ($permissoes['aServico'] == '1') {
+                                            <input <?php if (isset($permissoes['vDelivery'])) {
+    if ($permissoes['vDelivery'] == '1') {
         echo 'checked';
     }
-}?> name="aServico" type="checkbox" value="1">
+}?> name="vDelivery" type="checkbox" value="1">
 
                                         </label>
                 </div>
 
                 <div class="checkbox">
                   <label>MESAS
-                                            <input <?php if (isset($permissoes['eServico'])) {
-    if ($permissoes['eServico'] == '1') {
+                                            <input <?php if (isset($permissoes['vMesas'])) {
+    if ($permissoes['vMesas'] == '1') {
         echo 'checked';
     }
-}?> name="eServico" type="checkbox" value="1">
+}?> name="vMesas" type="checkbox" value="1">
 
                                         </label>
                 </div>
 
                 <div class="checkbox">
                   <label>PDV
-                                            <input <?php if (isset($permissoes['dServico'])) {
-    if ($permissoes['dServico'] == '1') {
+                                            <input <?php if (isset($permissoes['vPdv'])) {
+    if ($permissoes['vPdv'] == '1') {
         echo 'checked';
     }
-}?> name="dServico" type="checkbox" value="1">
+}?> name="vPdv" type="checkbox" value="1">
 
                                         </label>
                 </div>
@@ -323,52 +325,43 @@
 
             <section class="panel">
               <header class="panel-heading">
-                FUNCIONARIOS
+                FINANCEIRO
               </header>
               <div class="panel-body">
                 <div class="checkbox">
-                  <label>Visualizar menu
-                                            <input <?php if (isset($permissoes['vFunc'])) {
-    if ($permissoes['vFunc'] == '1') {
+                  <label>CONTAS A RECEBER
+                                            <input <?php if (isset($permissoes['vReceber'])) {
+    if ($permissoes['vReceber'] == '1') {
         echo 'checked';
     }
-}?> name="vFunc" type="checkbox" value="1">
+}?> name="vReceber" type="checkbox" value="1">
 
                                         </label>
                 </div>
 
                 <div class="checkbox">
-                  <label>Adicionar funcionario
-                                            <input <?php if (isset($permissoes['aFunc'])) {
-    if ($permissoes['aFunc'] == '1') {
+                  <label>CONTAS A PAGAR
+                                            <input <?php if (isset($permissoes['vPagar'])) {
+    if ($permissoes['vPagar'] == '1') {
         echo 'checked';
     }
-}?> name="aFunc" type="checkbox" value="1">
+}?> name="vPagar" type="checkbox" value="1">
 
                                         </label>
                 </div>
 
                 <div class="checkbox">
-                  <label>Editar funcionario
-                                            <input <?php if (isset($permissoes['eFunc'])) {
-    if ($permissoes['eFunc'] == '1') {
+                  <label>CAIXA
+                                            <input <?php if (isset($permissoes['vCaixa'])) {
+    if ($permissoes['vCaixa'] == '1') {
         echo 'checked';
     }
-}?> name="eFunc" type="checkbox" value="1">
+}?> name="vCaixa" type="checkbox" value="1">
 
                                         </label>
                 </div>
 
-                <div class="checkbox">
-                  <label>Excluir funcionario
-                                            <input <?php if (isset($permissoes['dFunc'])) {
-    if ($permissoes['dFunc'] == '1') {
-        echo 'checked';
-    }
-}?> name="dFunc" type="checkbox" value="1">
-
-                                        </label>
-                </div>
+              
 
               </div>
             </section>

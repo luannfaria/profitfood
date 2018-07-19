@@ -169,15 +169,16 @@ class Permissoes extends CI_Controller
         $situacao = $this->input->post('situacao');
         $permissoes = array(
 
-                'aCliente' => $this->input->post('aCliente'),
-                'eCliente' => $this->input->post('eCliente'),
-                'dCliente' => $this->input->post('dCliente'),
+                'vCompra' => $this->input->post('vCompra'),
+                'vEstoque' => $this->input->post('vEstoque'),
+                'vFornecedores' => $this->input->post('vFornecedores'),
                 'vCliente' => $this->input->post('vCliente'),
 
-                'aProduto' => $this->input->post('aProduto'),
-                'eProduto' => $this->input->post('eProduto'),
-                'dProduto' => $this->input->post('dProduto'),
-                'vProduto' => $this->input->post('vProduto'),
+                'vBalcao' => $this->input->post('vBalcao'),
+                'vMesas' => $this->input->post('vMesas'),
+                'vDelivery' => $this->input->post('vDelivery'),
+                'vMobile' => $this->input->post('vMobile'),
+                'vPdv' => $this->input->post('vPdv'),
 
                 'aServico' => $this->input->post('aServico'),
                 'eServico' => $this->input->post('eServico'),
@@ -200,10 +201,10 @@ class Permissoes extends CI_Controller
                 'dVenda' => $this->input->post('dVenda'),
                 'vVenda' => $this->input->post('vVenda'),
 
-                'aAgenda' => $this->input->post('aAgenda'),
-                'eAgenda' => $this->input->post('eAgenda'),
-                'dAgenda' => $this->input->post('dAgenda'),
-                'vAgenda' => $this->input->post('vAgenda'),
+                'vProduto' => $this->input->post('vProduto'),
+                'vPizza' => $this->input->post('vPizza'),
+                'vCategoria' => $this->input->post('vCategoria'),
+                'vAdicionais' => $this->input->post('vAdicionais'),
 
                 'aCategoria' => $this->input->post('aCategoria'),
                 'eCategoria' => $this->input->post('eCategoria'),
@@ -219,6 +220,7 @@ class Permissoes extends CI_Controller
                 'ePagar' => $this->input->post('ePagar'),
                 'dPagar' => $this->input->post('dPagar'),
                 'vPagar' => $this->input->post('vPagar'),
+                'vCaixa' => $this->input->post('vCaixa'),
 
                 'aReceber' => $this->input->post('aReceber'),
                 'eReceber' => $this->input->post('eReceber'),

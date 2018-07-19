@@ -62,7 +62,7 @@
       </div>
 
       <!--logo start-->
-      <a href="<?php echo site_url();?>dashboard/painel" class="logo">Profit <span class="lite"> </span></a>
+      <a href="<?php echo site_url();?>dashboard/painel" class="logo">Profit 1.0<span class="lite"> </span></a>
       <!--logo end-->
       <div class="top-nav notification-row">
         <!-- notificatoin dropdown start-->
@@ -103,6 +103,7 @@
                           <span>Painel</span>
                       </a>
           </li>
+
           <li class="sub-menu">
             <a href="javascript:;" class="">
                           <i class="fa fa-star"></i>
@@ -110,20 +111,20 @@
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
             <ul class="sub">
-              <?php if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vServico')) {
+              <?php if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vBalcao')) {
             ?>
               <li><a class="" href="#">BALCÃO</a></li>
-            <?php } if ($this->permission->checkPermission($this->session->userdata('permissao'), 'aServico')) {
+            <?php } if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vDelivery')) {
             ?>
               <li><a class="" href="#">DELIVERY</a></li>
-              <?php } if ($this->permission->checkPermission($this->session->userdata('permissao'), 'eServico')) {
+            <?php } if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vMesas')) {
             ?>
               <li><a class="" href="<?php echo base_url();?>vendas/mesasindex">MESAS</a></li>
 
-            <?php } if ($this->permission->checkPermission($this->session->userdata('permissao'), 'dServico')) {
+            <?php } if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vMobile')) {
             ?>
               <li><a class="" href="<?php echo base_url();?>mobile">MOBILE</a></li>
-            <?php } if ($this->permission->checkPermission($this->session->userdata('permissao'), 'dServico')) {
+            <?php } if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vPdv')) {
             ?>
               <li><a class="" href="<?php echo base_url();?>pdv">PDV</a></li>
 <?PHP } ?>
@@ -136,24 +137,42 @@
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
             <ul class="sub">
+            <?php  if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vProduto')) {
+            ?>
               <li><a class="" href="<?php echo base_url();?>produto">Produtos</a></li>
+            <?php } if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vPizza')) {
+            ?>
               <li><a class="" href="<?php echo base_url();?>pizza">Pizzas</a></li>
+            <?php } if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vCategoria')) {
+            ?>
               <li><a class="" href="<?php echo base_url();?>categoria">Categorias</a></li>
+            <?php } if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vAdicionais')) {
+            ?>
                 <li><a class="" href="#">Adicionais</a></li>
+
+              <?php } ?>
 
             </ul>
           </li>
 
           <li class="sub-menu">
             <a href="javascript:;" class="">
-                          <i class="fa fa-users"></i>
+                          <i class="fa fa-exchange"></i>
                           <span>Estoque</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
             <ul class="sub">
-              <li><a class="" href="#">Estoque</a></li>
+            <?php  if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vCompra')) {
+            ?>
+
 <li><a class="" href="#">Compras</a></li>
-<li><a class="" href="#">Ajuste de estoque</a></li>
+<?php } if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vEstoque')) {
+?>
+<li><a class="" href="<?php echo base_url();?>inventario">Ajuste de estoque</a></li>
+<?php } if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vFornecedores')) {
+?>
+<li><a class="" href="#">Fornecedores</a></li>
+<?php } ?>
             </ul>
           </li>
 

@@ -59,7 +59,7 @@
                  <div class="col-sm-12">
                    <section class="panel">
 
-        <table class="table table-hover table-bordered">
+        <table class="table table-striped">
           <thead>
             <tr>
         		<th class="col-md-1">Vencimento</th>

@@ -5,9 +5,8 @@
 require __DIR__ . '/../../autoload.php';
 use Mike42\Escpos\Printer;
 
+
 use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
-
-
 
 /* Most printers are open on port 9100, so you just need to know the IP
  * address of your receipt printer, and then fsockopen() it on that port.
@@ -105,37 +104,25 @@ $impressora = $empresa['impcaixa'];
 $nmesa =$mesa;
 
 
-$imprimirpedido=NULL;
+$imprimirpedido=null;
  foreach($pedido as $p){
-   $imprimirpedido[] = [
+   $imprimirpedido[] = array (
      'mesa'=> $p['numeromesa'],
      'data' => $p['data']
-   ];
+   );
  }
 try {
 
-  $connector = null;
-    $connector = new WindowsPrintConnector($impressora);
-
+//  $connector = null;
+    $connector = new WindowsPrintConnector("teste");
     /* Print a "Hello world" receipt" */
-//echo $nome;
-
-    /*CABELHAÇO CONTA*/
     $printer = new Printer($connector);
 
+    $printer -> initialize();
+    $printer -> setEmphasis(true);
+    	$printer -> text("FOO CORP Ltd.\n");
+    	$printer -> setEmphasis(false);
 
-    foreach($imprimirpedido as $ipd){
-
-
-      $printer -> setJustification(Printer::JUSTIFY_LEFT);
-      $printer -> text("Data: ".$ipd['data']);
-          $printer -> feed(2);
-          $printer -> selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
-      $printer -> setJustification(Printer::JUSTIFY_CENTER);
-      $printer -> text("*** Mesa:".$ipd['mesa']." ***");
-      //$printer -> feed(1);
-    //   echo $iten['nome_produto'];
-    }
 
 $printer -> cut();
 $printer -> pulse();
@@ -163,18 +150,19 @@ $printer -> pulse();
 
 
    try {
-          $connector = new CupsPrintConnector("PDF");
+
+$printer = new Printer();
 
 
            /* Print a "Hello world" receipt" */
-           $printer = new Printer($connector);
+    //       $printer = new Printer($connector);
 
 
  date_default_timezone_set('America/Sao_Paulo');
  //$data = date("d/m/Y\nH:i");
-$imprimirpedido=NULL;
+
  foreach($pedido as $p){
-   $imprimirpedido[] = [
+   $imprimirpedido= [
      'mesa'=> $p['numeromesa'],
      'data' => $p['data']
    ];
@@ -188,7 +176,8 @@ $imprimirpedido=NULL;
 
 
    $printer -> setJustification(Printer::JUSTIFY_LEFT);
-   $printer -> text("Data: ".$ipd['data']);
+   $printer -> setEmphasis(true);
+   $printer -> text("Data:");
        $printer -> feed(2);
        $printer -> selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
    $printer -> setJustification(Printer::JUSTIFY_CENTER);

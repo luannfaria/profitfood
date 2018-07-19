@@ -1,14 +1,24 @@
 <section id="main-content">
   <section class="wrapper">
-<link  rel="stylesheet" href="<?php echo base_url() ?>assest/jquery-ui/jquery-ui-1.10.1.custom.min.css" />
 
-<link href="<?php echo base_url()?>assest/css/elegant-icons-style.css" rel="stylesheet" />
-<link href="<?php echo base_url()?>assest/css/font-awesome.min.css" rel="stylesheet" />
-<link href="<?php echo base_url()?>assest/css/daterangepicker.css" rel="stylesheet" />
-<link href="<?php echo base_url()?>assest/css/bootstrap-datepicker.css" rel="stylesheet" />
-<link href="<?php echo base_url()?>assest/css/bootstrap-colorpicker.css" rel="stylesheet" />
-<link href="<?php echo base_url()?>assest/css/jquery.timepicker.min.css" rel="stylesheet" />
-  <!--  <link rel="stylesheet" href="https://jquery.ui.timepicker.css?v=0.3.3" type="text/css" /> -->
+  <link href="<?php echo base_url() ?>assest/css/bootstrap.min.css" rel="stylesheet">
+ <!-- bootstrap theme -->
+ <link href="<?php echo base_url() ?>assest/css/bootstrap-theme.css" rel="stylesheet">
+ <!--external css-->
+ <!-- font icon -->
+ <link href="<?php echo base_url() ?>assest/css/elegant-icons-style.css" rel="stylesheet" />
+ <link href="<?php echo base_url() ?>assest/css/font-awesome.min.css" rel="stylesheet" />
+ <link href="<?php echo base_url() ?>assest/css/daterangepicker.css" rel="stylesheet" />
+ <link href="<?php echo base_url() ?>assest/css/bootstrap-datepicker.css" rel="stylesheet" />
+ <link href="<?php echo base_url() ?>assest/css/bootstrap-colorpicker.css" rel="stylesheet" />
+ <!-- date picker -->
+
+ <!-- color picker -->
+
+ <!-- Custom styles -->
+ <link href="<?php echo base_url() ?>assest/css/style.css" rel="stylesheet">
+ <link href="<?php echo base_url() ?>assest/css/style-responsive.css" rel="stylesheet" />
+
 
         <ol class="breadcrumb" style="margin-top:0">
           <li><i class="fa fa-home"></i><a href="#">Inicio</a></li>
@@ -23,12 +33,12 @@
       <label>Data  <input type="text" value=" "class="form-control sm-input" id="data" name="data"/></label>
 
 
-
+<button class="btn btn-primary">PESQUISAR</button>
 </div>
 
 
 
-<button class="btn btn-primary">PESQUISAR</button>
+
 </form>
       </div>
 

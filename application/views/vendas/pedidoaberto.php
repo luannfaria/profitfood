@@ -2,25 +2,25 @@
 
 
 <section id="main-content">
-  <section class="viewpedido">
+  <section id="wrapper">
 
 
 
 
 
-           <section class="panel">
+           <section class="viewpedido">
 
 
              <!-- INICIO DIV PEDIDO !-->
 
 
 
-
+<div class="row">
 <div id="painelvenda" class="painelvenda">
   <link href="<?php echo base_url()?>assest/css/jquery-ui.css" rel="stylesheet">
   <link href="<?php echo base_url()?>assest/css/jquery-ui.theme.css" rel="stylesheet">
                 <div class="cabecalhopedido">
-                  <div class="col-lg-12">
+                  <div class="row">
                     <div class="col-lg-4">
 
 
@@ -34,9 +34,11 @@
                             <h4> Pedido Nº <?php echo $pedido->id;?></h4>
                         </div>
                     </div>
-                    <div class="col-lg-8">
+
+
 
                       <form action="" method="post" id="form_prepare">
+                        <div class="col-lg-8">
   <div class="col-lg-6">
                                                   <div class="form-group">
                                                     <label for="idservico" class="control-label"><i class="fa fa-spinner"> </i> Produtos</label>
@@ -75,9 +77,9 @@
 <br/>
                     <input type="submit" class="btn btn-success btn-lg col-lg-12" name="ok" value="INSERIR" />
                     </div>
-
-</form>
 </div>
+</form>
+
 </div>
                 </div>
                 <div  class="esquerda">
@@ -126,7 +128,7 @@
                       <div class="col-lg-6">
 
                 <?php        if(!$pagamento){?>
-
+                        <h4>Desconto </h4>
                         <h3>Subtotal </h3>
 
                         <?php  $total=0;
@@ -146,6 +148,7 @@
                         <h3>Total </h3>
                       </div>
                       <div class="col-lg-6">
+                        <h4>R$<?php if($pedido->desconto>'0'){ echo number_format($pedido->desconto,2,',','.'); } else { echo '0.00'; } ?></h4>
                         <h3>R$<?php echo number_format($subtotal,2,',','.')?></h3>
                         <h4>R$<?php echo number_format($taxa,2,',','.')?></h4>
                         <h3>R$<?php echo number_format($total,2,',','.')?></h3>
@@ -236,25 +239,35 @@ foreach($pagamento as $pg){
 
                     <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="modal<?php echo $i['id']?>" class="modal fade">
                                      <div class="modal-dialog">
-                                       <div class="modal-content">
+                                       <div class="modal-content-small1">
                                          <div class="modal-header">
                                            <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
-                                           <h4 class="modal-title">EDITAR ITEM PEDIDO - MESA <?php echo $mesa ?></h4>
+                                           <h4 class="modal-title">ITEM PEDIDO - MESA <?php echo $mesa ?></h4>
                                          </div>
                                          <div class="modal-body">
-                                           <div class="row">
-                                             <div class="col-lg-12">
-
-                                               <form id="updateitem" method="post">
-
-                                                 <div class="col-lg-2">
-                                                    <input type="text" name="nome_produto" class="form-control" value="<?php echo $i['nome_produto']?>" disabled>
-                                                 </div>
 
 
+ <div class="col-lg-12">
+                                               <form id="updateitem" action="" method="post">
+                                                    <div class="row">
+                                                      <div class="col-lg-">
+                                                    <label class="prodedit"><?php echo $i['nome_produto']?></label>
+
+</div>
+
+
+<div class="col-lg-4">
+        <input type="hidden" class="form-control" name="iditem" id="iditem" value="<?php echo $i['id'] ?>"/>
+                                                    <input type="text" class="form-control" name="qtdditem" id="qtdditem"/>
+</div>
+
+<div class="col-lg-5">
+    <input type="submit" class="btn btn-success col-lg-12" name="ok" value="ALTERAR" />
+</div>
+</div>
                                                </form>
-                                             </div>
-                                           </div>
+</div>
+
                                          </div>
                                        </div>
                                      </div>
@@ -282,7 +295,7 @@ $total += $subtotal;
 
                       <div class="col-lg-3">
 
-  <a id="btnreceber" href="#desconto" data-toggle="modal" class="btn btn-success btn-lg btn-block">DESCONTO</a>
+  <a id="btnreceber" href="#desconto" data-toggle="modal" class="btn btn-success btn-lg btn-block">DESCONTO (F8)</a>
                       </div>
                       <div class="col-lg-3">
                         <a href="#modalrec"id="btnreceber" name="botaoreceberpedido" data-target=".bs-example-modal-lg" data-toggle="modal" class="btn btn-success btn-lg btn-block">RECEBER (ALT+R)</a>
@@ -290,7 +303,7 @@ $total += $subtotal;
                     </div>
 
                     <div class="col-lg-3">
-                      <a  href="<?php echo site_url('vendas/imprimirconta/'.$pedido->id); ?>"  class="btn btn-success btn-lg btn-block">IMPRIMIR CONTA</a>
+                      <a  id="btnreceber" href="<?php echo site_url('vendas/imprimirconta/'.$pedido->id); ?>"  class="btn btn-success btn-lg btn-block">IMPRIMIR CONTA</a>
 
                   </div>
                   <div class="col-lg-3">
@@ -346,7 +359,7 @@ $total += $subtotal;
 
 
 
-
+</div>
 
            </section>
 
@@ -410,14 +423,15 @@ $total += $subtotal;
 
 
                    <div class="direitarecebimento">
-           <div class="col-lg-12">
+
           <form action="" method="post" id="form_tablepgto">
 
 
 
-            <div class="row">
-                                                              <div class="form-group">
 
+<div class="row">
+ <div class="form-group">
+   <div class="col-lg-12">
                      <ul class="payment-methods">
             <li class="payment-method">
               <input name="payment_methods" type="radio" value="dinheiro" id="dinheiro">
@@ -443,19 +457,18 @@ $total += $subtotal;
               <label for="fiado">FIADO</label>
             </li>
           </ul>
+</div>
+</div>
 
-          </div>
-          </div>
-
-          <div class="col-lg-4">
-                                                            <div class="form-group">
+<div class="form-group">
+<div class="col-lg-6">
           <input type="hidden" name="pedido" id="pedido" value="<?php echo $pedido->id?>"/>
 
 
               <input type="hidden" name="numeromesa" id="numeromesa" value="<?php echo $mesa?>"/>
 
           <input type="hidden" name="totalvenda" value="<?php echo number_format($totalvenda,2,',','.')?>"/>
-          <label for="valorpgto" class="control-label"> VALOR</label>
+          <label for="valorpgto"  style="text-align: center" class="control-label"> VALOR</label>
           <?php if(!$pagamento){?>
           <input type="hidden" name="vlrpago" value=""/>
           <?php }else{?>
@@ -463,13 +476,17 @@ $total += $subtotal;
             <input type="hidden" name="vlrpago" value="<?php echo number_format($vlrpago,2,',','.')?>"/>
           <?php }?>
           <input type="text" class="form-control input-lg" name="vlrpgto" id="vlrpgto"/>
+</div>
+</div>
 
-          </div>
-          </div>
+</div>
+
+</div>
           </form>
+
+
           </div>
 
-          </div>
 
 
 
@@ -481,21 +498,6 @@ $total += $subtotal;
 
 
 
-                   <div class="totais">
-
-                     <form action="" method="post" id="form_confirmarec">
-
-                           <fieldset style="display: none;"></fieldset>
-
-                           <input  type="submit" style="position:right;" class="btn btn-success col-lg-12 btn-lg"  name="cadastrar" value="CONFIRMAR PAGAMENTO" />
-
-
-                         </form>
-                  <h3>
-
-
-                  </h3>
-          </div>
                    </div>
 
                    </div>
@@ -525,6 +527,48 @@ jQuery.browser.version = RegExp.$1;
 }
 })();
 
+
+$('#updateitem').submit(function(){
+
+
+
+      var $this = $( this );
+
+
+                      var dados = $('#updateitem').serialize();
+
+      $.ajax({
+      type: "POST",
+      url:"<?php echo base_url();?>vendas/atualizaitem",
+      data:dados,
+      dataType:'json',
+      success:function(data)
+      {
+
+        if(data.result == true){
+
+
+
+
+         location.reload();
+        }
+
+        else{
+
+
+    alert('erro');
+
+
+        }
+
+      }
+
+      });
+      return false;
+
+
+
+  });
 $('#desconto').keypress(function(e){
 
   	if(e.wich == 13 || e.keyCode == 13){
@@ -591,6 +635,11 @@ $('#modalrec').modal('show');
 // Pesquisar (Alt + P)
 //if (e.which ===56) {
   $('#excluirpedido').trigger('click');
+  }
+
+  if ((e.altKey) && (e.which === 68)){
+
+    $('#desconto').modal('show');
   }
 
 

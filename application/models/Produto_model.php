@@ -15,6 +15,16 @@ class Produto_model extends CI_Model
      * Get produto by id
      */
 
+
+public function getproduto($codbarra){
+
+  $sql = "select * from produto where codbarra='$codbarra'";
+  $query = $this->db->query($sql);
+  $array = $query->result_array();
+  return $array;
+
+
+}
      public function autoCompleteProduto($q){
 
      		$this->db->select('*');
@@ -49,7 +59,7 @@ class Produto_model extends CI_Model
           		$query = $this->db->get('produto');
           		if($query->num_rows() > 0){
           				foreach ($query->result_array() as $row){
-          						$row_set[] = array('label'=>$row['codbarra'].' - '.$row['nomeproduto'].' | Preço: R$ '.$row['venda'].'','id'=>$row['id'],'nomeproduto'=>$row['nomeproduto'],'venda'=>$row['venda'],'codbarra'=>$row['codbarra']);
+          						$row_set[] = array('label'=>$row['codbarra'].' - '.$row['nomeproduto'].' | Preço: R$ '.$row['venda'].',00 - ESTOQUE '.$row['estoque'].'','id'=>$row['id'],'nomeproduto'=>$row['nomeproduto'],'venda'=>$row['venda'],'codbarra'=>$row['codbarra']);
           				}
           				echo json_encode($row_set);
           		}

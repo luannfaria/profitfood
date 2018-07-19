@@ -279,7 +279,7 @@ public function imprimirconta($id){
 public function atualizaitem(){
 
 			$id = $this->input->post('iditem');
-			$qtdd = $this->input->post('qtdd');
+			$qtdd = $this->input->post('qtdditem');
 
 			if($this->Vendas_model->atualizaitem($id,$qtdd)== true){
 

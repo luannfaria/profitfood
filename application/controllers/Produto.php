@@ -52,6 +52,16 @@ class Produto extends CI_Controller {
 redirect('produto/index');
 	}
 
+	function getproduto(){
+
+
+$codbarra = $this->input->post('codbarra');
+				$data = $this->Produto_model->getproduto($codbarra);
+
+				echo json_encode($data);
+
+	}
+
 	function edit($id)
 	{
 

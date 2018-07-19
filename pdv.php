@@ -12,15 +12,15 @@
                   <div class="col-lg-12">
 
 
-                  <form  action="" method="POST">
+                  <form id="prepare" action="" method="POST">
 
 
 
                     <div class="col-lg-6">
                                                                     <div class="form-group">
                                                                       <label for="idservico" class="control-label"><i class="fa fa-spinner"> </i> Produtos</label>
-<input type="text" class="form-control input-lg  required" name="produtobusca" id="produtobusca" placeholder="Digite o nome do produto" required/>
 
+                                                                      <input type="text" class="form-control input-lg  required" name="produto" id="produto" placeholder="Digite o nome do produto" required/>
 
                                                                       <input type="hidden" name="idproduto" id="idproduto" value=""/>
                                                                         <input type="hidden" id="idpdv" name="idpdv" value="<?php echo $pdv->id?>"/>
@@ -88,14 +88,14 @@
 
 
                   <div class="col-lg-4">
-                  <button type="button" id="btntot"style="margin-top:30px" class="btn btn-success btn-lg-12 btn-lg btn-block" data-toggle="modal" href="#myModal">DESCONTO (ALT+D)</button>
+                  <button type="button" style="margin-top:30px" class="btn btn-success btn-lg-12 btn-lg btn-block" data-toggle="modal" href="#myModal">DESCONTO</button>
 
 
 </div>
 
         <div class="col-lg-4">
 
-                <button type="button" id="btntot"style="margin-top:30px" class="btn btn-success btn-lg-12 btn-lg btn-block" data-toggle="modal" href="#receber">RECEBER</button>
+                <button type="button" style="margin-top:30px" class="btn btn-success btn-lg-12 btn-lg btn-block" data-toggle="modal" href="#receber">RECEBER</button>
         </div>
 </div>
 </div>
@@ -227,7 +227,7 @@
 
                          <h4>DESCONTO</h4>
                          <input type="hidden" id="idpdv" name="idpdv" value="<?php echo $pdv->id?>"/>
-                       <input type="text" class="form-control input-lg" name="valordesconto" id="valordesconto">
+                       <input type="text" class="form-control input-lg" name="valordesconto" id="valordesconto"/>
                          </form>
 
                       </div>
@@ -284,38 +284,8 @@ jQuery.browser.version = RegExp.$1;
 }
 })();
 
-$( document ).ready(function() {
-$('#produtobusca').focus();
-});
-
-$(document).on('keydown', function(e) {
-  console.log(e.which); // Retorna o número código da tecla
-  console.log(e.altKey); // Se o alt foi Pressionado retorna true
-if(e.which==115){
-  $('#produto').focus();
-
-}
-  if ((e.altKey) && (e.which === 82)) {
-// Pesquisar (Alt + P)
-//if (e.which ===56) {
-$('#receber').modal('show');
-$('#valordesconto').focus();
-//  $('#excluirpedido').trigger('click');
-  }
-
-  if ((e.altKey) && (e.which === 80)) {
-// Pesquisar (Alt + P)
-//if (e.which ===56) {
-  $('#excluirpedido').trigger('click');
-  }
-
-  if ((e.altKey) && (e.which === 68)){
-
-    $('#myModal').modal('show');
-  }
 
 
-});
 
 $("#valordesconto").maskMoney();
 
@@ -380,83 +350,27 @@ return false;
 
 
 
-$("#produtobusca").keypress(function(e){
+$("#produto").autocomplete({
+
+    source: "<?php echo base_url(); ?>produto/autoCompleteProdutocodbarra",
+
+    minLength: 2,
+
+    select: function(event, ui) {
 
 
-  	if(e.wich == 13 || e.keyCode == 13){
+      $("#codbarra").val(ui.item.codbarra);
+        $("#idproduto").val(ui.item.id);
 
-
-    //var codbarra = $this.find("input[name='codbarra']").val();
-     var codbarra = document.getElementById("produtobusca").value;
-     idpdv = document.getElementById("idpdv").value;
-    $.ajax({
-    type: "POST",
-    url:"<?php echo base_url();?>produto/getproduto",
-    data:"codbarra="+codbarra,
-    dataType:'json',
-    success:function(data)
-    {
- var len = data.length;
- if(len>0){
- for(var i=0; i<len; i++){
-                 var id = data[i].id;
-                 var nomeproduto = data[i].nomeproduto;
-                 var venda = data[i].venda;
-                 var cod = data[i].codbarra;
-                var quantidade =1;
-
-
-               }
-
-
-               var hiddens =  '<input type="hidden" name="nomeproduto" value="'+nomeproduto+'" />'+
-               '<input type="hidden" name="quantidade" value="'+quantidade+'" />'+
-
-               '<input type="hidden" name="idpdv" value="'+idpdv+'" />'+
-                 '<input type="hidden" name="venda" value="'+venda+'" />'+
-
-                 '<input type="hidden" name="idproduto" value="'+id+'" />';
-
-
-                 var dados = $(hiddens).serialize();
-                 $.ajax({
-                 type: "POST",
-                 url:"<?php echo base_url();?>pdv/additem",
-                 data:dados,
-                 dataType:'json',
-                 success:function(data)
-                 {
-
-                   if(data.result == true){
-                     window.location.reload();
-                     $('#produto').focus();
-                 //    $( "#painelvenda" ).load("<?php echo current_url();?> #painelvenda" );
-                 //    $('#form_prepare').trigger("reset");
-                 //  $( "#form_prepare" ).load("<?php echo current_url();?> #form_prepare" );
+        $("#venda").val(ui.item.venda);
+          $("#nomeproduto").val(ui.item.nomeproduto);
 
 
 
 
-                   }
-                   else{
-                       alert('Ocorreu um erro ao tentar adicionar serviço.');
-                   }
 
-                 }
 
-                 });
-return false;
     }
-    else{
-
-      alert('NENHUM ITEM ENCONTRADO');
-      window.location.reload();
-    }
-}
-    });
-
-return false;
-}
 
 });
 
@@ -556,7 +470,7 @@ return false;
 
 
 });
-$('').submit(function(){
+$('#prepare').submit(function(){
 
 
 
