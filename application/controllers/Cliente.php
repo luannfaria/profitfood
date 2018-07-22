@@ -42,6 +42,9 @@ class Cliente extends CI_Controller{
         'rua'=>$this->input->post('endereco'),
         'numero'=>$this->input->post('numero'),
         'bairro'=>$this->input->post('bairro'),
+        'datanasc'=>$this->input->post('datanasc'),
+        'cpf'=>$this->input->post('cpf'),
+        'rg'=>$this->input->post('rg'),
         'status'=>$status,
         'data'=>$datacadastro
       );
@@ -60,6 +63,9 @@ class Cliente extends CI_Controller{
         'numero'=>$this->input->post('numero'),
         'bairro'=>$this->input->post('bairro'),
         'status'=>$this->input->post('status'),
+        'datanasc'=>$this->input->post('datanasc'),
+        'cpf'=>$this->input->post('cpf'),
+        'rg'=>$this->input->post('rg'),
         'data'=>$this->input->post('data')
       );
 

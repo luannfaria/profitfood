@@ -17,6 +17,7 @@ class Permissoes_model extends CI_Model
 
 
       $this->db->order_by('idPermissao', 'desc');
+      $this->db->where('situacao', '1');
       return $this->db->get('permissoes')->result_array();
     }
 
@@ -43,7 +44,7 @@ class Permissoes_model extends CI_Model
   }
 
   return FALSE;
-  
+
     }
 
 

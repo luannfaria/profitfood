@@ -1146,9 +1146,19 @@ a.logo span {
 
     float: left;
 
-    margin-top: 15px;
+    margin-top: 25px;
 
-    margin-left: 16px;
+    margin-left: 400px;
+
+    font-size: 14px;
+
+    font-weight: 300;
+
+    color: #FFF;
+
+
+    text-transform: uppercase;
+    font-weight: bold;
 
 }
 
@@ -1158,7 +1168,7 @@ a.logo span {
 
     margin-top: 15px;
 
-    margin-left: 65px;
+    margin-left: 15px;
 
 }
 

@@ -117,7 +117,7 @@
     <td><?php echo $cp['datavenc'] ?></td>
   <td><?php echo $cp['numerodoc'] ?></td>
   <td><?php echo $cp['descricao'] ?></td>
-  <td><?php echo $cp['valor'] ?></td>
+  <td>R$ <?php echo $cp['valor'] ?></td>
   <td><?php echo $cp['datapgto'] ?></td>
 
   <?php
@@ -125,11 +125,11 @@
   $data = date('d/m/Y');
 
    if($cp['datapgto']==NULL && $cp['datavenc']<$data){ ?>
-  <td>ATRASADO</td>
+  <td><span class="label label-danger">ATRASADO</span></td>
 <?php } if($cp['datapgto']==NULL && $cp['datavenc']>=$data){ ?>
-  <td>ABERTO</td>
+  <td><span class="label label-warning">ABERTO</span></td>
   <?PHP } if($cp['datapgto']!=NULL){?>
-<td>PAGO</td>
+<td><span class="label label-success">PAGO</span></td>
   <?php } ?>
 
   <td>

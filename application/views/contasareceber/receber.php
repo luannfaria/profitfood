@@ -25,16 +25,18 @@
               <div class="col-lg-5">
 <a href="#novoreceber"  data-toggle="modal" class="btn btn-success">NOVA CONTA</a>
 </div>
-  <div class="col-lg-7">
-    <form class="form-inline" method="post" action="<?php echo base_url();?>contasareceber/busca" >
+  <!--<div class="col-lg-7">
+   <form class="form-inline" method="post" action="<?php echo base_url();?>contasareceber/busca" >
       <label for="formarecebimento" class="control-label">Status</label>
 
       <div class="form-group">
       <select name="statusrec" id="statusrec" class="form-control" required>
         <option value="">Selecione </option>
-          <option value="ABERTO"> ABERTO</option>
-          <option value="ATRASADO"> ATRASADO</option>
-          <option value="PAGO"> PAGO</option>
+       <?   date_default_timezone_set('America/Sao_Paulo');
+$dataatual = date('d/m/Y'); ?>
+          <option value="1"> ABERTO</option>
+          <option value="2"> ATRASADO</option>
+          <option value="3"> PAGO</option>
 
 
       </select>
@@ -46,8 +48,8 @@
     <button class="btn btn-primary">PESQUISAR</button>
 
 
-    </form>
-  </div>
+  </form> 
+  </div>!-->
 
                 </div>
 
@@ -71,15 +73,18 @@
             <th class="col-md-2">Ações</th>
           </tr>
         </thead>
+ <?php 
+            if(!$contasreceber){ 
+            ?>
+            <h1>nada</h1>
 
-
-        <?php if($contasreceber){ ?>
+        <?php } else { ?>
         <?php foreach($contasreceber as $cr){?>
           <tr>
             <td><?php echo $cr['datavenc'] ?></td>
           <td><?php echo $cr['numerodoc'] ?></td>
           <td><?php echo $cr['descricao'] ?></td>
-          <td><?php echo $cr['valor'] ?></td>
+          <td>R$ <?php echo $cr['valor'] ?></td>
           <td><?php echo $cr['datapgto'] ?></td>
 
           <?php
@@ -87,18 +92,18 @@
           $data = date('d/m/Y');
 
            if($cr['datapgto']==NULL && $cr['datavenc']<$data){ ?>
-          <td>ATRASADO</td>
+          <td><span class="label label-danger">ATRASADO</span></td>
         <?php } if($cr['datapgto']==NULL && $cr['datavenc']>=$data){ ?>
-          <td>ABERTO</td>
+          <td><span class="label label-warning">ABERTO</span></td>
           <?PHP } if($cr['datapgto']!=NULL){?>
-        <td>PAGO</td>
+        <td><span class="label label-success">PAGO</span></td>
           <?php } ?>
 
 
           <td>
           <?PHP  if($cr['datapgto']==NULL){?>
 
-            <a data-toggle="modal" data-target="#modal-lg<?php echo $cr['id']?>" class="btn btn-success" >EDITAR</a>
+            <a data-toggle="modal" data-target="#modal-lg<?php echo $cr['id']?>" class="btn btn-warning" >EDITAR</a>
           <a data-toggle="modal" data-target="#receber-lg<?php echo $cr['id']?>" class="btn btn-success" >RECEBER</a>
           <?php }?></td>
 

@@ -26,11 +26,27 @@ class Contasareceber_model extends CI_Model
 
 function busca($status){
 
-  $this->db->select('*');
- $this->db->from('contasreceber');
- $this->db->where('forma_pgtonome', $status);
+     date_default_timezone_set('America/Sao_Paulo');
+              $data = date('d/m/Y');
+        if($status=='3'){
+            
+            $sql = "select * from contasreceber where datapgto != 0";
+  $query = $this->db->query($sql);
+  $array = $query->result_array();
+  return $array;
+            
+        }
+    
+    if($status=='2'){
+            
+            $sql = "select * from contasreceber where datavenc < '$data' and datapgto = 0";
+  $query = $this->db->query($sql);
+  
+  return $query->result_array();
+            
+        }
 
-  return $this->db->get()->result_array();
+
 }
   public function receberconta($id,$params){
 

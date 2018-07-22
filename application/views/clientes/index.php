@@ -82,24 +82,41 @@
                                            <div class="col-lg-12">
               <form action="<?php echo base_url()?>cliente/edit/<?php echo $c['id']?>" method="post">
 
-                                           <div class="col-lg-5">
+                                           <div class="col-lg-9">
                                                                      <label for="nome" class="control-label">Nome</label>
 
 
                                                                      <input type="text" class="form-control required" name="nome" value="<?php echo $c['nome']?>" required>
 
                                                                  </div>
+
+                                                                 <div class="col-lg-3">
+                                                                   <label for="datanasc">Data Nasc</label>
+                                                                   <input type="text" class="form-control" id="datanasc1" value="<?php echo $c['datanasc']?>" name="datanasc" required>
+                                                                 </div>
+
+                                                                 <div class="col-lg-3">
+                                                                   <label for="cpf">CPF</label>
+                                                                   <input type="text" class="form-control" id="cpf1" value="<?php echo $c['cpf']?>" name="cpf" required>
+                                                                 </div>
+
+                                                                 <div class="col-lg-3">
+                                                                   <label for="rg">RG</label>
+                                                                   <input type="text" class="form-control" id="rg1" value="<?php echo $c['rg']?>" name="rg" required>
+                                                                 </div>
+
+
                                                                    <div class="col-lg-3">
                                                                      <label for="telefone">Telefone</label>
-                                                                     <input type="text" class="form-control" id="telefone1" value="<?php echo $c['telefone']?>" name="telefone" >
+                                                                     <input type="text" class="form-control" id="telefone1" value="<?php echo $c['telefone']?>" name="telefone" required>
                                                                    </div>
 
                                                                    <div class="col-lg-3">
                                                                      <label for="celular">Celular</label>
-                                                                     <input type="text" id="celular1"name="celular"class="form-control" value="<?php echo $c['celular']?>">
+                                                                     <input type="text" id="celular1"name="celular"class="form-control" value="<?php echo $c['celular']?>" required>
                                                                    </div>
 
-                                                                   <div class="col-lg-6">
+                                                                   <div class="col-lg-8">
                                                                      <label for="endereco">Endereço</label>
                                                                      <input type="text" name="endereco" class="form-control" value="<?php echo $c['rua']?>" >
                                                                    </div>
@@ -107,7 +124,7 @@
                                                                      <label for="numero">Nº</label>
                                                                      <input type="text" name="numero"class="form-control"  value="<?php echo $c['numero']?>">
                                                                    </div>
-                                                                   <div class="col-lg-4">
+                                                                   <div class="col-lg-5">
                                                                      <label for="bairro">Bairro</label>
                                                                      <input type="text" name="bairro" class="form-control" value="<?php echo $c['bairro']?>" >
                                                                    </div>
@@ -117,7 +134,7 @@
                                                                      <input type="text" name="cidade" class="form-control" value="<?php echo $c['cidade']?>" >
                                                                    </div>
 
-                                                                   <div class="col-lg-5">
+                                                                   <div class="col-lg-8">
                                                                      <label for="observacoes">Observações</label>
                                                                      <input type="text" name="observacoes" class="form-control"  >
                                                                      <input type="hidden" name="data" value="<?php echo $c['data']?>">
@@ -163,32 +180,53 @@
                              <div class="col-lg-12">
 <form action="<?php echo base_url()?>cliente/add" method="post">
 
-                             <div class="col-lg-5">
+                             <div class="col-lg-9">
                                                        <label for="nome">Nome</label>
 
 
                                                        <input type="text" class="form-control required" name="nome"  required>
 
                                                    </div>
+
+
+                                                   <div class="col-lg-3">
+                                                     <label for="datanasc">Data Nasc</label>
+                                                     <input type="text" id="datanasc" class="form-control" name="datanasc" required>
+                                                   </div>
+
+
+                                                   <div class="col-lg-3">
+                                                     <label for="cpf">CPF</label>
+                                                     <input type="text" id="cpf" class="form-control" name="cpf" required>
+                                                   </div>
+
+                                                   <div class="col-lg-3">
+                                                     <label for="rg">RG</label>
+                                                     <input type="text" id="rg" class="form-control" name="rg" required>
+                                                   </div>
+
+
                                                      <div class="col-lg-3">
                                                        <label for="telefone">Telefone</label>
-                                                       <input type="text" id="telefone" class="form-control" name="telefone" >
+                                                       <input type="text" id="telefone" class="form-control" name="telefone">
                                                      </div>
+
+
 
                                                      <div class="col-lg-3">
                                                        <label for="celular">Celular</label>
                                                        <input type="text" id="celular" name="celular"class="form-control" >
                                                      </div>
 
-                                                     <div class="col-lg-6">
+                                                     <div class="col-lg-8">
                                                        <label for="endereco">Endereço</label>
                                                        <input type="text" name="endereco" class="form-control"  >
                                                      </div>
                                                      <div class="col-lg-2">
                                                        <label for="numero">Nº</label>
-                                                       <input type="text" name="numero"class="form-control"  placeholder="Password">
+                                                       <input type="text" name="numero"class="form-control" >
                                                      </div>
-                                                     <div class="col-lg-4">
+                                                     <div class="col-lg-5">
                                                        <label for="bairro">Bairro</label>
                                                        <input type="text" name="bairro" class="form-control"  >
                                                      </div>
@@ -198,7 +236,7 @@
                                                        <input type="text" name="cidade" class="form-control" >
                                                      </div>
 
-                                                     <div class="col-lg-5">
+                                                     <div class="col-lg-8">
                                                        <label for="observacoes">Observações</label>
                                                        <input type="text" name="observacoes" class="form-control"  >
                                                      </div>
@@ -240,7 +278,10 @@
 
 <script type="text/javascript">
 $("#celular").mask("(00) 00000-0000");
-
+$("#cpf").mask("000.000.000-00");
+$("#cpf1").mask("000.000.000-00");
+$("#datanasc").mask("00/00/0000");
+$("#datanasc1").mask("00/00/0000");
 $("#telefone").mask("(00) 0000-0000");
 $("#celular1").mask("(00) 00000-0000");
 

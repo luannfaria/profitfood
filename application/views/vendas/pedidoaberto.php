@@ -108,7 +108,6 @@
 
 
 
-  <input type="submit" class="btn btn-success col-lg-4" name="add" value="ADD" />
 
 </div>
 </div>
@@ -235,7 +234,7 @@ foreach($pagamento as $pg){
                     <td><span idAcao="<?php echo $i['id'] ;?>" title="Excluir" class="btn btn-danger"><i class="icon-remove icon-white">EXCLUIR</i></span>
 
                     </td>
-                    <td><a data-toggle="modal" data-target="#modal<?php echo $i['id']?>" class="btn btn-success" >EDITAR</a></td>
+
 
                     <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="modal<?php echo $i['id']?>" class="modal fade">
                                      <div class="modal-dialog">
@@ -395,7 +394,7 @@ $total += $subtotal;
             <tr>
               <td><?php echo $pg['formarec_nome']?></td>
               <td><?php echo $pg['valortotal']?></td>
-              <td>  <a  href="<?php echo site_url('vendas/excluirpgto/'.$pg['id']); ?>"   class="btn btn-danger">EXC</a></td>
+              <td>  <a id="excluirpgto" href="<?php echo site_url('vendas/excluirpgto/'.$pg['id']); ?>"   class="btn btn-danger">EXC</a></td>
             </tr>
             <?php } }?>
           </tbody>
@@ -728,6 +727,7 @@ location.reload();
 	}
 
 });
+
 
 
 $(document).ready(function(){

@@ -24,7 +24,7 @@ public function index(){
   $data['clientes']= $this->Cliente_model->get_all_clientes();
 
   $this->load->view('include/header');
-  $this->load->view('contasareceber/index',$data);
+  $this->load->view('contasareceber/receber',$data);
   $this->load->view('include/footer');
 
 }
@@ -49,13 +49,14 @@ public function add(){
 
 
 public function busca(){
-
+         
+    
   $status = $this->input->post('statusrec');
 
-  $data['$contasreceber'] = $this->Contasareceber_model->busca($status);
+  $data['contasreceber'] = $this->Contasareceber_model->busca($status);
 
   $this->load->view('include/header');
-  $this->load->view('contasareceber/index',$data);
+  $this->load->view('contasareceber/receber',$data);
   $this->load->view('include/footer');
 
 }

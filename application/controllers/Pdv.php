@@ -170,6 +170,7 @@ $pedido = $this->input->post('idpdv');
     'valor'=> $this->input->post('venda'),
     'idproduto'=> $this->input->post('idproduto'),
     'qtdd' => $this->input->post('quantidade'),
+      'codbarra' => $this->input->post('codbarra'),
     'idpdv'=>$this->input->post('idpdv')
 
   );

@@ -59,17 +59,17 @@
           </thead>
           <tbody>
 
-            <?php  foreach ($itenspdv as $it) {
+            <?php $totalvenda=0;  foreach ($itenspdv as $it) { $totalitem=0;
     ?>
               <tr>
+            <td><?php echo $it['codbarra']; ?></td>
             <td><?php echo $it['nomeproduto']; ?></td>
-            <td><?php echo $it['nomeproduto']; ?></td>
-            <td><?php echo $it['valor']; ?></td>
+            <td>R$ <?php echo number_format($it['valor'], 2, '.', '.')?></td>
             <td><?php echo $it['qtdd']; ?></td>
-            <td><?php echo $it['valor']?></td>
+            <td>R$ <?php echo number_format($it['valor']*$it['qtdd'], 2, '.', '.')?></td>
             <td><span idAcao="<?php echo $it['id']; ?>" title="Excluir" class="btn btn-danger"><i class="icon-remove icon-white">EXCLUIR</i></span></td>
             </tr>
-          <?php
+          <?php  $totalitem = $it['qtdd']*$it['valor']; $totalvenda +=$totalitem;
 } ?>
 
           </tbody>
@@ -82,7 +82,7 @@
 
             <div class="col-lg-4">
 
-                    <a  href="" id="excluirpedido" data-confirm="Tem certeza que deseja excluir essa venda?"  class="btn btn-danger col-lg-12 btn-lg btn-block">EXCLUIR(ALT+P)</a>
+                    <a  href="" id="excluirpedido" data-confirm="Tem certeza que deseja excluir essa venda?"  class="btn btn-danger col-lg-12 btn-lg btn-block"><i class="fa fa-times"> </i> EXCLUIR(ALT+P)</a>
 
             </div>
 
@@ -95,7 +95,7 @@
 
         <div class="col-lg-4">
 
-                <button type="button" id="btntot"style="margin-top:30px" class="btn btn-success btn-lg-12 btn-lg btn-block" data-toggle="modal" href="#receber">RECEBER</button>
+                <button type="button" id="btntot"style="margin-top:30px" class="btn btn-success btn-lg-12 btn-lg btn-block" data-toggle="modal" href="#receber"><i class="fa fa-money"> </i> RECEBER</button>
         </div>
 </div>
 </div>
@@ -191,7 +191,7 @@
 
             <input type="hidden" name="restante" value="<?php echo number_format (($totalitens)-($totalpago)-($pdv->desconto), 2,'.' , '.') ?>"/>
           <input type="hidden" id="valordescontovenda" name="valordescontovenda" value="<?php if($pdv->desconto==null){ echo '0.00'; } else{ echo $pdv->desconto;} ?>"/>
-            <input type="hidden" id="totalvendapdv" name="totalvendapdv" value="<?php echo $totalitens?>"/>
+            <input type="hidden" id="totalvendapdv" name="totalvendapdv" value="<?php echo $totalvenda;?>"/>
       </div>
 </div>
 
@@ -387,7 +387,19 @@ $("#produtobusca").keypress(function(e){
 
 
     //var codbarra = $this.find("input[name='codbarra']").val();
-     var codbarra = document.getElementById("produtobusca").value;
+     var verifica = document.getElementById("produtobusca").value;
+        if(verifica.length>13){
+            var string =verifica.split("*");
+            var codbarra = string[1];
+            var qtdd= string[0];
+            
+            
+        }
+        
+        else{
+            var codbarra = verifica;
+            var qtdd=1
+        }
      idpdv = document.getElementById("idpdv").value;
     $.ajax({
     type: "POST",
@@ -403,7 +415,7 @@ $("#produtobusca").keypress(function(e){
                  var nomeproduto = data[i].nomeproduto;
                  var venda = data[i].venda;
                  var cod = data[i].codbarra;
-                var quantidade =1;
+                var quantidade =qtdd;
 
 
                }
@@ -411,7 +423,7 @@ $("#produtobusca").keypress(function(e){
 
                var hiddens =  '<input type="hidden" name="nomeproduto" value="'+nomeproduto+'" />'+
                '<input type="hidden" name="quantidade" value="'+quantidade+'" />'+
-
+  '<input type="hidden" name="codbarra" value="'+cod+'" />'+
                '<input type="hidden" name="idpdv" value="'+idpdv+'" />'+
                  '<input type="hidden" name="venda" value="'+venda+'" />'+
 
@@ -532,8 +544,8 @@ success:function(data)
   if(data.result == true){
 
 //window.location.href = "<?php echo base_url();?>pdv/index";
-     $("#modaltotal").html('<b>Total R$ '+totalvenda+'.00</b>');
-      $("#modalrec").html('<b>Recebido R$ '+valorrecebido+'.00</b>');
+     $("#modaltotal").html('<b>Total R$ '+totalvenda+'</b>');
+      $("#modalrec").html('<b>Recebido R$ '+valorrecebido+'</b>');
        $("#modaltroco").html('<b>Troco R$ '+troco+'.00</b>');
           $('#call-modal').trigger('click');
 

@@ -7,7 +7,7 @@
   <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
   <meta name="author" content="GeeksLabs">
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
-  <link rel="shortcut icon" href="img/favicon.png">
+  <link rel="shortcut icon" href="<?php echo base_url()?>assest/img/favicon.ico">
 
   <title>PROFIT SISTEMAS - 1.0</title>
 
@@ -64,8 +64,19 @@
       <!--logo start-->
       <a href="<?php echo site_url();?>dashboard/painel" class="logo">Profit 1.0<span class="lite"> </span></a>
       <!--logo end-->
+      <div class="nav search-row" id="top_menu">Suporte ao cliente (35) 9 9758-1295
+        <!--  search form start -->
+        <ul class="nav top-menu">
+          <li>
+
+          </li>
+        </ul>
+        <!--  search form end -->
+      </div>
+
       <div class="top-nav notification-row">
         <!-- notificatoin dropdown start-->
+        suporte
         <ul class="nav pull-right top-menu">
 
           <!-- task notificatoin start -->

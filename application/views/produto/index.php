@@ -217,7 +217,7 @@
 
                          <label for="codbarra" class="col-md-2 control-label">Cod barras</label>
                          <div class="col-md-4">
-                           <input type="text" name="codbarra" value="" class="form-control" id="codbarra"/>
+                           <input type="text" name="codbarra" value="" class="form-control" id="codbarra" onBlur="myFunction()"/>
                          </div>
                        </div>
 </div>
@@ -226,7 +226,7 @@
    <div class="form-group">
                          <label for="categoria_id" class="col-md-1 control-label">Categoria</label>
                          <div class="col-md-2">
-                           <select name="categoria_id" class="form-control" required>
+                           <select name="categoria_id" id="categoria" class="form-control" required>
                              <option value="">Selecione</option>
                              <?php
                              foreach($categoriaprodutos as $categoriaproduto)
@@ -309,11 +309,54 @@
                      </div>
                    </div>
                  </div>
-               </div>
+               <script src="<?php echo base_url()?>assest/js/jquery.js"></script>
+<script src="<?php echo base_url()?>assest/js/jquery-ui-1.10.4.min.js"></script>
+<script src="<?php echo base_url()?>assest/js/maskmoney.js"></script>
 
 
 <script>
+jQuery.browser = {};
+(function () {
+jQuery.browser.msie = false;
+jQuery.browser.version = 0;
+if (navigator.userAgent.match(/MSIE ([0-9]+)\./)) {
+jQuery.browser.msie = true;
+jQuery.browser.version = RegExp.$1;
+}
+})();
+    
+   function myFunction(){
+        var codbarra = document.getElementById("codbarra").value;
+       if(codbarra.length==13){
+           
+           
+           
+           
+                        $.ajax({
+    type: "POST",
+    url:"<?php echo base_url();?>produto/getproduto",
+    data:"codbarra="+codbarra,
+    dataType:'json',
+    success:function(data)
+    {
+ var len = data.length;
+ if(len>0){
+            alert('PRODUTO JA ITEM ENCONTRADO');
+    }
+    else{
+            
+        $('#categoria').focus();
+    }
+}
+    });
 
+return false;
+       }
+       
+   }
+    
+    
+    
 $('#venda').maskMoney();
 $('#custo').maskMoney();
 </script>

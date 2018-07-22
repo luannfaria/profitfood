@@ -56,9 +56,39 @@ redirect('produto/index');
 
 
 $codbarra = $this->input->post('codbarra');
+     //   $qtdd = $codbarra[0];
+     //   $item = $codbarra[1];
+        
 				$data = $this->Produto_model->getproduto($codbarra);
 
 				echo json_encode($data);
+
+	}
+    
+    function getprodutopdv(){
+            
+            if(strlen($this->input->post('codbarra')>13)){
+$codbarra = explode("*",$this->input->post('codbarra'));
+        $qtdd = $codbarra[0];
+        $item = $codbarra[1];
+        
+				$data = $this->Produto_model->getproduto($item);
+
+				echo json_encode($data,$qtdd);
+            }
+        
+        else{
+            
+            $codbarra = $this->input->post('codbarra');
+     //   $qtdd = $codbarra[0];
+     //   $item = $codbarra[1];
+        
+				$data = $this->Produto_model->getproduto($codbarra);
+$qtdd ='1';
+				echo json_encode($data,$qtdd);
+            
+            
+        }
 
 	}
 
