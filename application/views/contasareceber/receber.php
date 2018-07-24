@@ -48,7 +48,7 @@ $dataatual = date('d/m/Y'); ?>
     <button class="btn btn-primary">PESQUISAR</button>
 
 
-  </form> 
+  </form>
   </div>!-->
 
                 </div>
@@ -73,8 +73,8 @@ $dataatual = date('d/m/Y'); ?>
             <th class="col-md-2">Ações</th>
           </tr>
         </thead>
- <?php 
-            if(!$contasreceber){ 
+ <?php
+            if(!$contasreceber){
             ?>
             <h1>nada</h1>
 
@@ -187,7 +187,7 @@ $dataatual = date('d/m/Y'); ?>
                                  <div class="col-md-4">
                                    <label for="">&nbsp</label>
                                    <div class="form-group">
-                                 <input type="submit" class="btn btn-danger" name="contasapagar" value="RECEBER" />
+                                 <input type="submit" class="btn btn-success" name="contasapagar" value="RECEBER" />
                                </div>
                                  </div>
                                    </form>

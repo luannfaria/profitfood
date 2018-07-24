@@ -26,6 +26,18 @@ public function addclientepedido($idpedido,$params){
   return $this->db->update('pedidos',$params);
 }
 
+
+public function deletepgto($id){
+
+    return  $this->db->delete('pagamentopedido',array('id'=>$id));
+
+}
+
+public function deletepgtocaixa($id){
+    return  $this->db->delete('fluxocaixa',array('pagamentopedido_id'=>$id));
+
+
+}
 public function verificamesa($verificamesa){
   $this->db->select('*');
  $this->db->from('mesasabertas');

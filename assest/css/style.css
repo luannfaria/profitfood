@@ -2852,6 +2852,14 @@ font-weight: bold;
 
 }
 
+.panel-item{
+
+  height: 340px !important;
+  overflow-y: scroll;
+
+
+}
+
 .panel .panel-body.no-padding-bottom {
 
   padding-bottom: 0;
@@ -7034,6 +7042,15 @@ ul.inbox-pagination li {
     width: 800px;
 }
 
+.modal-content-produto{
+
+  height:inherit;
+  /* To center horizontally */
+  margin: 0 auto;
+  width: 800px;
+  height: 500px;
+  background: #fff;
+}
 .modal-content-small {
     /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
     /*width:inherit;*/
@@ -7098,6 +7115,8 @@ ul.inbox-pagination li {
     font-family: 'Lato', sans-serif;
 
 }
+
+
 
 
 

@@ -7,6 +7,8 @@ class Vendas extends CI_Controller {
 	{
 			parent::__construct();
 			$this->load->model('Vendas_model');
+				$this->load->model('Adicionais_model');
+				$this->load->model('Observacoes_model');
 	}
 	public function index(){
 		$data['custom_error'] = '';
@@ -311,6 +313,15 @@ printitem($imprimir,$mesa);
 	redirect('vendas/mesasindex');
 
 }*/
+
+public function excluirpgto($id){
+
+	$this->Vendas_model->deletepgto($id);
+	$this->Vendas_model->deletepgtocaixa($id);
+
+redirect('vendas/mesasindex');
+
+}
 public function excluirpedido($id){
 
 
@@ -339,6 +350,8 @@ redirect('vendas/mesasindex');
 
 		$username = $this->session->userdata('login');
 		$data['login']=$username;
+		$data['adicionais']= $this->Adicionais_model->get_all();
+			$data['observacoes']= $this->Observacoes_model->get_all();
 		$data['empresa']= $this->Vendas_model->get_all_mesas();
 		$data['mesa'] = $this->Vendas_model->getmesa($id);
 		$data['horamesa']= $this->Vendas_model->gethora($id);
@@ -388,10 +401,46 @@ $this->$data['produtos'] = $this->Produto_model->get_all_produto();
 
 public function additem(){
 
+	// $counts = count($_POST['nomeadicional']);
+//$checkbox = $this->input->post('nomeadicional');
+//$count = count($checkbox);
+
+//if($counts>0){
+
+//	$nomeadd = $this->input->post('nomeadicional')[1];
+//	$nomeprodutosimples = $this->input->post('nomeprodutoadd');
+
+//	$nome = $nomeprodutosimples.' ** '. $nomeadd.' ** ' ;
+//}
+//else{
+
+$count = count($this->input->post('nomeadicional'));
+
+$vlradd=0;
+$vlrdoitem = $this->input->post('venda');
+
+if($count==0){
+	$nome = $this->input->post('nomeprodutoadd');
+//}
+}
+
+
+for($i=0;$i<$count;$i++){
+		$vlradd = $this->input->post('valoradicional');
+		$nomeadd = $this->input->post('nomeadicional')[$i];
+		$nomeprodutosimples = $this->input->post('nomeprodutoadd');
+
+		$nome = $nomeprodutosimples.' ** '. $nomeadd.' ** ' ;
+
+$vlrdoitem +=$vlradd;
+}
+
+
+
 
 	$params = array(
-		'nome_produto' =>$this->input->post('nomeproduto'),
-		'valorproduto'=> $this->input->post('venda'),
+		'nome_produto' =>$nome,
+		'valorproduto'=> $vlrdoitem,
 		'produto_id'=> $this->input->post('idproduto'),
 		'qtdd' => $this->input->post('quantidade'),
 		'pedido_id'=>$this->input->post('idpedido'),
@@ -402,8 +451,7 @@ public function additem(){
 	$this->Vendas_model->itensmesa($params);
 
 
-				echo json_encode(array('result'=> true));
-
+	echo json_encode(array('result'=> true));
 }
 	/*public function itemmesa(){
 

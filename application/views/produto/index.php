@@ -324,14 +324,14 @@ jQuery.browser.msie = true;
 jQuery.browser.version = RegExp.$1;
 }
 })();
-    
+
    function myFunction(){
         var codbarra = document.getElementById("codbarra").value;
        if(codbarra.length==13){
-           
-           
-           
-           
+
+
+
+
                         $.ajax({
     type: "POST",
     url:"<?php echo base_url();?>produto/getproduto",
@@ -344,7 +344,7 @@ jQuery.browser.version = RegExp.$1;
             alert('PRODUTO JA ITEM ENCONTRADO');
     }
     else{
-            
+
         $('#categoria').focus();
     }
 }
@@ -352,11 +352,11 @@ jQuery.browser.version = RegExp.$1;
 
 return false;
        }
-       
+
    }
-    
-    
-    
+
+
+
 $('#venda').maskMoney();
 $('#custo').maskMoney();
 </script>

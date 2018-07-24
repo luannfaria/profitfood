@@ -323,59 +323,28 @@
              </div>
            </section>
 
-           <script src="<?php echo base_url()?>assest/js/jquery.js"></script>
-           <script src="<?php echo base_url()?>assest/js/jquery-ui-1.10.4.min.js"></script>
 
-         <script src="<?php echo base_url()?>assest/js/bootstrap.js"></script>
-           <script src="<?php echo base_url()?>assest/js/validate.js"></script>
 
            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+
+
+
+     <script src="<?php echo base_url()?>assest/js/bootstrap.js"></script>
+       <script src="<?php echo base_url()?>assest/js/validate.js"></script>
 
 <SCRIPT>
 
 $("#cnpj").mask("00.000.000/0000-00");
 $("#telefone").mask("(00)0000-0000");
-$('#addimpressora').validate({
-
-  rules:{
-     tipoimpressora: {required:true}
-  },
-  messages:{
-     tipoimpressora: {required: 'Insira um serviço'}
-  },
-
-submitHandler: function( form ){
-var dados = $( form ).serialize();
-$.ajax({
-type: "POST",
-url:"<?php echo base_url();?>configuracoes/addimpressora",
-data:dados,
-dataType:'json',
-success:function(data)
-{
-if(data.result == true){
-
-location.reload();
-}
-else{
- $('#falseservice').trigger('click');
-}
-}
-
-});
-return false;
-}
-
-});
 
 $('#formempresa').validate({
 
   rules:{
-     id: {required:true}
+     nomefantasia: {required:true}
   },
   messages:{
-     id: {required: 'Insira um serviço'}
+     nomefantasia: {required: 'Insira um serviço'}
   },
 
 submitHandler: function( form ){

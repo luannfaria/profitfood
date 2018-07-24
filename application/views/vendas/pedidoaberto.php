@@ -37,7 +37,7 @@
 
 
 
-                      <form action="" method="post" id="form_prepare">
+                      <form action="" method="post" id="itemteste">
                         <div class="col-lg-8">
   <div class="col-lg-6">
                                                   <div class="form-group">
@@ -45,7 +45,7 @@
 
                                                     <input type="text" class="form-control input-lg  required" name="produto" id="produto"  placeholder="Digite o nome do produto" required/>
 
-                                                    <input type="hidden" name="idproduto" id="idproduto" value=""/>
+                                              <!--      <input type="hidden" name="idproduto" id="idproduto" value=""/>
 
 
 
@@ -53,7 +53,7 @@
                     <input type="hidden" name="hora" id="hora" value="<?php echo date('H:i') ;?>" />
 
                                                     <input type="hidden" name="nomeproduto" id="nomeproduto" />
-                                                    <input type="hidden" name="venda" id="venda" />
+                                                    <input type="hidden" name="venda" id="venda" />-->
                                                       <input type="hidden" name="idpedido" id="idpedido" value="<?php echo $pedido->id?>" />
                                                       <input type="hidden" name="garcom" id="garcom" value="<?php echo $login ?>"/>
 
@@ -66,16 +66,13 @@
 </div>
                                                 <div class="col-md-2">
                                                                                 <div class="form-group">
-                                                                                  <label for="quantidade" class="control-label"><i class="fa fa-spinner"> </i> Qtdd</label>
-                                                                              <input type="text" class="form-control input-lg m-bot15 required" value="1" onclick="this.value='1'" name="quantidade" onkeyup="somenteNumeros(this);" id="quantidade" required/>
+
                     </div>
                     </div>
 
                     <div class="col-lg-2">
 
-                    <label for="">&nbsp</label>
-<br/>
-                    <input type="submit" class="btn btn-success btn-lg col-lg-12" name="ok" value="INSERIR" />
+
                     </div>
 </div>
 </form>
@@ -361,6 +358,146 @@ $total += $subtotal;
 </div>
 
            </section>
+
+
+            <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="modalproduto" class="modal fade">
+                <div class="modal-dialog">
+                  <div class="modal-content-produto">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                      <h4 class="modal-title">ITEM</h4>
+                    </div>
+                    <div class="modal-body">
+
+                                    <div class="row">
+                                      <div class="col-lg-10">
+                                        <form id="form_prepare" method="post" >
+
+                            <div class="col-md-6">
+                                                                            <div class="form-group">
+
+                                                                              <input type="hidden" name="idproduto" id="idproduto" value=""/>
+
+
+
+                                              <?php date_default_timezone_set('America/Sao_Paulo'); ?>
+                                              <input type="hidden" name="hora" id="hora" value="<?php echo date('H:i') ;?>" />
+  <label for="idservico" class="control-label"><i class="fa fa-spinner"> </i> Produtos</label>
+                                                                              <input type="text" class="form-control input-lg m-bot15" name="nomeproduto" id="nomeproduto" disabled/>
+<input type="hidden" name="nomeprodutoadd" id="nomeprodutoadd" />
+                                                                              <input type="hidden" name="venda" id="venda" />
+                                                                                <input type="hidden" name="idpedido" id="idpedido" value="<?php echo $pedido->id?>" />
+                                                                                <input type="hidden" name="garcom" id="garcom" value="<?php echo $login ?>"/>
+
+                                                                                    <input type="hidden" name="numeromesa" id="numeromesa" value="<?php echo $mesa ?>"/>
+
+                                                                            </div>
+
+
+
+                          </div>
+                                                                          <div class="col-md-2">
+                                                                                                          <div class="form-group">
+                                                                                                            <label for="quantidade" class="control-label"><i class="fa fa-spinner"> </i> Qtdd</label>
+                                                                                                        <input type="text" class="form-control input-lg m-bot15 required" name="quantidade" onkeyup="somenteNumeros(this);" id="quantidade" required/>
+                                              </div>
+                                              </div>
+
+
+
+
+                                      </div>
+                                    </div>
+
+
+                                    <div class="row">
+         <div class="col-lg-6">
+           <!--notification start-->
+           <section class="panel-item">
+             <header class="panel-heading">
+               Adicionais
+             </header>
+             <div class="panel-body">
+
+               <div class="form-group">
+                <table class="table">
+
+                  <tbody>
+                  <?php foreach($adicionais as $ad){ ?>
+                    <tr>
+                      <td><input type="checkbox" name="nomeadicional[]" value="<?php echo $ad['nomeadicional'] ?>">
+  <input type="hidden" name="valoradicional"  class="form-control" value="<?php echo $ad['valoradicional'] ?>">
+
+                      </td>
+                        <td>  <?php echo $ad['nomeadicional'] ?>  </td>
+                        <td> <?php echo $ad['valoradicional'] ?> </td>
+                      </tr>
+                  <?php } ?>
+</tbody>
+                </table>
+
+              </div>
+             </div>
+           </section>
+</div><div class="col-lg-6">
+
+           <section class="panel-item">
+             <header class="panel-heading">
+               Observações
+             </header>
+             <div class="panel-body">
+               <div class="form-group">
+                <table class="table">
+
+                  <tbody>
+                  <?php foreach($observacoes as $ob){ ?>
+                    <tr>
+                      <td><input type="checkbox" name="nomeobservacao[]" value="<?php echo $ob['nome'] ?>">
+
+
+                      </td>
+                        <td>  <?php echo $ob['nome'] ?>  </td>
+
+                      </tr>
+                  <?php } ?>
+            </tbody>
+                </table>
+
+              </div>
+
+
+             </div>
+           </section>
+
+</div>
+
+<div class="col-lg-2">
+
+<label for="">&nbsp</label>
+<br/>
+<input type="submit" class="btn btn-success btn-lg col-lg-12" name="ok" value="INSERIR" />
+</div>
+    </form>
+</div>
+
+<div class="row">
+
+<div class="col-lg-12">
+
+
+
+
+
+</div>
+
+</div>
+                                  </div>
+
+
+                                </div>
+                              </div>
+                            </div>
+
 
 
            <div id="modalrec" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
@@ -649,7 +786,41 @@ $('#vlrpgto').maskMoney();
 $('#valordesconto').maskMoney();
 
 
+$("#produto").keypress(function(e) {
 
+  if(e.wich == 13 || e.keyCode == 13){
+
+
+
+var idproduto = document.getElementById("idproduto").value;
+var venda = document.getElementById("venda").value;
+var garcom = document.getElementById("garcom").value;
+      var hora = document.getElementById("hora").value;
+    var nomeproduto = document.getElementById("nomeproduto").value;
+    var idpedido = document.getElementById("idpedido").value;
+
+//$('#desconto').modal('show');
+
+  //$('#call-modal').trigger('click');
+    if(idproduto>0){
+    //  $("#produtoinserido").text(nomeproduto);
+
+  //  document.getElementById("nomeprodutoadd").setAttribute ('value',nomeproduto);
+
+    $('#modalproduto').modal('show');
+
+    $('#quantidade').trigger('click');
+
+
+ //alert('ok');
+   //$('#call-modal').click();
+}
+return false;
+  }
+
+
+  /* Act on the event */
+});
 
 
 $('#form_tablepgto').keypress(function(e){
@@ -878,8 +1049,8 @@ var hiddens =  '<input type="hidden" name="nomeproduto" value="'+nomeproduto+'" 
 
 $('#form_insert').find('fieldset').append( hiddens );
 
+  var dados = $('#form_prepare').serialize();
 
-var dados = $(hiddens).serialize();
 $.ajax({
 type: "POST",
 url:"<?php echo base_url();?>vendas/additem",
@@ -996,6 +1167,7 @@ $("#produto").autocomplete({
 
         $("#venda").val(ui.item.venda);
           $("#nomeproduto").val(ui.item.nomeproduto);
+          $("#nomeprodutoadd").val(ui.item.nomeproduto);
 
 
 

@@ -42,7 +42,7 @@
                                <div class="col-md-2">
                                 <label for="numero" class="control-label">Nº documento</label>
                                 <div class="form-group">
-                                    <input type="text" name="numero" value="<?php echo $this->input->post('numero'); ?>" class="form-control"  />
+                                    <input type="text" name="numero" value=" " class="form-control"  />
 
                                 </div>
                               </div>
@@ -50,7 +50,7 @@
                               <div class="col-md-4">
                                <label for="descricao" class="control-label">Descrição</label>
                                <div class="form-group">
-                                   <input type="text" name="descricao" value="<?php echo $this->input->post('descricao'); ?>" class="form-control"  />
+                                   <input type="text" name="descricao" value=" " class="form-control"  />
 
                                </div>
                              </div>
@@ -66,7 +66,7 @@
                             <div class="col-lg-3">
                              <label for="vencimento" class="control-label">Vencimento</label>
                              <div class="form-group">
-                                 <input type="text" id="data" name="vencimento" class="form-control"  />
+                                 <input type="text" id="data" value=" " name="vencimento" class="form-control"  />
 
                              </div>
                            </div>
@@ -74,7 +74,7 @@
                            <div class="col-md-4">
                             <label for="observacao" class="control-label">Observação</label>
                             <div class="form-group">
-                                <input type="text" name="observacao" value="<?php echo $this->input->post('observacao'); ?>" class="form-control"  />
+                                <input type="text" name="observacao" value=" " class="form-control"  />
 
                             </div>
                           </div>
@@ -255,7 +255,7 @@ $('#valor').maskMoney();
     $( function() {
       $( "#data" ).datepicker({ dateFormat: 'dd/mm/yy' });
 
-    });
+   });
     </script>
 
       </section>

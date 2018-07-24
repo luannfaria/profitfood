@@ -76,7 +76,7 @@
 
       <div class="top-nav notification-row">
         <!-- notificatoin dropdown start-->
-        suporte
+
         <ul class="nav pull-right top-menu">
 
           <!-- task notificatoin start -->
@@ -159,7 +159,7 @@
               <li><a class="" href="<?php echo base_url();?>categoria">Categorias</a></li>
             <?php } if ($this->permission->checkPermission($this->session->userdata('permissao'), 'vAdicionais')) {
             ?>
-                <li><a class="" href="#">Adicionais</a></li>
+                <li><a class="" href="<?php echo base_url();?>adicionais">Adicionais</a></li>
 
               <?php } ?>
 

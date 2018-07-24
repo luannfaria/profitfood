@@ -352,7 +352,7 @@ if (!$result) {
 
   <script src="<?php echo base_url()?>assest/js/jquery.hotkeys.js"></script>
   <script src="<?php echo base_url()?>assest/js/bootstrap-wysiwyg.js"></script>
-
+  <script src="<?php echo base_url()?>assest/js/pt-br.js"></script>
   <script src="<?php echo base_url()?>assest/js/moment.js"></script>
   <script src="<?php echo base_url()?>assest/js/bootstrap-colorpicker.js"></script>
   <script src="<?php echo base_url()?>assest/js/daterangepicker.js"></script>
