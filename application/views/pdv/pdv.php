@@ -392,10 +392,10 @@ $("#produtobusca").keypress(function(e){
             var string =verifica.split("*");
             var codbarra = string[1];
             var qtdd= string[0];
-            
-            
+
+
         }
-        
+
         else{
             var codbarra = verifica;
             var qtdd=1

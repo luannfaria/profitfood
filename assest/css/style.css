@@ -2604,6 +2604,19 @@ font-weight: bold;
   width: 110px;
 }
 
+.lipag label{
+
+  background: rgb(97, 148, 215);
+     border: none;
+     outline: none;
+     width: 70%;
+     height: 80px;
+     cursor: pointer;
+  text-align:inherit;
+     &:active, &:focus {
+       outline: none
+     }
+}
 .payment-method label {
   background: #086B9B no-repeat center center;
   bottom: 1px;
@@ -2635,11 +2648,11 @@ font-weight: bold;
 }
 
 
- .direitarecebimento{
+ .painelrec .direitarecebimento{
 
   float: right;
-  width: 60%;
-  height: 80%;
+  width: 70%;
+  height: 90%;
   background-color: #ccc;
   border-width: 1px 1px 1px;
 
@@ -2653,8 +2666,8 @@ font-weight: bold;
 
 
   float: left;
-  width: 40%;
-  height: 80%;
+  width: 30%;
+  height: 90%;
   background-color: #BBB;
   border-width: 1px 1px 1px;
 
@@ -6978,7 +6991,34 @@ ul.inbox-pagination li {
 
 }
 
+.ulpag{
 
+
+
+  list-style: none;
+ width: 90%;
+
+ margin: 5px;
+ text-align: center;
+ font-size: 16px;
+ color: white;
+
+ &:after {
+   content: "";
+   display: inline-block;
+   width: 100%;
+   height: 0;
+ }
+
+
+}
+.lipag{
+
+  display:inline-grid;
+  width: 30%;
+  margin-bottom: 14px;
+  border-radius: 8px;
+}
 
 .btn-send, .btn-send:hover {
 
@@ -7039,7 +7079,7 @@ ul.inbox-pagination li {
     height:inherit;
     /* To center horizontally */
     margin: 0 auto;
-    width: 800px;
+    width: 950px;
 }
 
 .modal-content-produto{
@@ -7073,15 +7113,21 @@ ul.inbox-pagination li {
     height: 150px;
     background: #fff;
 }
+.modalfinanceiropdv{
 
+  width: 330px;
+  height: 1px;
+  background-color: #424242;
+
+}
 .modal-content-receber {
     /* Bootstrap sets the size of the modal in the modal-dialog class, we need to inherit it */
     /*width:inherit;*/
     height:inherit;
     /* To center horizontally */
     margin: 0 auto;
-    width: 500px;
-    height: 250px;
+    width: 650px;
+    height: 450px;
     background: #fff;
 }
 

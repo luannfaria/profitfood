@@ -1,5 +1,6 @@
 <?php
 
+defined('BASEPATH') OR exit('URL inválida');
 
 class Vendas extends CI_Controller {
 
@@ -54,38 +55,38 @@ $params = array(
 
 	public function pagamento(){
 
-	$count = count($this->input->post('vlrpgto'));
+	//$count = count($this->input->post('vlrpgto'));
 $totalpago = 0;
- $totalrec = str_replace("," , "." ,$this->input->post('vlrpago')[0]);
+ $totalrec = $this->input->post('vlrpago');
 $tipomov="1";
 
 date_default_timezone_set('America/Sao_Paulo');
 $data = date('d/m/Y');
-$idpedido = $this->input->post('pedido')[0];
-$nmesa = $this->input->post('numeromesa')[0];
+$idpedido = $this->input->post('pedido');
+$nmesa = $this->input->post('numeromesa');
 $descricao= 'PAGAMENTO PEDIDO '. $idpedido.' MESA '.$nmesa;
-	for($i=0;$i<$count;$i++){
+	//for($i=0;$i<$count;$i++){
 		$params = array(
-				'pedido_id' =>$this->input->post('pedido')[$i],
-				'formarec_nome'=> $this->input->post('tiporecebimento')[$i],
-				'valortotal'=>$this->input->post('vlrpgto')[$i]
+				'pedido_id' =>$this->input->post('pedido'),
+				'formarec_nome'=> $this->input->post('tiporecebimento'),
+				'valortotal'=>$this->input->post('vlrpgto')
 
 
 		);
 
 
-			$totalpago+= $this->input->post('vlrpgto')[$i];
+			$totalpago+= $this->input->post('vlrpgto');
 							$id=$this->Vendas_model->pagamento($params);
 
-}
+//}
 
 $totalpago=0;
-	for($i=0;$i<$count;$i++){
+	//for($i=0;$i<$count;$i++){
 	//	$totalpago= $this->input->post('vlrpgto')[$i];
-		 $totalrec = str_replace("," , "." ,$this->input->post('restante')[$i]);
-		 $japago = str_replace("," , "." ,$this->input->post('vlrpgto')[$i]);
-	//	$totalvenda = $this->input->post('totalvenda')[0];
-	//	$valor = str_replace("," , "." , $totalvenda );
+		 $totalrec = $this->input->post('restante');
+		 $japago = $this->input->post('vlrpgto');
+		$totalvenda = $this->input->post('totalvenda');
+		$valor = str_replace("," , "." , $totalvenda );
 
 	//	$totalpago+=$totalrec;
 
@@ -95,7 +96,7 @@ $totalpago=0;
 	//		$vlrfluxo = $valor - $japago;
 $fluxo = array(
 		'valor'=>$totalrec,
-		'forma'=> $this->input->post('tiporecebimento')[$i],
+		'forma'=> $this->input->post('tiporecebimento'),
 		'tipomov'=>$tipomov,
 		'descricao'=> $descricao,
 		'pagamentopedido_id'=>$id,
@@ -108,7 +109,7 @@ $nem=	$this->Vendas_model->deletemesaaberta($idpedido);
 }else{
 	$fluxo = array(
 			'valor'=>$japago,
-			'forma'=> $this->input->post('tiporecebimento')[$i],
+			'forma'=> $this->input->post('tiporecebimento'),
 			'tipomov'=>$tipomov,
 			'descricao'=> $descricao,
 			'pagamentopedido_id'=>$id,
@@ -120,7 +121,7 @@ $nem=	$this->Vendas_model->deletemesaaberta($idpedido);
 
 			echo json_encode(array('result'=> false));
 }
-}
+//}
 
 //$idpedido = $this->input->post('pedido')[0];
 
@@ -272,11 +273,16 @@ public function desconto(){
 
 }
 
-public function imprimirconta($id){
+public function imprimirconta($ID){
 
-	$this->load->helper('print');
-
-	teste($id);
+	try {
+  $this->load->library('ReceiptPrint');
+  $this->receiptprint->connect('TESTE');
+  $this->receiptprint->print_test_receipt();
+} catch (Exception $e) {
+  log_message("error", "Error: Could not print. Message ".$e->getMessage());
+  $this->receiptprint->close_after_exception();
+}
 }
 public function atualizaitem(){
 
@@ -414,9 +420,9 @@ public function additem(){
 //}
 //else{
 
-$count = count($this->input->post('nomeadicional'));
-
-$vlradd=0;
+$count = count($this->input->post('itemadicional'));
+//$indice = $this->input->post('count');
+$vlradd=1;
 $vlrdoitem = $this->input->post('venda');
 
 if($count==0){
@@ -426,7 +432,7 @@ if($count==0){
 
 
 for($i=0;$i<$count;$i++){
-		$vlradd = $this->input->post('valoradicional');
+		$vlradd = $this->input->post('valoradicional')[$i];
 		$nomeadd = $this->input->post('nomeadicional')[$i];
 		$nomeprodutosimples = $this->input->post('nomeprodutoadd');
 

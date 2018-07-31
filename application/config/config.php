@@ -38,6 +38,7 @@ $config['base_url'] = 'http://localhost/profitfood';
 */
 $config['index_page'] = '';
 
+
 /*
 |--------------------------------------------------------------------------
 | URI PROTOCOL

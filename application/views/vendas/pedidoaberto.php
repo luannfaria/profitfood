@@ -26,9 +26,11 @@
 
                         <div class="col-lg-6">
                         <h2>MESA <?php echo $mesa;?> </h2>
-                        <?php if($pedido->nomecliente!=null){?>
-                          <h4> Cliente: <?php echo $pedido->nomecliente;?></h4>
-                       <?php }?>
+                        <?php if ($pedido->nomecliente!=null) {
+    ?>
+                          <h4> Cliente: <?php echo $pedido->nomecliente; ?></h4>
+                       <?php
+}?>
                         </div>
                         <div class="col-lg-5">
                             <h4> Pedido Nº <?php echo $pedido->id;?></h4>
@@ -123,66 +125,70 @@
                     <div class="col-lg-12">
                       <div class="col-lg-6">
 
-                <?php        if(!$pagamento){?>
+                <?php        if (!$pagamento) {
+        ?>
                         <h4>Desconto </h4>
                         <h3>Subtotal </h3>
 
                         <?php  $total=0;
-                        $subtotal=0;
-                        foreach ($itenspedido as $i) {
-
-
-
-
-                                  $totalitem= $i['valorproduto']*$i['qtdd'];
-                                  $subtotal += $totalitem; }?>
-                        <?php foreach($empresa as $e){
-                         $taxaservico = $e['taxaservico'];}
-                         $taxa = ($subtotal*$taxaservico)/100; $total=$subtotal+$taxa; ?>
+        $subtotal=0;
+        foreach ($itenspedido as $i) {
+            $totalitem= $i['valorproduto']*$i['qtdd'];
+            $subtotal += $totalitem;
+        } ?>
+                        <?php foreach ($empresa as $e) {
+            $taxaservico = $e['taxaservico'];
+        }
+        $taxa = ($subtotal*$taxaservico)/100;
+        $total=$subtotal+$taxa; ?>
                         <h4>Serviço</h4>
 
                         <h3>Total </h3>
                       </div>
                       <div class="col-lg-6">
-                        <h4>R$<?php if($pedido->desconto>'0'){ echo number_format($pedido->desconto,2,',','.'); } else { echo '0.00'; } ?></h4>
-                        <h3>R$<?php echo number_format($subtotal,2,',','.')?></h3>
-                        <h4>R$<?php echo number_format($taxa,2,',','.')?></h4>
-                        <h3>R$<?php echo number_format($total,2,',','.')?></h3>
+                        <h4>R$<?php if ($pedido->desconto>'0') {
+            echo number_format($pedido->desconto, 2, ',', '.');
+        } else {
+            echo '0.00';
+        } ?></h4>
+                        <h3>R$<?php echo number_format($subtotal, 2, ',', '.')?></h3>
+                        <h4>R$<?php echo number_format($taxa, 2, ',', '.')?></h4>
+                        <h3>R$<?php echo number_format($total, 2, ',', '.')?></h3>
                       </div>
-                    <?php }else{
-                      $vlrpago=0;
-foreach($pagamento as $pg){
-  $vlrpago += $pg['valortotal'];
-}
-                      ?>
+                    <?php
+    } else {
+        $vlrpago=0;
+        foreach ($pagamento as $pg) {
+            $vlrpago += $pg['valortotal'];
+        } ?>
                       <h4>Desconto</h4>
                       <h4>PAGO</h4>
                       <h3>Subtotal </h3>
 
                       <?php  $total=0;
-                      $subtotal=0;
-                      foreach ($itenspedido as $i) {
-
-
-
-
-                                $totalitem= $i['valorproduto']*$i['qtdd'];
-                                $subtotal += $totalitem; }?>
-                      <?php foreach($empresa as $e){
-                       $taxaservico = $e['taxaservico'];}
-                       $taxa = ($subtotal*$taxaservico)/100; $total=$subtotal+$taxa; ?>
+        $subtotal=0;
+        foreach ($itenspedido as $i) {
+            $totalitem= $i['valorproduto']*$i['qtdd'];
+            $subtotal += $totalitem;
+        } ?>
+                      <?php foreach ($empresa as $e) {
+            $taxaservico = $e['taxaservico'];
+        }
+        $taxa = ($subtotal*$taxaservico)/100;
+        $total=$subtotal+$taxa; ?>
                       <h4>Serviço</h4>
 
                       <h3>Total </h3>
                     </div>
                     <div class="col-lg-6">
                       <h4><?php echo $pedido->desconto ?></h4>
-                      <h4>R$<?php echo number_format($vlrpago,2,',','.')?></h4>
-                      <h3>R$<?php echo number_format($subtotal,2,',','.')?></h3>
-                      <h4>R$<?php echo number_format($taxa,2,',','.')?></h4>
-                      <h3>R$<?php echo number_format($total,2,',','.')?></h3>
+                      <h4>R$<?php echo number_format($vlrpago, 2, ',', '.')?></h4>
+                      <h3>R$<?php echo number_format($subtotal, 2, ',', '.')?></h3>
+                      <h4>R$<?php echo number_format($taxa, 2, ',', '.')?></h4>
+                      <h3>R$<?php echo number_format($total, 2, ',', '.')?></h3>
                     </div>
-                <?php    }?>
+                <?php
+    }?>
                     </div>
                   </div>
                 </div>
@@ -210,12 +216,13 @@ foreach($pagamento as $pg){
 
                   <?php  $total=0;
                   foreach ($itenspedido as $i) {
-                        ?>
+                      ?>
 
                         <tr>
 
-                        <?php    $subtotal=0;  $totalitem= $i['valorproduto']*$i['qtdd'];
-                            $subtotal += $totalitem; ?>
+                        <?php    $subtotal=0;
+                      $totalitem= $i['valorproduto']*$i['qtdd'];
+                      $subtotal += $totalitem; ?>
 
 
 
@@ -225,10 +232,10 @@ foreach($pagamento as $pg){
                     <td><strong><?php echo $i['garcom']; ?></strong></td>
                     <td><strong><?php echo $i['hora']; ?></strong></td>
                     <td><strong><?php echo $i['nome_produto']; ?></strong></td>
-                    <td><strong>R$ <?php  echo number_format($i['valorproduto'],2,',','.');?></strong></td>
+                    <td><strong>R$ <?php  echo number_format($i['valorproduto'], 2, ',', '.'); ?></strong></td>
                     <td><strong><?php echo $i['qtdd']; ?></strong></td>
                     <td><strong>R$ <?php echo $i['valorproduto']*$i['qtdd']; ?>,00</strong></td>
-                    <td><span idAcao="<?php echo $i['id'] ;?>" title="Excluir" class="btn btn-danger"><i class="icon-remove icon-white">EXCLUIR</i></span>
+                    <td><span idAcao="<?php echo $i['id'] ; ?>" title="Excluir" class="btn btn-danger"><i class="icon-remove icon-white">EXCLUIR</i></span>
 
                     </td>
 
@@ -273,8 +280,7 @@ foreach($pagamento as $pg){
 
 <?php
 $total += $subtotal;
-
-} ?>
+                  } ?>
                 </tbody>
               </table>
 </div>
@@ -303,9 +309,11 @@ $total += $subtotal;
 
                   </div>
                   <div class="col-lg-3">
-<?php if(!$pagamento){ ?>
+<?php if (!$pagamento) {
+                      ?>
                     <a  href="<?php echo site_url('vendas/excluirpedido/'.$pedido->id); ?>" id="excluirpedido" data-confirm="Tem certeza que deseja excluir essa mesa?"  class="btn btn-danger col-lg-12 btn-lg btn-block">EXCLUIR(ALT+P)</a>
-<?php }?>
+<?php
+                  }?>
                   </div>
                     </div>
                   </div>
@@ -423,16 +431,22 @@ $total += $subtotal;
                 <table class="table">
 
                   <tbody>
-                  <?php foreach($adicionais as $ad){ ?>
+                  <?php $iad=0; foreach ($adicionais as $ad) {
+                      ?>
                     <tr>
-                      <td><input type="checkbox" name="nomeadicional[]" value="<?php echo $ad['nomeadicional'] ?>">
-  <input type="hidden" name="valoradicional"  class="form-control" value="<?php echo $ad['valoradicional'] ?>">
+                      <td><input type="checkbox" name="adicional[<?php echo $iad ?>]" data-valor="<?php echo $ad['valoradicional'] ?>" data-nome="<?php echo $ad['nomeadicional'] ?>">
+
 
                       </td>
+
+
                         <td>  <?php echo $ad['nomeadicional'] ?>  </td>
                         <td> <?php echo $ad['valoradicional'] ?> </td>
                       </tr>
-                  <?php } ?>
+                  <?php $iad++;
+                  }?>
+
+
 </tbody>
                 </table>
 
@@ -450,7 +464,8 @@ $total += $subtotal;
                 <table class="table">
 
                   <tbody>
-                  <?php foreach($observacoes as $ob){ ?>
+                  <?php foreach ($observacoes as $ob) {
+                      ?>
                     <tr>
                       <td><input type="checkbox" name="nomeobservacao[]" value="<?php echo $ob['nome'] ?>">
 
@@ -459,7 +474,8 @@ $total += $subtotal;
                         <td>  <?php echo $ob['nome'] ?>  </td>
 
                       </tr>
-                  <?php } ?>
+                  <?php
+                  } ?>
             </tbody>
                 </table>
 
@@ -521,19 +537,25 @@ $total += $subtotal;
           </tr>
           </thead>
           <tbody>
-          <?php if(!$pagamento){?>
+          <?php if (!$pagamento) {
+                      ?>
           <tr>
             <td></td>
             <td></td>
             <td></td>
           </tr>
-          <?php }else{ foreach($pagamento as $pg){?>
+          <?php
+                  } else {
+                      foreach ($pagamento as $pg) {
+                          ?>
             <tr>
               <td><?php echo $pg['formarec_nome']?></td>
               <td><?php echo $pg['valortotal']?></td>
               <td>  <a id="excluirpgto" href="<?php echo site_url('vendas/excluirpgto/'.$pg['id']); ?>"   class="btn btn-danger">EXC</a></td>
             </tr>
-            <?php } }?>
+            <?php
+                      }
+                  }?>
           </tbody>
           </table>
           </div>
@@ -544,14 +566,18 @@ $total += $subtotal;
           $totalvenda = $vlrserv+$totalitens;
            ?>
           <div class="totalmodal">
-          <?php if(!$pagamento){?>
-            <h3>Total pedido <strong>R$<?php echo number_format($totalvenda,2,',','.')?></strong></h3>
-          <?php }else{?>
-            <h3>Pago <strong>R$ <?php echo number_format($vlrpago,2,',','.')?></strong></h3>
+          <?php if (!$pagamento) {
+               ?>
+            <h3>Total pedido <strong>R$<?php echo $totalvenda?></strong></h3>
+          <?php
+           } else {
+               ?>
+            <h3>Pago <strong>R$ <?php echo number_format($vlrpago, 2, ',', '.')?></strong></h3>
 
-            <h3>Total pedido <strong>R$ <?php echo number_format($totalvenda,2,',','.')?></strong></h3>
-          <h3> Restante <strong> R$ <?php echo number_format(($totalvenda)-($vlrpago)-($pedido->desconto),2,',','.')?> </strong></h3>
-          <?php }?>
+            <h3>Total pedido <strong>R$ <?php echo $totalvenda?></strong></h3>
+          <h3> Restante <strong> R$ <?php echo number_format(($totalvenda)-($vlrpago)-($pedido->desconto), 2, ',', '.')?> </strong></h3>
+          <?php
+           }?>
 
 
           </div>
@@ -560,68 +586,92 @@ $total += $subtotal;
 
                    <div class="direitarecebimento">
 
-          <form action="" method="post" id="form_tablepgto">
 
 
 
 
-<div class="row">
- <div class="form-group">
-   <div class="col-lg-12">
-                     <ul class="payment-methods">
-            <li class="payment-method">
-              <input name="payment_methods" type="radio" value="dinheiro" id="dinheiro">
-              <label for="dinheiro">DINHEIRO</label>
+
+
+            <div class="form-group">
+
+
+                     <ul class="ulpag">
+            <li class="lipag">
+              <label for="dinheiro">
+              <input name="pag" type="radio" value="dinheiro" id="dinheiro">
+              DINHEIRO</label>
             </li>
 
-            <li class="payment-method">
-              <input name="payment_methods" type="radio" value="credito" id="credito">
-              <label for="credito">CRÉDITO</label>
+            <li class="lipag">
+              <label for="credito">
+              <input name="pag" type="radio" value="credito" id="credito">
+              CRÉDITO</label>
             </li>
 
-            <li class="payment-method">
-              <input name="payment_methods" type="radio" value="debito" id="debito">
-              <label for="debito">DEBITO</label>
+            <li class="lipag">
+              <label for="debito">
+              <input name="pag" type="radio" value="debito" id="debito">
+              DEBITO</label>
             </li>
-            <li class="payment-method">
-              <input name="payment_methods" type="radio" value="cheque" id="cheque">
-              <label for="cheque">CHEQUE</label>
+            <li class="lipag">
+                  <label for="cheque">
+              <input name="pag" type="radio" value="cheque" id="cheque">
+          CHEQUE</label>
             </li>
 
-            <li class="payment-method">
-              <input name="payment_methods" type="radio" value="fiado" id="fiado">
-              <label for="fiado">FIADO</label>
+            <li class="lipag">
+              <label for="fiado">
+              <input name="pag" type="radio" value="fiado" id="fiado">
+              FIADO</label>
             </li>
           </ul>
-</div>
-</div>
 
-<div class="form-group">
-<div class="col-lg-6">
+
+<br>
+<br>
           <input type="hidden" name="pedido" id="pedido" value="<?php echo $pedido->id?>"/>
 
 
               <input type="hidden" name="numeromesa" id="numeromesa" value="<?php echo $mesa?>"/>
 
-          <input type="hidden" name="totalvenda" value="<?php echo number_format($totalvenda,2,',','.')?>"/>
-          <label for="valorpgto"  style="text-align: center" class="control-label"> VALOR</label>
-          <?php if(!$pagamento){?>
-          <input type="hidden" name="vlrpago" value=""/>
-          <?php }else{?>
-            <input type="hidden" name="restante" value="<?php echo number_format(($totalvenda)-($vlrpago)-($pedido->desconto),2,',','.')?>"/>
-            <input type="hidden" name="vlrpago" value="<?php echo number_format($vlrpago,2,',','.')?>"/>
-          <?php }?>
-          <input type="text" class="form-control input-lg" name="vlrpgto" id="vlrpgto"/>
+          <input type="hidden" name="totalvenda" id="totalvenda" value="<?php echo number_format($totalvenda, 2, '.', ',')?>"/>
+
+          <?php if (!$pagamento) {
+               ?>
+          <input type="hidden" name="vlrpago" id="vlrpago" value="0"/>
+            <input type="hidden" name="restante" id="restante" value="<?php echo number_format($totalvenda, 2, '.', ',')?>"/>
+          <?php
+           } else {
+               ?>
+            <input type="hidden" name="restante" id="restante"value="<?php echo number_format(($totalvenda)-($vlrpago)-($pedido->desconto), 2, '.', ',')?>"/>
+            <input type="hidden" id="vlrpago" name="vlrpago" value="<?php echo number_format($vlrpago, 2, '.', ',')?>"/>
+          <?php
+           }?>
+
+<div id="cedulas" style="display:none;">
+
+                <button class="btn btn-default btn-lg" value="2" onclick="dois(this);"><strong>R$ 2.00</strong> </button>
+                <button  class="btn btn-default btn-lg" value="5"  onclick="cinco(this)"><strong>R$ 5.00 </strong></button>
+                <button  class="btn btn-default btn-lg" value="10"  onclick="dez(this)"><strong>R$ 10.00 </strong></button>
+                <button  class="btn btn-default btn-lg" value="20"  onclick="vinte(this)"><strong>R$ 20.00 </strong></button>
+                      <button class="btn btn-default btn-lg" value="50"  onclick="cinquenta(this)"><strong>R$ 50.00</strong> </button>
+                      <button  class="btn btn-default btn-lg" value="100"  onclick="cem(this)"><strong>R$ 100.00 </strong></button>
 </div>
-</div>
+          <div class="col-lg-5">
+              <label for="valorpgto" class="col-lg-4 control-label"> VALOR</label>
+          <input type="text" class="form-control col-lg-4 input-lg" name="vlrpgto" value="0" id="vlrpgto"/>
+
+            <button class="btn btn-success btn-lg" value="2" onclick="pagar(this);">CONFIRMAR </button>
+        </div>
 
 </div>
 
+
+
+
 </div>
-          </form>
 
 
-          </div>
 
 
 
@@ -662,7 +712,96 @@ jQuery.browser.msie = true;
 jQuery.browser.version = RegExp.$1;
 }
 })();
+ var vlrini =0;
+var countEl = document.getElementById("vlrpgto");
+function dois(num){
 
+var vlrpg = document.getElementById("vlrpgto");
+var valorteste = Number(document.getElementById("vlrpgto").value);
+ var dois = 2;
+
+ var valor = Number(valorteste+dois);
+
+
+vlrpg.value =valor;
+
+
+
+}
+
+function cinco(num){
+
+var vlrpg = document.getElementById("vlrpgto");
+var valorteste = Number(document.getElementById("vlrpgto").value);
+ var dois = 5;
+
+ var valor = Number(valorteste+dois);
+
+
+vlrpg.value =valor;
+
+
+
+}
+function dez(num){
+
+var vlrpg = document.getElementById("vlrpgto");
+var valorteste = Number(document.getElementById("vlrpgto").value);
+ var dois = 10;
+
+ var valor = Number(valorteste+dois);
+
+
+vlrpg.value =valor;
+
+
+
+}
+
+
+function vinte(num){
+
+var vlrpg = document.getElementById("vlrpgto");
+var valorteste = Number(document.getElementById("vlrpgto").value);
+ var dois = 20;
+
+ var valor = Number(valorteste+dois);
+
+
+vlrpg.value =valor;
+
+
+
+}
+function cinquenta(num){
+
+var vlrpg = document.getElementById("vlrpgto");
+var valorteste = Number(document.getElementById("vlrpgto").value);
+ var dois = 50;
+
+ var valor = Number(valorteste+dois);
+
+
+vlrpg.value =valor;
+
+
+
+}
+
+function cem(num){
+
+var vlrpg = document.getElementById("vlrpgto");
+var valorteste = Number(document.getElementById("vlrpgto").value);
+ var dois = 100;
+
+ var valor = Number(valorteste+dois);
+
+
+vlrpg.value =valor;
+
+
+
+}
 
 $('#updateitem').submit(function(){
 
@@ -781,7 +920,7 @@ $('#modalrec').modal('show');
 
 });
 
-$('#vlrpgto').maskMoney();
+
 
 $('#valordesconto').maskMoney();
 
@@ -900,6 +1039,63 @@ location.reload();
 });
 
 
+function pagar(num){
+
+
+
+
+var vlrpago = parseFloat(document.getElementById('vlrpago').value).toFixed(2);
+var totalvenda = document.getElementById('totalvenda').value;
+ var radioValue = $("input[name='pag']:checked").val();
+  var vlrpgto = parseFloat(document.getElementById('vlrpgto').value).toFixed(2);
+  var pedido =  document.getElementById('idpedido').value;
+  var numeromesa =  document.getElementById('numeromesa').value;
+  var restante =  parseFloat(document.getElementById('restante').value).toFixed(2);
+
+  var hiddens = '<input type="hidden" name="tiporecebimento" value="'+radioValue+'" />'+
+  '<input type="hidden" name="pedido" value="'+pedido+'" />'+
+  '<input type="hidden" name="total" value="'+totalvenda+'" />'+
+    '<input type="hidden" name="numeromesa" value="'+numeromesa+'" />'+
+    '<input type="hidden" name="restante" value="'+restante+'" />'+
+    '<input type="hidden" name="vlrpago" value="'+vlrpago+'" />'+
+  '<input type="hidden" name="vlrpgto" value="'+vlrpgto+'" />';
+
+
+  var dados = $( hiddens ).serialize();
+
+      $.ajax({
+      type: "POST",
+      url:"<?php echo base_url();?>vendas/pagamento",
+      data:dados,
+      dataType:'json',
+      success:function(data)
+      {
+
+        if(data.result == true){
+
+
+
+
+          window.location.href="<?php echo base_url();?>vendas/mesasindex";
+        }
+
+        else{
+
+
+  location.reload();
+
+
+        }
+
+      }
+
+      });
+
+      return false;
+
+
+}
+
 
 $(document).ready(function(){
 
@@ -1003,52 +1199,6 @@ $('#form_prepare').submit(function(){
 
 
 
-
-
-  var $this = $( this );
-
-
- var nomeproduto = $this.find("input[name='nomeproduto']").val();
-  var hora = $this.find("input[name='hora']").val();
-  var venda = $this.find("input[name='venda']").val();
-  var idpedido = $this.find("input[name='idpedido']").val();
-  var idproduto = $this.find("input[name='idproduto']").val();
-    var garcom = $this.find("input[name='garcom']").val();
-  var qtdd = $this.find("input[name='quantidade']").val();
-  var numeromesa = $this.find("input[name='numeromesa']").val();
-  var subtotal = venda*qtdd;
-
-
-
-
-//  var nomeproduto = $('#precovenda').val();
-  var tr = '<tr>'+
-    '<td>'+garcom+'</td>'+
-    '<td><strong>'+hora+'</strong></td>'+
-    '<td><strong>'+nomeproduto+'</strong></td>'+
-    '<td><strong>R$ '+venda+',00</strong></td>'+
-    '<td><strong>'+qtdd+' </strong></td>'+
-    '<td><strong>R$ '+subtotal+',00</strong></td>'+
-    '<td></td>'
-
-
-
-
-    '</tr>'
-  $('#item').find('tbody').append( tr );
-
-var hiddens =  '<input type="hidden" name="nomeproduto" value="'+nomeproduto+'" />'+
-'<input type="hidden" name="quantidade" value="'+qtdd+'" />'+
-  '<input type="hidden" name="hora" value="'+hora+'" />'+
-  '<input type="hidden" name="garcom" value="'+garcom+'" />'+
-  '<input type="hidden" name="numeromesa" value="'+numeromesa+'" />'+
-  '<input type="hidden" name="venda" value="'+venda+'" />'+
-'<input type="hidden" name="idpedido" value="'+idpedido+'" />'+
-  '<input type="hidden" name="subtotal" value="'+subtotal+'" />'+
-  '<input type="hidden" name="idproduto" value="'+idproduto+'" />';
-
-$('#form_insert').find('fieldset').append( hiddens );
-
   var dados = $('#form_prepare').serialize();
 
 $.ajax({
@@ -1126,8 +1276,8 @@ alert('Ocorreu um erro ao tentar excluir serviço.');
        });
 
 $("input[type='radio']").click(function(){
-
-    $('#vlrpgto').focus();
+document.getElementById("cedulas").style.display = 'block';
+//     $('#vlrpgto').focus();
 });
 
 

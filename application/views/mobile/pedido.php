@@ -2,6 +2,9 @@
 <html lang="en">
 
 <head>
+
+
+
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Creative - Bootstrap 3 Responsive Admin Template">
@@ -50,6 +53,8 @@
     <!-- container section start -->
     <section id="container" class="">
       <!--header start-->
+
+
       <header class="header blue-bg">
         <div class="toggle-nav">
           <div class="icon-reorder tooltips" data-original-title="MENU" data-placement="bottom"><i class="icon_menu"></i></div>
@@ -122,13 +127,15 @@
 </section>
 </body>
 
-	<script src="<?php echo base_url()?>assest/js/jquery.js"></script>
-<script src="<?php echo base_url()?>assest/js/jquery-ui-1.10.4.min.js"></script>
-<script src="<?php echo base_url()?>assest/js/maskmoney.js"></script>
-<script src="<?php echo base_url()?>assest/js/bootstrap.js"></script>
-<script src="<?php echo base_url()?>assest/js/validate.js"></script>
 
+
+        <script src="<?php echo base_url()?>assest/js/jquery.js"></script>
+      <script src="<?php echo base_url()?>assest/js/jquery-ui-1.10.4.min.js"></script>
+      <script src="<?php echo base_url()?>assest/js/maskmoney.js"></script>
+      <script src="<?php echo base_url()?>assest/js/bootstrap.js"></script>
+      <script src="<?php echo base_url()?>assest/js/validate.js"></script>
 	<script>
+
 
 
 
@@ -141,20 +148,23 @@
    						var valorproduto =  document.getElementsByName('valorproduto[]');
 				var idpedido =  document.getElementsByName('pedido[]');
 				var nmesa =  document.getElementsByName('mesa[]');
+document.getElementById('item').value =nomeproduto[value].value;
+document.getElementById('numeropedido').value =idpedido[value].value;
+document.getElementById('precoitem').value =valorproduto[value].value;
+document.getElementById('produtoid').value =idproduto[value].value;
+document.getElementById('numerom').value =nmesa[value].value;
+
+
+
 
 
 				var nomeprodutook = nomeproduto[value].value;
 
 
-				  var hiddens =  '<input type="hidden" name="produto[]" value="'+idproduto[value].value+'" />'+
-				 '<input type="hidden" name="nome[]" value="'+nomeproduto[value].value+'" />'+
-					  '<input type="hidden" name="pedido[]" value="'+idpedido[value].value+'" />'+
-					  '<input type="hidden" name="numeromesa[]" value="'+nomeproduto[value].value+'" />'+
-	'<input type="hidden" name="valorproduto[]" value="'+valorproduto[value].value+'" />';
+
+    $('#call-modal').trigger('click');
 
 
-
-	$('#fieldset').append( hiddens );
 			 //   var $this = $( this );
 
 
@@ -167,7 +177,7 @@
 
 			}
 
-		 $('#itenspedido').submit(function(){
+		 $('#').submit(function(){
 
 
 
@@ -209,3 +219,106 @@ $("#painelrec").load("<?php echo current_url();?> #painelrec" );
 
 
 	</script>
+
+  <a href="#notification" id="call-modal" role="button" class="btn" data-toggle="modal" style="display: none ">notification</a>
+  <div class="modal fade" id="notification">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  Profit sistemas
+              </div>
+              <div class="modal-body">
+
+                <form action="" method="post">
+                  <input type="text" class="form-control" id="item" name="produto" value="" disabled>
+
+                  <input type="hidden" name="numeropedido" id="numeropedido">
+<input type="hidden" name="produtoid" id="produtoid">
+<input type="hidden" name="precoitem" id="precoitem">
+<input type="hidden" name="numerom" id="numerom">
+
+
+<input type="button" class="btn btn-default" value="-" id="moins" onclick="minus()">
+
+                <input type="text" class="form-control" name="quantidade" value="1" id="count">
+                <input type="button" class="btn btn-default" value="+" id="plus" onclick="plus()">
+</form>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-danger" data-dismiss="modal" aria-hidden="true">Fechar</button>
+
+              </div>
+          </div>
+          </div>
+        </div>
+
+
+
+
+      <script type="text/javascript">
+
+
+
+
+
+
+      var count = 1;
+      var countEl = document.getElementById("count");
+
+      function plus(){
+
+
+
+      count++;
+      countEl.value = count;
+      }
+      function minus(){
+
+
+      if (count > 1) {
+      count--;
+      countEl.value = count;
+      }
+      }
+
+
+      </script>
+        <script>
+
+
+
+
+
+        $('#formitem').submit(function() {
+
+
+
+          var $this = $( this );
+
+
+
+          var quantidade = $this.find("input[name='quant']").val();
+      var nmesa = $this.find("input[name='numerom']").val();
+      var pedido_id = $this.find("input[name='numeropedido']").val();
+      var idproduto = $this.find("input[name='produtoid']").val();
+      var precovenda = $this.find("input[name='precoitem']").val();
+      var nomeproduto = $this.find("input[name='item']").val();
+
+
+      var hiddens =  '<input type="hidden" name="produto[]" value="'+idproduto+'" />'+
+     '<input type="hidden" name="nome[]" value="'+nomeproduto+'" />'+
+        '<input type="hidden" name="pedido[]" value="'+pedido_id+'" />'+
+        '<input type="hidden" name="numeromesa[]" value="'+nmesa+'" />'+
+          '<input type="hidden" name="quant[]" value="'+quantidade+'" />'+
+
+'<input type="hidden" name="valorproduto[]" value="'+precovenda+'" />';
+
+
+
+$('#fieldset').append( hiddens );
+        });
+
+
+
+
+        </script>

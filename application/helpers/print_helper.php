@@ -1,36 +1,36 @@
 <?php
-/* Change to the correct path if you copy this example! */
 
 
 require __DIR__ . '/../../autoload.php';
-use Mike42\Escpos\Printer;
+
 
 
 use Mike42\Escpos\PrintConnectors\WindowsPrintConnector;
-
+use Mike42\Escpos\PrintConnectors\FilePrintConnector;
+use Mike42\Escpos\Printer;
 /* Most printers are open on port 9100, so you just need to know the IP
  * address of your receipt printer, and then fsockopen() it on that port.
  */
 
- function imprimiitemtable($id){
+ function imprimirtestenovo(){
 
-   $CI = get_instance();
+  // $CI = get_instance();
 
-   $CI->load->model('Vendas_model');
-   $impressao = $CI->Vendas_model->imprimiproduto($id);
+  // $CI->load->model('Vendas_model');
+  // $impressao = $CI->Vendas_model->imprimiproduto($id);
 
 
 
 try {
-  $connector = new CupsPrintConnector("PDF");
+  $connector = new WindowsPrintConnector("TESTE");
 
 
       /* Print a "Hello world" receipt" */
       $printer = new Printer($connector);
 
 
-date_default_timezone_set('America/Sao_Paulo');
 
+$printer->initialize();
 
 $printer -> selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
 
@@ -48,25 +48,6 @@ $printer -> feed(2);
       $printer -> selectPrintMode(Printer::MODE_DOUBLE_WIDTH);
       $printer -> setJustification(Printer::JUSTIFY_LEFT);
 
-$impriss=NULL;
-   foreach ($impressao as $impress) {
-        $impriss[] = [
-         'nome_produto' => $impress['nome_produto'],
-            'qttdproduto' => $impress['qtdd']
-
-        ];
-
-
-
-        }
-
-        foreach($impriss as $its){
-          $item = $its['nome_produto'];
-          $qtdd = $its['qtddproduto'];
-            $printer -> text($item);
-            $printer -> text($qtdd);
-
-        }
 
 
 

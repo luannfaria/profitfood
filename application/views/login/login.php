@@ -13,7 +13,7 @@
   <title>Profit Sistemas | Entrar </title>
 
   <!-- Bootstrap CSS -->
-  <link href="<?php echo base_url(); ?>assest/css/bootstrap.min.css" rel="stylesheet">
+<link href="<?php echo base_url(); ?>assest/css/bootstrap.min.css" rel="stylesheet">
   <!-- bootstrap theme -->
   <link href="<?php echo base_url(); ?>assest/css/bootstrap-theme.css" rel="stylesheet">
   <!--external css-->
@@ -22,8 +22,8 @@
   <script src="<?php echo base_url()?>assest/js/jquery-1.8.3.min.js"></script>
 
   <!-- font icon -->
-  <link href="<?php echo base_url(); ?>assest/css/elegant-icons-style.css" rel="stylesheet" />
-  <link href="<?php echo base_url(); ?>assest/css/font-awesome.css" rel="stylesheet" />
+<link href="<?php echo base_url(); ?>assest/css/elegant-icons-style.css" rel="stylesheet" />
+<!--  <link href="<?php echo base_url(); ?>assest/css/font-awesome.css" rel="stylesheet" />
   <!-- Custom styles -->
   <link href="<?php echo base_url(); ?>assest/css/style.css" rel="stylesheet">
   <link href="<?php echo base_url(); ?>assest/css/style-responsive.css" rel="stylesheet" />
